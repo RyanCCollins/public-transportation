@@ -1,8 +1,11 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Main = (props) => (
   <div>
-    {React.cloneElement(props.children, props)}
+    <MuiThemeProvider>
+      {React.cloneElement(props.children, props)}
+    </MuiThemeProvider>
   </div>
 );
 
