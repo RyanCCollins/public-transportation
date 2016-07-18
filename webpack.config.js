@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
+const ServiceWorkerPlugin = require('serviceworker-webpack-plugin');
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
@@ -90,6 +91,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new NpmInstallPlugin(),
+    new ServiceWorkerPlugin({
+      entry: path.join(__dirname, 'app/src/sw.js'),
+    }),
     new HtmlwebpackPlugin({
       title: 'React Redux Simple Starter',
       template: 'index.html'

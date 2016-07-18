@@ -1,5 +1,8 @@
 const initalState = {
-  schedule: {},
+  schedule: {
+    isLoading: false,
+    items: []
+  },
   errors: []
 };
 
