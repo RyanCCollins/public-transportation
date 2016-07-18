@@ -1,8 +1,9 @@
 import React, { PropTypes, Component } from 'react';
+import styles from './ScheduleList.module.scss';
+import cssModules from 'react-css-modules';
 import {
   Table,
   TableBody,
-  TableFooter,
   TableHeader,
   TableHeaderColumn,
   TableRow,
@@ -69,4 +70,4 @@ ScheduleList.propTypes = {
   items: PropTypes.array
 };
 
-export default ScheduleList;
+export default cssModules(ScheduleList, styles);

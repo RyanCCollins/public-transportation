@@ -24,6 +24,10 @@ module.exports = {
       loaders: ['react-hot', 'babel']
     },
     {
+      test: /\.txt$/,
+      loader: 'raw',
+    },
+    {
       test: /\.svg$/,
       loader: 'babel!svg-react'
     },
@@ -91,9 +95,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new NpmInstallPlugin(),
-    new ServiceWorkerPlugin({
-      entry: path.join(__dirname, 'app/src/sw.js'),
-    }),
+    // new ServiceWorkerPlugin({
+    //   entry: path.join(__dirname, 'app/src/sw.js'),
+    // }),
     new HtmlwebpackPlugin({
       title: 'React Redux Simple Starter',
       template: 'index.html'

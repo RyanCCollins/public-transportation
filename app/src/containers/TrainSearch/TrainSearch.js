@@ -17,6 +17,9 @@ class TrainSearch extends Component {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentDidMount() {
+
+  }
   handleSubmit() {
     const {
       departureInput,
@@ -28,7 +31,7 @@ class TrainSearch extends Component {
     return (
       <div className={styles.container}>
         <Row>
-          <Column isColumn small={12} medium={8} large={6} centerOnSmall>
+          <Column isColumn small={12} medium={10} large={8} centerOnSmall>
             <Paper zDepth={2}>
               <TextField
                 hintText="Departure"
@@ -47,7 +50,7 @@ class TrainSearch extends Component {
               <RaisedButton
                 label="Submit"
                 onClick={this.handleSubmit}
-                fullWidth={true}
+                fullWidth
               />
             </Paper>
           </Column>

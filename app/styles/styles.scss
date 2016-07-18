@@ -187,3 +187,55 @@ hr.section-divider:before {
     width: 1000px;
   }
 }
+
+.icon {
+  transition: all 0.5s ease;
+}
+
+.spin{
+   -webkit-transform-origin: 50% 50%;
+   transform-origin:50% 50%;
+   -ms-transform-origin:50% 50%; /* IE 9 */
+   -webkit-animation: spin 2.0s infinite linear;
+   -moz-animation: spin 2.0s infinite linear;
+   -o-animation: spin 2.0s infinite linear;
+   animation: spin 2.0s infinite linear;
+}
+
+@-moz-keyframes spin {
+  from {
+    -moz-transform: rotate(0deg);
+  }
+  to {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-big {
+  font-size: 6rem !important;
+  padding: 20px;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

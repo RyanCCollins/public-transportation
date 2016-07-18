@@ -4,10 +4,15 @@ import { reducer as formReducer } from 'redux-form';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
 import schedule from './schedule';
+import errors from './errors';
+import stops from './stops';
+import routes from './routes';
 
 const rootReducer = combineReducers({
-  // Apply all of the reducers here.
   schedule,
+  routes,
+  stops,
+  errors,
   routing: routerReducer,
   form: formReducer,
   toastr: toastrReducer

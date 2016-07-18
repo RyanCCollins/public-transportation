@@ -4,13 +4,16 @@ import * as actionCreators from '../actions/actionCreators';
 import Main from './Main';
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
-if ('serviceWorker' in navigator) {
-  const registration = runtime.register();
-}
+// if ('serviceWorker' in navigator) {
+//   const registration = runtime.register();
+// }
 
 // Map the global state to global props here.
 // See: https://egghead.io/lessons/javascript-redux-generating-containers-with-connect-from-react-redux-visibletodolist
 const mapStateToProps = (state) => ({
+  routes: state.routes,
+  schedule: state.schedule,
+  stops: state.stops,
   messages: state.messages,
   errors: state.errors
 });

@@ -1,12 +1,18 @@
 import React from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LandingPage.module.scss';
-import { TrainSearch, TrainSchedule } from 'containers';
+import { SelectStops, TrainSchedule, SelectRoute } from 'containers';
+import {
+  Paper
+} from 'material-ui';
 
 const LandingPage = () => (
   <div className={styles.container}>
-    <TrainSearch />
-    <TrainSchedule />
+    <Paper zDepth={2}>
+      <SelectRoute />
+      <SelectStops />
+      <TrainSchedule />
+    </Paper>
   </div>
 );
 

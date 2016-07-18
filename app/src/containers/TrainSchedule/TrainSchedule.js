@@ -43,8 +43,9 @@ const mapStateToProps = (state) => ({
   isLoading: state.schedule.isLoading
 });
 
-const mapDispatchToProps = (dispatch) =>
-  dispatch;
+const mapDispatchToProps = (dispatch) => ({
+  dispatch
+});
 
 const SmartComponent = connect(
   mapStateToProps,
