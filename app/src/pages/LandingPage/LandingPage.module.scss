@@ -3,7 +3,12 @@
   width: 100%
 };
 
+.fillScreen {
+  height: 100vh;
+}
+
 .header {
   font-size: 32px;
-  font: 'Open Sans';
+  padding: 100px 0;
+  font: 'Lato'
 }

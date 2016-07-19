@@ -6,9 +6,20 @@ import {
   Paper
 } from 'material-ui';
 
+const Header = ({
+  text
+}) => (
+  <div className={styles.header}>
+    <h4 className="centered">
+      {text}
+    </h4>
+  </div>
+);
+
 const LandingPage = () => (
   <div className={styles.container}>
-    <Paper zDepth={2}>
+    <Paper className={styles.fillScreen} zDepth={2}>
+      <Header text="Washington Metro Train Schedule" />
       <SelectRoute />
       <SelectStops />
       <TrainSchedule />

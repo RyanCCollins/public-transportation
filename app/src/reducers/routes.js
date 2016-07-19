@@ -2,7 +2,8 @@ import {
   LOAD_ROUTES_SUCCESS,
   LOAD_ROUTES_INITIATION,
   SELECT_ROUTE,
-  LOAD_ROUTES_ERROR
+  LOAD_ROUTES_ERROR,
+  CLEAR_ROUTES_ERRORS
 } from '../constants/routes';
 const routes = (state = {
   items: [],
@@ -31,6 +32,10 @@ const routes = (state = {
           ...state.errors,
           action.error
         ]
+      });
+    case CLEAR_ROUTES_ERRORS:
+      return Object.assign({}, state, {
+        errors: []
       });
     default:
       return state;

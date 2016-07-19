@@ -14,6 +14,72 @@ import {
   Column,
   Row
 } from 'react-foundation';
+import { ComponentLoadingIndicator } from 'components';
+
+const StopsInputs = ({
+  selectedDepartureStop,
+  handleSelectDeparture,
+  selectedArrivalStop,
+  handleSelectArrival,
+  stops,
+  handleSubmit,
+  isLoading
+}) => (
+  <Row>
+    <Column isColumn small={12} medium={10} large={8} centerOnSmall>
+      <SelectField
+        value={selectedDepartureStop}
+        onChange={handleSelectDeparture}
+        floatingLabelText="Select a Departure Train Station"
+        fullWidth
+        autoWidth
+      >
+        {stops.map((stop, i) =>
+          <MenuItem key={i} value={stop.id} primaryText={stop.display_name} />
+        )}
+      </SelectField>
+    </Column>
+    <Divider />
+    <Column isColumn small={12} medium={10} large={8} centerOnSmall>
+      <SelectField
+        value={selectedArrivalStop}
+        onChange={handleSelectArrival}
+        floatingLabelText="Select an Arrival Train Station"
+        fullWidth
+        autoWidth
+      >
+        {stops.map((stop, i) =>
+          <MenuItem key={i} value={stop.id} primaryText={stop.display_name} />
+        )}
+      </SelectField>
+    </Column>
+    <Column
+      isColumn
+      small={12}
+      medium={10}
+      large={8}
+      centerOnSmall
+      className={styles.buttonWrapper}
+    >
+      <RaisedButton
+        disabled={isLoading}
+        onClick={handleSubmit}
+      >
+        Submit
+      </RaisedButton>
+    </Column>
+  </Row>
+);
+
+StopsInputs.propTypes = {
+  selectedDepartureStop: PropTypes.string,
+  handleSelectDeparture: PropTypes.func.isRequired,
+  selectedArrivalStop: PropTypes.string,
+  handleSelectArrival: PropTypes.func.isRequired,
+  stops: PropTypes.array.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+};
 
 class SelectStops extends Component {
   constructor() {
@@ -33,52 +99,28 @@ class SelectStops extends Component {
     const {
       actions
     } = this.props;
-    actions.selectedArrivalStop(value);
+    actions.selectArrivalStop(value);
   }
   handleSelectDeparture(event, index, value) {
     const {
       actions
     } = this.props;
-    actions.selectedDepartureStop(value);
+    actions.selectDepartureStop(value);
   }
   handleSubmit() {
-    const {
-      departureInput,
-      arrivalInput
-    } = this.refs;
-    console.log(`Submitting value for train: ${departureInput} and ${arrivalInput}`)
+
   }
   render() {
     const {
-      stops,
-      selectedArrival,
-      selectedDeparture
+      isLoading
     } = this.props;
     return (
       <div className={styles.container}>
-        <Row>
-          <Column isColumn small={12} medium={10} large={8} centerOnSmall>
-            <SelectField
-              value={selectedArrival}
-              onChange={this.handleSelectArrival}
-            >
-              {stops.map((stop, i) =>
-                <MenuItem key={i} value={stop.id} primaryText={stop.display_name} />
-              )}
-            </SelectField>
-          </Column>
-          <Divider />
-          <Column isColumn small={12} medium={10} large={8} centerOnSmall>
-            <SelectField
-              value={selectedDeparture}
-              onChange={this.handleSelectDeparture}
-            >
-              {stops.map((stop, i) =>
-                <MenuItem key={i} value={stop.id} primaryText={stop.display_name} />
-              )}
-            </SelectField>
-          </Column>
-        </Row>
+        {isLoading ?
+          <ComponentLoadingIndicator />
+        :
+          <StopsInputs {...this.props} handleSubmit={this.handleSubmit} />
+        }
       </div>
     );
   }
@@ -86,9 +128,11 @@ class SelectStops extends Component {
 
 SelectStops.propTypes = {
   stops: PropTypes.array.isRequired,
-  selectedRoute: PropTypes.number.isRequired,
-  selectedDeparture: PropTypes.number.isRequired,
-  selectedArrival: PropTypes.number.isRequired
+  selectedRoute: PropTypes.string.isRequired,
+  selectedDepartureStop: PropTypes.string.isRequired,
+  selectedArrivalStop: PropTypes.string.isRequired,
+  actions: PropTypes.array.isRequired,
+  isLoading: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

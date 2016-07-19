@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   SelectField,
-  MenuItem
+  MenuItem,
+  Snackbar
 } from 'material-ui';
 import {
   Row,
@@ -20,12 +21,19 @@ class SelectRoute extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.renderLoading = this.renderLoading.bind(this);
     this.renderSelectBox = this.renderSelectBox.bind(this);
+    this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
   }
   componentDidMount() {
     const {
       actions
     } = this.props;
     actions.fetchRoutes();
+  }
+  handleCloseSnackbar() {
+    const {
+      actions
+    } = this.props;
+    actions.clearRoutesErrors();
   }
   handleChange(event, index, value) {
     const {
@@ -43,7 +51,8 @@ class SelectRoute extends Component {
   renderSelectBox() {
     const {
       routes,
-      selectedRoute
+      selectedRoute,
+      errors
     } = this.props;
     return (
       <div>
@@ -55,11 +64,19 @@ class SelectRoute extends Component {
           fullWidth
         >
           {routes.map((route, i) =>
-            <MenuItem key={i} value={route.id} primaryText={route.display_name} />
+            <MenuItem key={i} value={route.RouteId} primaryText={route.Name} />
           )
           }
         </SelectField>
         <div onClick={this.handleClearRoute}>Clear</div>
+        <Snackbar
+          open={errors.length > 0}
+          message={errors.length > 0 ? errors[0].message : ''}
+          autoHideDuration={4000}
+          action="Close"
+          onActionTouchTap={this.handleCloseSnackbar}
+          onRequestClose={this.handleCloseSnackbar}
+        />
       </div>
     );
   }
@@ -83,7 +100,7 @@ class SelectRoute extends Component {
 
 SelectRoute.propTypes = {
   routes: PropTypes.array,
-  selectedRoute: PropTypes.object,
+  selectedRoute: PropTypes.string,
   isLoading: PropTypes.bool.isRequired,
   errors: PropTypes.array,
   dispatch: PropTypes.func.isRequired

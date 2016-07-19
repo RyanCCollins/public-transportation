@@ -1,10 +1,14 @@
 import * as types from '../constants/stops';
-const baseUrl = 'http://api.metro.net/agencies/lametro/routes/';
-const routeUrl = (routeId) => `${baseUrl}${routeId}/`;
-const loadStopsUrl = (routeId) => `${routeUrl(routeId)}stops/`;
-const loadStopUrl = (routeId, stopId) => `${loadStopsUrl(routeId)}${stopId}/`;
-const stopInfoUrl = (routeId, stopId) => `${loadStopUrl(routeId, stopId)}/info/`;
-const stopPredictionsUrl = (routeId, stopId) => `${loadStopUrl(routeId, stopId)}/predictions/`;
+const apiKey = 'dce33f45612348bb8c4c247f8413bb7f';
+const routeUrl = 'https://api.wmata.com/Bus.svc/json/jStops';
+const loadStopUrl = (routeId) => `${routeUrl}?${routeId}`;
+const options = {
+  method: 'GET',
+  headers: {
+    api_key: apiKey
+  },
+  mode: 'no-cors'
+};
 
 const loadStopsInitiation = () => ({
   type: types.LOAD_STOPS_INITIATION
@@ -33,7 +37,7 @@ export const selectArrivalStop = (stop) => ({
 export const fetchRouteStops = (routeId) => {
   return dispatch => {
     dispatch(loadStopsInitiation());
-    return fetch(loadStopsUrl(routeId))
+    return fetch(loadStopUrl(routeId), options)
       .then(res => res.json())
       .then(data => dispatch(loadStopsSuccess(data.items)))
       .catch(error => dispatch(loadStopsError(error)));
