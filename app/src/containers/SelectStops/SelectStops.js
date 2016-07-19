@@ -4,7 +4,7 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as StopsActionCreators from '../../actions/stops';
-import { ComponentLoadingIndicator } from 'components';
+import { ComponentLoadingIndicator, StopsInputs } from 'components';
 
 class SelectStops extends Component {
   constructor() {

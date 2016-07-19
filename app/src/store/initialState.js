@@ -1,3 +1,4 @@
+import stops from '../data/loadData';
 const initalState = {
   stops: {
     items: [],

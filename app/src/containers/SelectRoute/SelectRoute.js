@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import styles from './SelectRoute.module.scss';
+import cssModules from 'react-css-modules';
 import {
   SelectField,
   MenuItem,
@@ -11,9 +13,9 @@ import {
   Column
 } from 'react-foundation';
 import * as RouteActionCreators from '../../actions/routes';
-import {
-  FaCog
-} from 'react-icons/lib/fa';
+import { FaCog } from 'react-icons/lib/fa';
+import { MdClose } from 'react-icons/lib/md';
+import { IconButton } from 'material-ui';
 
 class SelectRoute extends Component {
   constructor(props) {
@@ -22,12 +24,16 @@ class SelectRoute extends Component {
     this.renderLoading = this.renderLoading.bind(this);
     this.renderSelectBox = this.renderSelectBox.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
+    this.handleClearRoute = this.handleClearRoute.bind(this);
   }
   componentDidMount() {
     const {
       actions
     } = this.props;
     actions.fetchRoutes();
+  }
+  handleClearRoute() {
+
   }
   handleCloseSnackbar() {
     const {
@@ -55,7 +61,7 @@ class SelectRoute extends Component {
       errors
     } = this.props;
     return (
-      <div>
+      <div className={styles.alignButton}>
         <SelectField
           value={selectedRoute}
           onChange={this.handleChange}
@@ -69,7 +75,9 @@ class SelectRoute extends Component {
           )
           }
         </SelectField>
-        <div onClick={this.handleClearRoute}>Clear</div>
+        <IconButton onClick={this.handleClearRoute} className="close-button">
+          <MdClose />
+        </IconButton>
         <Snackbar
           open={errors.length > 0}
           message={errors.length > 0 ? errors[0].message : ''}
@@ -118,7 +126,9 @@ const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(RouteActionCreators, dispatch)
 });
 
+const StyledComponent = cssModules(SelectRoute);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SelectRoute);
+)(StyledComponent);
