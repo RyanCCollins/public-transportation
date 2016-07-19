@@ -1,5 +1,8 @@
 import stops from '../data/loadData';
 const initalState = {
+  navbar: {
+    isOpen: false
+  },
   stops: {
     items: [],
     isLoading: false,

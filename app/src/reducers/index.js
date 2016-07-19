@@ -7,9 +7,11 @@ import schedule from './schedule';
 import errors from './errors';
 import stops from './stops';
 import routes from './routes';
+import navbar from './navbar';
 
 const rootReducer = combineReducers({
   schedule,
+  navbar,
   routes,
   stops,
   errors,
