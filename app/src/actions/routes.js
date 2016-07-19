@@ -1,13 +1,6 @@
 import * as types from '../constants/routes';
-const apiKey = 'dce33f45612348bb8c4c247f8413bb7f';
-const routeUrl = 'https://api.wmata.com/Bus.svc/json/jRoutes';
-const options = {
-  method: 'GET',
-  headers: {
-    api_key: apiKey
-  },
-  mode: 'no-cors'
-};
+const baseUrl = 'http://api.metro.net/agencies/lametro/routes/';
+const routeUrl = (routeId) => `${baseUrl}${routeId}/`;
 
 const loadRoutesInitiation = () => ({
   type: types.LOAD_ROUTES_INITIATION
@@ -34,8 +27,8 @@ export const selectRoute = (selectedRoute) => ({
 
 export const fetchRoutes = () => (dispatch) => {
   dispatch(loadRoutesInitiation());
-  return fetch(routeUrl, options)
+  return fetch(baseUrl)
       .then(res => res.json())
-      .then(data => dispatch(loadRoutesSuccess(data.Routes)))
+      .then(data => dispatch(loadRoutesSuccess(data.items)))
       .catch(error => dispatch(loadRoutesError(error)));
 };

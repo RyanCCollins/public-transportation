@@ -1,14 +1,11 @@
 import * as types from '../constants/stops';
-const apiKey = 'dce33f45612348bb8c4c247f8413bb7f';
-const routeUrl = 'https://api.wmata.com/Bus.svc/json/jStops';
-const loadStopUrl = (routeId) => `${routeUrl}?${routeId}`;
-const options = {
-  method: 'GET',
-  headers: {
-    api_key: apiKey
-  },
-  mode: 'no-cors'
-};
+const baseUrl = 'http://api.metro.net/agencies/lametro/routes/';
+const routeUrl = (routeId) => `${baseUrl}${routeId}/`;
+const loadStopsForRoute = (routeId) => `${routeUrl(routeId)}stops`;
+
+const loadStopsUrl = () => `${baseUrl}stops/`;
+const loadStopUrl = (stopId) => `${loadStopsUrl}${stopId}`;
+const stopPredictionsUrl = (stopId) => `${loadStopUrl(stopId)}/predictions/`;
 
 const loadStopsInitiation = () => ({
   type: types.LOAD_STOPS_INITIATION
@@ -37,7 +34,7 @@ export const selectArrivalStop = (stop) => ({
 export const fetchRouteStops = (routeId) => {
   return dispatch => {
     dispatch(loadStopsInitiation());
-    return fetch(loadStopUrl(routeId), options)
+    return fetch(loadStopsForRoute(routeId))
       .then(res => res.json())
       .then(data => dispatch(loadStopsSuccess(data.items)))
       .catch(error => dispatch(loadStopsError(error)));

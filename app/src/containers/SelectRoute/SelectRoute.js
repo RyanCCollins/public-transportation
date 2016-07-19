@@ -62,9 +62,10 @@ class SelectRoute extends Component {
           floatingLabelText="Select a Transit Route"
           autoWidth
           fullWidth
+          disabled={routes.length < 0}
         >
           {routes.map((route, i) =>
-            <MenuItem key={i} value={route.RouteId} primaryText={route.Name} />
+            <MenuItem key={i} value={route.id} primaryText={route.display_name} />
           )
           }
         </SelectField>

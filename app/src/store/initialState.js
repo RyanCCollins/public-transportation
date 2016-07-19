@@ -14,6 +14,7 @@ const initalState = {
   },
   schedule: {
     isLoading: false,
+    errors: [],
     items: []
   },
   errors: []
