@@ -25,6 +25,10 @@ export const selectRoute = (selectedRoute) => ({
   selectedRoute
 });
 
+export const clearRoute = () => ({
+  type: types.CLEAR_ROUTE
+});
+
 export const fetchRoutes = () => (dispatch) => {
   dispatch(loadRoutesInitiation());
   return fetch(baseUrl)

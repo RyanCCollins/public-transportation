@@ -33,7 +33,10 @@ class SelectRoute extends Component {
     actions.fetchRoutes();
   }
   handleClearRoute() {
-
+    const {
+      actions
+    } = this.props;
+    actions.clearRoute();
   }
   handleCloseSnackbar() {
     const {
@@ -75,9 +78,13 @@ class SelectRoute extends Component {
           )
           }
         </SelectField>
-        <IconButton onClick={this.handleClearRoute} className="close-button">
-          <MdClose />
-        </IconButton>
+        {selectedRoute !== null &&
+          <div className={styles.closeButtonWrapper}>
+            <IconButton onClick={this.handleClearRoute} className={styles.closeButton}>
+              <MdClose className={styles.iconButton} />
+            </IconButton>
+          </div>
+        }
         <Snackbar
           open={errors.length > 0}
           message={errors.length > 0 ? errors[0].message : ''}
@@ -95,12 +102,14 @@ class SelectRoute extends Component {
     } = this.props;
     return (
       <Row>
-        <Column isColumn small={12} medium={10} large={8} centerOnSmall>
-          {isLoading ?
-            this.renderLoading()
-          :
-            this.renderSelectBox()
-          }
+        <Column isColumn small={12} medium={12} large={12}>
+          <Column isColumn small={12} medium={10} large={8} centerOnSmall>
+            {isLoading ?
+              this.renderLoading()
+            :
+              this.renderSelectBox()
+            }
+          </Column>
         </Column>
       </Row>
     );

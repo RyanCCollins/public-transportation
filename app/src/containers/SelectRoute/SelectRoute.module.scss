@@ -1,3 +1,17 @@
 .alignButton {
   display: flex;
 }
+
+.closeButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.closeButton {
+
+}
+
+.iconButton {
+  font-size: 2rem;
+  color: gray;
+}
