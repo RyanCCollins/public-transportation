@@ -48,7 +48,8 @@ class HelpPage extends Component {
               src="http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg"
             />
           </Column>
-          <Column small={12} medium={4} large={6}>
+          <Column small={12} medium={12} large={12}>
+            <h1 className={styles.stepperHeader}>How It Works</h1>
             <HowItWorks
               stepIndex={stepIndex}
               onForward={this.handleForward}
