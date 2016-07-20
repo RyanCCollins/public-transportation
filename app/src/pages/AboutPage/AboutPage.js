@@ -2,24 +2,53 @@ import React, { PropTypes } from 'react';
 import styles from './AboutPage.module.scss';
 import cssModules from 'react-css-modules';
 import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from 'material-ui/Card';
+import { FlatButton } from 'material-ui';
+import { Link } from 'react-router';
+import {
   Column,
   Row
 } from 'react-foundation';
 
 const AboutPage = () => (
   <Row>
-    <Column small={12} medium={12} large={12}>
-      <h1 className={styles.header}>About</h1>
-      <Column small={12} medium={8} large={6}>
-        <img
-          alt="Big train"
-          className="img-responsive"
-          src="http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg"
+    <Column small={12} medium={12} large={12} className={styles.outer}>
+      <Card>
+        <CardHeader
+          title="By Ryan Collins"
+          subtitle="Web Engineer"
+          avatar="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg"
         />
-      </Column>
-      <Column small={12} medium={4} large={6}>
-
-      </Column>
+        <CardMedia
+          overlay={
+            <CardTitle title="Public Transpprtation" subtitle="Offline First Web App" />
+          }
+        >
+          <img
+            src="http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg"
+            alt="Super Fast Train"
+          />
+        </CardMedia>
+        <CardTitle title="About" subtitle="" />
+        <CardText>
+          Public transportation App, an offline first web application built using progressive web technologies.
+          Allows users to select a departure and arrival train station, and see a list of trains, times, and durations. A default train schedule is provided that is used when the application is offline. If a network connection exists, the application queries an endpoint that provides information about all arrival and departure times.
+        </CardText>
+        <CardActions>
+          <Link to="https://github.com/RyanCCollins/public-transportation">
+            <FlatButton label="View on Github" />
+          </Link>
+          <Link to="https://www.ryancollins.io">
+            <FlatButton label="View Portfolio" />
+          </Link>
+        </CardActions>
+      </Card>
     </Column>
   </Row>
 );
