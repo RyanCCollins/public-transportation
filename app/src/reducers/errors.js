@@ -2,7 +2,7 @@ import {
   DISPLAY_ERROR,
   CLEAR_ERRORS
 } from '../constants/errors';
-const schedule = (state = [], action) => {
+const errors = (state = [], action) => {
   switch (action.type) {
     case DISPLAY_ERROR:
       return [
@@ -16,4 +16,4 @@ const schedule = (state = [], action) => {
   }
 };
 
-export default schedule;
+export default errors;

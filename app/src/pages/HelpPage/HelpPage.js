@@ -18,19 +18,15 @@ class HelpPage extends Component {
   }
   handleForwards() {
     const {
-      actions,
-      stepIndex
+      actions
     } = this.props;
-    const nextStepIndex = stepIndex + 1;
-    actions.stepForwards(nextStepIndex);
+    actions.stepForwards();
   }
   handleBackwards() {
     const {
-      actions,
-      stepIndex
+      actions
     } = this.props;
-    const previousStepIndex = stepIndex - 1;
-    actions.stepBackwards(previousStepIndex);
+    actions.stepBackwards();
   }
   render() {
     const {
@@ -80,7 +76,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const StyledComponent = cssModules(HelpPage, styles);
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

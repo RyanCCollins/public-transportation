@@ -12,6 +12,7 @@ import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 // See: https://egghead.io/lessons/javascript-redux-generating-containers-with-connect-from-react-redux-visibletodolist
 const mapStateToProps = (state) => ({
   routes: state.routes,
+  help: state.help,
   schedule: state.schedule,
   stops: state.stops,
   messages: state.messages,
