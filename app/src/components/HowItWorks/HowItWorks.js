@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './HowItWorks.module.scss';
 import cssModules from 'react-css-modules';
+import { Link } from 'react-router';
 import {
   Step,
   Stepper,
@@ -17,12 +18,16 @@ const StepContent = ({
   <p>
     {(() => {
       switch (step) {
-        case 1:
+        case 0:
           return "Go to the home page and select a route from the list"
-        case 2:
+        case 1:
           return "Once the route loads, select an arrival and a departure train station."
+        case 2:
+          return "Pick out the corresponding time that best matches your schedule and go catch the train.";
         case 3:
-          return "Go catch the train!"
+          return (
+            <Link to="/">Back to Home</Link>
+          );
         default:
           break;
       }
@@ -36,10 +41,10 @@ StepContent.propTypes = {
 
 const HowItWorks = ({
   stepIndex,
-  onForward,
-  onBackward
+  onForwards,
+  onBackwards
 }) => (
-  <div style={styles.root}>
+  <div className={styles.root}>
     <Stepper activeStep={stepIndex}>
       <Step>
         <StepLabel>Select a route</StepLabel>
@@ -51,20 +56,20 @@ const HowItWorks = ({
         <StepLabel>Load a list of train schedules</StepLabel>
       </Step>
     </Stepper>
-    <div style={styles.content}>
+    <div className={styles.content}>
       <StepContent step={stepIndex} />
       {stepIndex !== null && (
-        <div style={styles.actions}>
+        <div className={styles.actions}>
           <FlatButton
             label="Back"
             disabled={stepIndex === 0}
-            onTouchTap={onBackward}
-            style={styles.backButton}
+            onTouchTap={onBackwards}
+            className={styles.backButton}
           />
           <RaisedButton
             label="Next"
             primary
-            onTouchTap={onForward}
+            onTouchTap={onForwards}
           />
         </div>
       )}
@@ -74,9 +79,8 @@ const HowItWorks = ({
 
 HowItWorks.propTypes = {
   stepIndex: PropTypes.number.isRequired,
-  visited: PropTypes.array,
-  onForward: PropTypes.func.isRequired,
-  onBackward: PropTypes.func.isRequired
+  onForwards: PropTypes.func.isRequired,
+  onBackwards: PropTypes.func.isRequired
 };
 
-export default HowItWorks;
+export default cssModules(HowItWorks, styles);

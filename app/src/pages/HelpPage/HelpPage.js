@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import styles from './HelpPage.module.scss';
 import cssModules from 'react-css-modules';
 import { HowItWorks } from 'components';
-import * as HelpActionCreators from '../actions/help';
+import * as HelpActionCreators from '../../actions/help';
 import {
   Column,
   Row
@@ -13,16 +13,16 @@ import {
 class HelpPage extends Component {
   constructor(props) {
     super(props);
-    this.handleForward = this.handleForward.bind(this);
-    this.handleBackward = this.handleBackward.bind(this);
+    this.handleForwards = this.handleForwards.bind(this);
+    this.handleBackwards = this.handleBackwards.bind(this);
   }
-  handleBackward() {
+  handleForwards() {
     const {
       actions
     } = this.props;
     actions.stepForwards();
   }
-  handleForward() {
+  handleBackwards() {
     const {
       actions
     } = this.props;
@@ -52,8 +52,8 @@ class HelpPage extends Component {
             <h1 className={styles.stepperHeader}>How It Works</h1>
             <HowItWorks
               stepIndex={stepIndex}
-              onForward={this.handleForward}
-              onBackward={this.handleBackward}
+              onForwards={this.handleForwards}
+              onBackwards={this.handleBackwards}
             />
           </Column>
         </Column>
