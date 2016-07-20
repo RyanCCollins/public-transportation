@@ -9,8 +9,17 @@ import {
 const AboutPage = () => (
   <Row>
     <Column small={12} medium={12} large={12}>
-      <h1>About</h1>
-      <img src="http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg" />
+      <h1 className={styles.header}>About</h1>
+      <Column small={12} medium={8} large={6}>
+        <img
+          alt="Big train"
+          className="img-responsive"
+          src="http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg"
+        />
+      </Column>
+      <Column small={12} medium={4} large={6}>
+
+      </Column>
     </Column>
   </Row>
 );
