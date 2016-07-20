@@ -9,9 +9,11 @@ import errors from './errors';
 import stops from './stops';
 import routes from './routes';
 import navbar from './navbar';
+import help from './help';
 
 const appReducer = combineReducers({
   schedule,
+  help,
   navbar,
   routes,
   stops,

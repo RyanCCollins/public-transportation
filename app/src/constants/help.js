@@ -1,0 +1,2 @@
+export const HANDLE_FORWARD = 'HANDLE_FORWARD';
+export const HANDLE_BACKWARD = 'HANDLE_BACKWARD';

@@ -1,5 +1,8 @@
 import stops from '../data/loadData';
 const initalState = {
+  help: {
+    stepIndex: 0
+  },
   navbar: {
     isOpen: false
   },

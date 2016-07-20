@@ -27,7 +27,7 @@ const AboutPage = () => (
         />
         <CardMedia
           overlay={
-            <CardTitle title="Public Transpprtation" subtitle="Offline First Web App" />
+            <CardTitle title="Public Transportation" subtitle="Offline First Web App" />
           }
         >
           <img
@@ -37,16 +37,16 @@ const AboutPage = () => (
         </CardMedia>
         <CardTitle title="About" subtitle="" />
         <CardText>
-          Public transportation App, an offline first web application built using progressive web technologies.
+          An offline first web application built using progressive web technologies, including React, Redux and Service Worker.
           Allows users to select a departure and arrival train station, and see a list of trains, times, and durations. A default train schedule is provided that is used when the application is offline. If a network connection exists, the application queries an endpoint that provides information about all arrival and departure times.
         </CardText>
         <CardActions>
-          <Link to="https://github.com/RyanCCollins/public-transportation">
+          <a href="https://github.com/RyanCCollins/public-transportation">
             <FlatButton label="View on Github" />
-          </Link>
-          <Link to="https://www.ryancollins.io">
+          </a>
+          <a href="https://www.ryancollins.io">
             <FlatButton label="View Portfolio" />
-          </Link>
+          </a>
         </CardActions>
       </Card>
     </Column>
