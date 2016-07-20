@@ -5,8 +5,9 @@ import { Navbar } from 'containers';
 const Main = (props) => (
   <div>
     <MuiThemeProvider>
-      <Navbar />
-      {React.cloneElement(props.children, props)}
+      <Navbar>
+        {React.cloneElement(props.children, props)}
+      </Navbar>
     </MuiThemeProvider>
   </div>
 );

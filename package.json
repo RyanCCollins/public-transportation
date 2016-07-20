@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-simple-starter",
+  "name": "public-transportation",
   "version": "1.0.0",
-  "description": "A simple react redux starter project",
+  "description": "Project 2 for Senior Web Nanodegree",
   "main": "index.js",
   "babel": {
     "presets": [
@@ -23,22 +23,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RyanCCollins/react-redux-simple-starter.git"
+    "url": "git+https://github.com/RyanCCollins/public-transportation.git"
   },
   "keywords": [
-    "boilerplate",
-    "redux",
     "react",
-    "webpack",
-    "sass",
-    "css modules"
+    "public transportation api"
   ],
   "author": "Ryan Collins",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RyanCCollins/react-redux-simple-starter/issues"
+    "url": "https://github.com/RyanCCollins/public-transportation/issues"
   },
-  "homepage": "https://github.com/RyanCCollins/react-redux-simple-starter#readme",
+  "homepage": "https://github.com/RyanCCollins/public-transportation#readme",
   "dependencies": {
     "alasql": "^0.2.7",
     "babel-core": "^6.3.15",
