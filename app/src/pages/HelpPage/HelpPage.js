@@ -18,15 +18,19 @@ class HelpPage extends Component {
   }
   handleForwards() {
     const {
-      actions
+      actions,
+      stepIndex
     } = this.props;
-    actions.stepForwards();
+    const nextStepIndex = stepIndex + 1;
+    actions.stepForwards(nextStepIndex);
   }
   handleBackwards() {
     const {
-      actions
+      actions,
+      stepIndex
     } = this.props;
-    actions.stepBackwards();
+    const previousStepIndex = stepIndex - 1;
+    actions.stepBackwards(previousStepIndex);
   }
   render() {
     const {

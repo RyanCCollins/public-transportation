@@ -9,11 +9,11 @@ const help = (state = {
   switch (action.type) {
     case HANDLE_FORWARD:
       return Object.assign({}, state, {
-        stepIndex: state.stepIndex + 1
+        stepIndex: action.nextStepIndex
       });
     case HANDLE_BACKWARD:
       return Object.assign({}, state, {
-        stepIndex: state.stepIndex - 1
+        stepIndex: action.previousStepIndex
       });
     default:
       return state;
