@@ -17,6 +17,8 @@ const router = (
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Pages.LandingPage} />
+          <Route path="/about" name="about" component={Pages.AboutPage} />
+          <Route path="/help" name="help" component={Pages.HelpPage} />
           <Route path="*" component={Pages.NotFoundPage} />
         </Route>
       </Router>
