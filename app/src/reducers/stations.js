@@ -3,7 +3,9 @@ import {
   LOAD_STATIONS_INITIATION,
   LOAD_STATIONS_ERROR,
   SELECT_DEPARTURE_STATION,
-  SELECT_ARRIVAL_STATION
+  SELECT_ARRIVAL_STATION,
+  CLEAR_STATION_ERRORS,
+  SHOW_STATION_ERRORS
 } from '../constants/stations';
 
 const stations = (state = {
@@ -38,6 +40,17 @@ const stations = (state = {
     case SELECT_ARRIVAL_STATION:
       return Object.assign({}, state, {
         selectedArrivalStation: action.station
+      });
+    case SHOW_STATION_ERRORS:
+      return Object.assign({}, state, {
+        errors: [
+          ...state.errors,
+          ...action.errors
+        ]
+      });
+    case CLEAR_STATION_ERRORS:
+      return Object.assign({}, state, {
+        errors: []
       });
     default:
       return state;

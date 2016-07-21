@@ -17,6 +17,15 @@ const loadStationsError = (error) => ({
   error
 });
 
+export const showStationErrors = (errors) => ({
+  type: types.SHOW_STATION_ERRORS,
+  errors
+});
+
+export const clearStationErrors = () => ({
+  type: types.CLEAR_STATION_ERRORS
+});
+
 export const selectDepartureStation = (station) => ({
   type: types.SELECT_DEPARTURE_STATION,
   station
