@@ -21,8 +21,10 @@ const initalState = {
   },
   schedule: {
     isLoading: false,
+    items: [],
     errors: [],
-    items: []
+    departureId: null,
+    arrivalId: null
   },
   errors: []
 };

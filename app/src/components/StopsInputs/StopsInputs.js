@@ -57,7 +57,7 @@ class StopsInputs extends Component {
               className={styles.button}
               onClick={handleSubmit}
             >
-              Submit
+              SEARCH TRAINS
             </RaisedButton>
           </Column>
         </Column>

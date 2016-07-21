@@ -4,6 +4,7 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as StationsActionCreators from '../../actions/stations';
+import * as ScheduleActionCreators from '../../actions/schedule';
 import { ComponentLoadingIndicator, StopsInputs } from 'components';
 
 class SelectStops extends Component {
@@ -71,11 +72,19 @@ const mapStateToProps = (state) => ({
   selectedDepartureStation: state.stations.selectedDepartureStation
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(StationsActionCreators, dispatch)
+const mapDispatchToProps =
+(dispatch) => ({
+  actions: bindActionCreators(
+    Object.assign({},
+      StationsActionCreators,
+      ScheduleActionCreators
+    ), dispatch)
 });
 
-const SelectStopsStyled = cssModules(SelectStops, styles);
+const SelectStopsStyled = cssModules(
+  SelectStops,
+  styles
+);
 
 export default connect(
   mapStateToProps,
