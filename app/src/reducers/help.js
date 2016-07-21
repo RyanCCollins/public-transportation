@@ -6,7 +6,7 @@ import {
 const stepIndex = (state = 0, action) => {
   switch (action.type) {
     case HANDLE_FORWARD:
-      return 2;
+      return state + 1;
     case HANDLE_BACKWARD:
       return state - 1;
     default:
@@ -15,7 +15,7 @@ const stepIndex = (state = 0, action) => {
 };
 
 const help = (state = {
-  stepIndex: 0
+  stepIndex: 1
 }, action) => {
   switch (action.type) {
     case HANDLE_FORWARD:
