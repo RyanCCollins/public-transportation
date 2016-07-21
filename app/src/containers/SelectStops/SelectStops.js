@@ -57,8 +57,8 @@ class SelectStops extends Component {
 
 SelectStops.propTypes = {
   stations: PropTypes.array.isRequired,
-  selectedDepartureStation: PropTypes.string.isRequired,
-  selectedArrivalStation: PropTypes.string.isRequired,
+  selectedDepartureStation: PropTypes.string,
+  selectedArrivalStation: PropTypes.string,
   actions: PropTypes.object.isRequired,
   isLoading: PropTypes.func.isRequired
 };

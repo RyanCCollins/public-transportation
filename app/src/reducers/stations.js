@@ -5,7 +5,8 @@ import {
   SELECT_DEPARTURE_STATION,
   SELECT_ARRIVAL_STATION
 } from '../constants/stations';
-const stops = (state = {
+
+const stations = (state = {
   items: [],
   errors: [],
   isLoading: false,
@@ -32,15 +33,15 @@ const stops = (state = {
       });
     case SELECT_DEPARTURE_STATION:
       return Object.assign({}, state, {
-        selectedDepartureStation: state.station
+        selectedDepartureStation: action.station
       });
     case SELECT_ARRIVAL_STATION:
       return Object.assign({}, state, {
-        selectedArrivalStation: state.station
+        selectedArrivalStation: action.station
       });
     default:
       return state;
   }
 };
 
-export default stops;
+export default stations;

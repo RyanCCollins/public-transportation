@@ -33,6 +33,7 @@ class StopsInputs extends Component {
               value={selectedDepartureStation}
               onChange={handleSelectDeparture}
               stations={stations}
+              whoAmI="Departure"
             />
           </Column>
           <Column isColumn small={12} medium={10} large={8} centerOnSmall>
@@ -40,6 +41,7 @@ class StopsInputs extends Component {
               value={selectedArrivalStation}
               onChange={handleSelectArrival}
               stations={stations}
+              whoAmI="Arrival"
             />
           </Column>
           <Column

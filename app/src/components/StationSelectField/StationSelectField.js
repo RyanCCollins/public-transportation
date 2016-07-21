@@ -7,12 +7,13 @@ import {
 const StationSelectField = ({
   value,
   onChange,
-  stations
+  stations,
+  whoAmI
 }) => (
   <SelectField
     value={value}
     onChange={onChange}
-    floatingLabelText="Select an Arrival Train Station"
+    floatingLabelText={`Select a ${whoAmI} Train Station`}
     fullWidth
     autoWidth
   >
@@ -27,6 +28,7 @@ const StationSelectField = ({
 );
 
 StationSelectField.propTypes = {
+  whoAmI: PropTypes.string.isRequired,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   stations: PropTypes.array.isRequired
