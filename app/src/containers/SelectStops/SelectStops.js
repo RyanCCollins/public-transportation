@@ -54,7 +54,7 @@ class SelectStops extends Component {
     const {
       actions
     } = this.props;
-    actions.clearStationsErrors();
+    actions.clearStationErrors();
   }
   handleSubmit() {
     const {
@@ -70,14 +70,21 @@ class SelectStops extends Component {
         selectedArrivalStation
       );
     } else {
-      const errors = [
-        {
-          message: 'Please select an Arrival Train Station.'
-        },
-        {
-          message: 'Please select a Departure Train Stateion'
-        }
-      ];
+      let errors = [];
+      if (!departure) {
+        errors.push(
+          {
+            message: 'Please select a Departure Train Station'
+          }
+        );
+      }
+      if (!arrival) {
+        errors.push(
+          {
+            message: 'Please select an Arrival Train Station.'
+          }
+        );
+      }
       actions.showStationErrors(errors);
     }
   }
@@ -93,10 +100,16 @@ class SelectStops extends Component {
           2000
         )
       );
-    } else {
+    } else if (errors.length > 0) {
       this.setState({
         snackbar: {
           message: errors[0].message
+        }
+      });
+    } else {
+      this.setState({
+        snackbar: {
+          message: null
         }
       });
     }
@@ -140,7 +153,7 @@ SelectStops.propTypes = {
   errors: PropTypes.array.isRequired,
   selectedArrivalStation: PropTypes.string,
   actions: PropTypes.object.isRequired,
-  isLoading: PropTypes.func.isRequired
+  isLoading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

@@ -6,6 +6,7 @@ import {
   Paper
 } from 'material-ui';
 
+
 const Header = ({
   text
 }) => (

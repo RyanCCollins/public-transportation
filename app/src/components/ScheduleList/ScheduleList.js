@@ -9,12 +9,20 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import moment from 'moment';
+
+const getDuration = (first, second) => {
+  return moment.utc(
+    moment(first, 'DD/MM/YYYY HH:mm:ss')
+      .diff(moment(second, 'DD/MM/YYYY HH:mm:ss')))
+      .format('HH:mm:ss');
+};
 
 class ScheduleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: 300
+      height: '300px'
     };
   }
   render() {
@@ -25,41 +33,31 @@ class ScheduleList extends Component {
       <div className={styles.container}>
         <Table
           height={this.state.height}
-          fixedHeader
-          fixedFooter
           selectable
         >
-          <TableHeader
-            displaySelectAll={false}
-            adjustForCheckbox={false}
-            enableSelectAll={false}
-          >
+          <TableHeader>
             <TableRow>
-              <TableHeaderColumn colSpan="3" tooltip="Super Header" style={{ textAlign: 'center' }}>
-                {items && items.length > 0 ? 'Train Schedule' : 'No Schedule Loaded'}
-              </TableHeaderColumn>
+              <TableHeaderColumn tooltip="Select to Purchase">Purchase</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Departure Time">Departure Time</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Arrival Time">Arrival Time</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Duration">Duration</TableHeaderColumn>
+              <TableHeaderColumn tooltip="The Destination">Destination</TableHeaderColumn>
             </TableRow>
-            <TableRow>
-              <TableHeaderColumn tooltip="Departure Time">Departure Time</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Arrival Time">Arrival Time</TableHeaderColumn>
-              <TableHeaderColumn tooltip="Duration">Duration</TableHeaderColumn>
-            </TableRow>
-            <TableBody
-              displayRowCheckbox={this.state.showCheckboxes}
-              deselectOnClickaway={this.state.deselectOnClickaway}
-              showRowHover={this.state.showRowHover}
-              stripedRows={this.state.stripedRows}
-            >
-              {items && items.map((row, index) =>
-                <TableRow key={index} selected={row.selected || false}>
-                  <TableRowColumn>{index}</TableRowColumn>
-                  <TableRowColumn>{row.departure}</TableRowColumn>
-                  <TableRowColumn>{row.arrival}</TableRowColumn>
-                  <TableRowColumn>{row.duration}</TableRowColumn>
-                </TableRow>
-              )}
-            </TableBody>
           </TableHeader>
+          <TableBody>
+            {items && items.map((row, index) =>
+              <TableRow key={index} selected={row.selected || false}>
+                <TableRowColumn>{index}</TableRowColumn>
+                <TableRowColumn>{row.aimed_departure_time}</TableRowColumn>
+                <TableRowColumn>{row.aimed_arrival_time}</TableRowColumn>
+                <TableRowColumn>
+                  {getDuration(row.aimed_departure_time, row.aimed_arrival_time)}
+                </TableRowColumn>
+                <TableRowColumn>{row.destination_name}</TableRowColumn>
+              </TableRow>
+            )}
+          </TableBody>
         </Table>
       </div>
     );

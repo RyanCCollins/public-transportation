@@ -20,7 +20,7 @@ class TrainSchedule extends Component {
       isLoading
     } = this.props;
     return (
-      <Row>
+      <Row className={styles.rowWrapper}>
         <Column small={12} medium={12} large={12}>
           {items && items.length > 0 ?
             <ScheduleList items={items} isLoading={isLoading} />
