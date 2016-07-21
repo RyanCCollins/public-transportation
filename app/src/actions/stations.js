@@ -17,12 +17,12 @@ const loadStationsError = (error) => ({
   error
 });
 
-export const selectDepartureStations = (station) => ({
+export const selectDepartureStation = (station) => ({
   type: types.SELECT_DEPARTURE_STATION,
   station
 });
 
-export const selectArrivalStations = (station) => ({
+export const selectArrivalStation = (station) => ({
   type: types.SELECT_ARRIVAL_STATION,
   station
 });
