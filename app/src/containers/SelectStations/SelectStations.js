@@ -7,9 +7,9 @@ import { bindActionCreators } from 'redux';
 import * as StationsActionCreators from '../../actions/stations';
 import * as ScheduleActionCreators from '../../actions/schedule';
 import * as GlobalActionCreators from '../../actions/index';
-import { ComponentLoadingIndicator, StopsInputs } from 'components';
+import { ComponentLoadingIndicator, StationsInputs } from 'components';
 
-class SelectStops extends Component {
+class SelectStations extends Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -135,7 +135,7 @@ class SelectStops extends Component {
         {isLoading ?
           <ComponentLoadingIndicator />
         :
-          <StopsInputs
+          <StationsInputs
             {...this.props}
             handleSelectArrival={this.handleSelectArrival}
             handleSelectDeparture={this.handleSelectDeparture}
@@ -156,7 +156,7 @@ class SelectStops extends Component {
   }
 }
 
-SelectStops.propTypes = {
+SelectStations.propTypes = {
   stations: PropTypes.array.isRequired,
   selectedDepartureStation: PropTypes.string,
   errors: PropTypes.array.isRequired,
@@ -183,12 +183,12 @@ const mapDispatchToProps =
     ), dispatch)
 });
 
-const SelectStopsStyled = cssModules(
-  SelectStops,
+const SelectStationsStyled = cssModules(
+  SelectStations,
   styles
 );
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SelectStopsStyled);
+)(SelectStationsStyled);

@@ -3,13 +3,13 @@ import styles from './TrainSchedule.module.scss';
 import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import {
-  ScheduleList
+  ScheduleList,
+  ComponentLoadingIndicator
 } from 'components';
 import {
   Row,
   Column
 } from 'react-foundation';
-import { ComponentLoadingIndicator } from 'components';
 
 const TrainSchedule = ({
   items,

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LandingPage.module.scss';
-import { SelectStops, TrainSchedule, SelectRoute } from 'containers';
+import { SelectStations, TrainSchedule } from 'containers';
 import {
   Paper
 } from 'material-ui';
@@ -17,11 +17,15 @@ const Header = ({
   </div>
 );
 
+Header.propTypes = {
+  text: PropTypes.string.isRequired
+};
+
 const LandingPage = () => (
   <div className={styles.container}>
     <Paper className={styles.fillScreen} zDepth={2}>
       <Header text="Washington Metro Train Schedule" />
-      <SelectStops />
+      <SelectStations />
       <TrainSchedule />
     </Paper>
   </div>
