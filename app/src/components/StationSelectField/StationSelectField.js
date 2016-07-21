@@ -14,12 +14,14 @@ const StationSelectField = ({
     value={value}
     onChange={onChange}
     floatingLabelText={`Select a ${whoAmI} Train Station`}
+    floatingLabelFixed={false}
     fullWidth
     autoWidth
   >
     {stations.map((station, i) =>
       <MenuItem
         key={i}
+        label={`${station.name} - ${station.station_code}`}
         value={station.station_code}
         primaryText={station.name}
       />
