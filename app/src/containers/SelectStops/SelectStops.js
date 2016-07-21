@@ -16,6 +16,11 @@ class SelectStops extends Component {
     this.handleSelectArrival = this.handleSelectArrival.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
+    this.state = {
+      snackbar: {
+        message: ''
+      }
+    };
   }
   componentDidMount() {
     const {
@@ -81,14 +86,18 @@ class SelectStops extends Component {
       errors.forEach(item =>
         setTimeout(
           this.setState({
-            message: item.message
+            snackbar: {
+              message: item.message
+            }
           }),
           2000
         )
       );
     } else {
       this.setState({
-        message: errors[0].message
+        snackbar: {
+          message: errors[0].message
+        }
       });
     }
   }
@@ -99,7 +108,7 @@ class SelectStops extends Component {
     } = this.props;
     const {
       message
-    } = this.state;
+    } = this.state.snackbar;
     return (
       <div className={styles.container}>
         {isLoading ?
