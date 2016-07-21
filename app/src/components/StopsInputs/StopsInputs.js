@@ -47,13 +47,14 @@ class StopsInputs extends Component {
           <Column
             isColumn
             small={12}
-            medium={10}
-            large={8}
+            medium={12}
+            large={12}
             centerOnSmall
             className={styles.buttonWrapper}
           >
             <RaisedButton
               disabled={isLoading}
+              className={styles.button}
               onClick={handleSubmit}
             >
               Submit
