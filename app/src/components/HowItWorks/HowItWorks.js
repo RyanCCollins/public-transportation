@@ -68,6 +68,7 @@ const HowItWorks = ({
           />
           <RaisedButton
             label="Next"
+            disabled={stepIndex === 2}
             primary
             onTouchTap={onForwards}
           />
