@@ -11,33 +11,25 @@ import {
 } from 'react-foundation';
 import { ComponentLoadingIndicator } from 'components';
 
-class TrainSchedule extends Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    const {
-      items,
-      isLoading
-    } = this.props;
-    return (
-      <Row className={styles.rowWrapper}>
-        <Column small={12} medium={12} large={12}>
-          {items && items.length > 0 ?
-            <ScheduleList items={items} isLoading={isLoading} />
-          :
-            <noscript />
-          }
-        </Column>
-        {isLoading && !items.length > 0 ?
-          <ComponentLoadingIndicator />
-        :
-          <noscript />
-        }
-      </Row>
-    );
-  }
-}
+const TrainSchedule = ({
+  items,
+  isLoading
+}) => (
+  <Row className={styles.rowWrapper}>
+    <Column small={12} medium={12} large={12}>
+      {items && items.length > 0 ?
+        <ScheduleList items={items} isLoading={isLoading} />
+      :
+        <noscript />
+      }
+    </Column>
+    {isLoading && !items.length > 0 ?
+      <ComponentLoadingIndicator />
+    :
+      <noscript />
+    }
+  </Row>
+);
 
 TrainSchedule.propTypes = {
   isLoading: PropTypes.bool.isRequired,

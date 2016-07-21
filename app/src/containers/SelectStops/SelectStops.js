@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as StationsActionCreators from '../../actions/stations';
 import * as ScheduleActionCreators from '../../actions/schedule';
+import * as GlobalActionCreators from '../../actions/index';
 import { ComponentLoadingIndicator, StopsInputs } from 'components';
 
 class SelectStops extends Component {
@@ -16,6 +17,7 @@ class SelectStops extends Component {
     this.handleSelectArrival = this.handleSelectArrival.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
+    this.handleClear = this.handleClear.bind(this);
     this.state = {
       snackbar: {
         message: ''
@@ -88,6 +90,12 @@ class SelectStops extends Component {
       actions.showStationErrors(errors);
     }
   }
+  handleClear() {
+    const {
+      actions
+    } = this.props;
+    actions.reset();
+  }
   handleErrors(errors) {
     if (errors.length > 1) {
       errors.forEach(item =>
@@ -132,6 +140,7 @@ class SelectStops extends Component {
             handleSelectArrival={this.handleSelectArrival}
             handleSelectDeparture={this.handleSelectDeparture}
             handleSubmit={this.handleSubmit}
+            handleClear={this.handleClear}
           />
         }
         <Snackbar
@@ -169,7 +178,8 @@ const mapDispatchToProps =
   actions: bindActionCreators(
     Object.assign({},
       StationsActionCreators,
-      ScheduleActionCreators
+      ScheduleActionCreators,
+      GlobalActionCreators
     ), dispatch)
 });
 
