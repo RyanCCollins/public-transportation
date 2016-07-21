@@ -9,6 +9,7 @@ import {
   Row,
   Column
 } from 'react-foundation';
+import { ComponentLoadingIndicator } from 'components';
 
 class TrainSchedule extends Component {
   constructor(props) {
@@ -28,6 +29,11 @@ class TrainSchedule extends Component {
             <noscript />
           }
         </Column>
+        {isLoading && !items.length > 0 ?
+          <ComponentLoadingIndicator />
+        :
+          <noscript />
+        }
       </Row>
     );
   }

@@ -45,7 +45,12 @@ class ScheduleList extends Component {
               <TableHeaderColumn tooltip="The Destination">Destination</TableHeaderColumn>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody
+            displayRowCheckbox
+            stripedRows={false}
+            deselectOnClickaway
+            showRowHover
+          >
             {items && items.map((row, index) =>
               <TableRow key={index} selected={row.selected || false}>
                 <TableRowColumn>{index}</TableRowColumn>
