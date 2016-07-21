@@ -6,12 +6,12 @@ const initalState = {
   navbar: {
     isOpen: false
   },
-  stops: {
+  stations: {
     items: [],
     isLoading: false,
     errors: [],
-    selectedDepartureStop: null,
-    selectedArrivalStop: null
+    selectedDepartureStation: null,
+    selectedArrivalStation: null
   },
   routes: {
     items: [],
