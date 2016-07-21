@@ -3,7 +3,7 @@ import styles from './SelectStops.module.scss';
 import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as StopsActionCreators from '../../actions/stops';
+import * as StationsActionCreators from '../../actions/stations';
 import { ComponentLoadingIndicator, StopsInputs } from 'components';
 
 class SelectStops extends Component {
@@ -15,22 +15,21 @@ class SelectStops extends Component {
   }
   componentDidMount() {
     const {
-      actions,
-      selectedRoute
+      actions
     } = this.props;
-    actions.fetchRouteStops(selectedRoute);
+    actions.fetchStations();
   }
   handleSelectArrival(event, index, value) {
     const {
       actions
     } = this.props;
-    actions.selectArrivalStop(value);
+    actions.selectArrivalStation(value);
   }
   handleSelectDeparture(event, index, value) {
     const {
       actions
     } = this.props;
-    actions.selectDepartureStop(value);
+    actions.selectDepartureStation(value);
   }
   handleSubmit() {
 
@@ -57,23 +56,21 @@ class SelectStops extends Component {
 }
 
 SelectStops.propTypes = {
-  stops: PropTypes.array.isRequired,
-  selectedRoute: PropTypes.string.isRequired,
-  selectedDepartureStop: PropTypes.string.isRequired,
-  selectedArrivalStop: PropTypes.string.isRequired,
-  actions: PropTypes.array.isRequired,
+  stations: PropTypes.array.isRequired,
+  selectedDepartureStation: PropTypes.string.isRequired,
+  selectedArrivalStation: PropTypes.string.isRequired,
+  actions: PropTypes.object.isRequired,
   isLoading: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  selectedRoute: state.routes.selectedRoute,
-  isLoading: state.stops.isLoading,
-  stops: state.stops.items,
-  errors: state.stops.errors
+  isLoading: state.stations.isLoading,
+  stations: state.stations.items,
+  errors: state.stations.errors
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(StopsActionCreators, dispatch)
+  actions: bindActionCreators(StationsActionCreators, dispatch)
 });
 
 const SelectStopsStyled = cssModules(SelectStops, styles);

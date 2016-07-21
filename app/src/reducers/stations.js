@@ -9,8 +9,8 @@ const stops = (state = {
   items: [],
   errors: [],
   isLoading: false,
-  selectedDepartureStop: null,
-  selectedArrivalStop: null
+  selectedDepartureStation: null,
+  selectedArrivalStation: null
 }, action) => {
   switch (action.type) {
     case LOAD_STATIONS_INITIATION:

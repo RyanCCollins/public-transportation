@@ -20,7 +20,6 @@ const LandingPage = () => (
   <div className={styles.container}>
     <Paper className={styles.fillScreen} zDepth={2}>
       <Header text="Washington Metro Train Schedule" />
-      <SelectRoute />
       <SelectStops />
       <TrainSchedule />
     </Paper>
