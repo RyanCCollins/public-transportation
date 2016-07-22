@@ -28,7 +28,8 @@ class ScheduleList extends Component {
   render() {
     const {
       items,
-      onSelection
+      onSelection,
+      selectedItemIndex
     } = this.props;
     return (
       <div className={styles.container}>
@@ -53,7 +54,7 @@ class ScheduleList extends Component {
             showRowHover
           >
             {items && items.map((row, index) =>
-              <TableRow key={index} selected={row.selected || false}>
+              <TableRow key={index} selected={selectedItemIndex === index}>
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{row.aimed_departure_time}</TableRowColumn>
                 <TableRowColumn>{row.aimed_arrival_time}</TableRowColumn>
@@ -72,7 +73,8 @@ class ScheduleList extends Component {
 
 ScheduleList.propTypes = {
   items: PropTypes.array,
-  onSelection: PropTypes.func.isRequired
+  onSelection: PropTypes.func.isRequired,
+  selectedItemIndex: PropTypes.number.isRequired
 };
 
 export default cssModules(ScheduleList, styles);

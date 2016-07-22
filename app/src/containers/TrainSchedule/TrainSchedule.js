@@ -52,8 +52,12 @@ class TrainSchedule extends Component {
   }
   handleSelectItem(indices) {
     const {
-      actions
+      actions,
+      selectedItemIndex
     } = this.props;
+    if (selectedItemIndex !== null) {
+      actions.selectScheduleItem(null);
+    }
     actions.selectScheduleItem(indices[0]);
   }
   handleMoreInfo() {
@@ -123,7 +127,7 @@ TrainSchedule.propTypes = {
   actions: PropTypes.object.isRequired,
   items: PropTypes.array,
   errors: PropTypes.array.isRequired,
-  selectedItemIndex: PropTypes.object,
+  selectedItemIndex: PropTypes.number,
   isViewingMoreInfo: PropTypes.bool.isRequired
 };
 
