@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import styles from './SelectStops.module.scss';
+import styles from './SelectStations.module.scss';
 import cssModules from 'react-css-modules';
 import { Snackbar } from 'material-ui';
 import { connect } from 'react-redux';

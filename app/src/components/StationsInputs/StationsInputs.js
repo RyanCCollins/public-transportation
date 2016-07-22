@@ -4,7 +4,7 @@ import {
   Column,
   Row
 } from 'react-foundation';
-import styles from './StopsInput.module.scss';
+import styles from './StationsInputs.module.scss';
 import cssModules from 'react-css-modules';
 import { StationSelectField } from 'components';
 
@@ -52,7 +52,7 @@ const StopsInputs = ({
       >
         <RaisedButton
           disabled={isLoading}
-          style={{ width: 150, height: 75 }}
+          style={{ width: 150, height: 50 }}
           primary
           onClick={handleSubmit}
         >
@@ -69,7 +69,7 @@ const StopsInputs = ({
       >
         <RaisedButton
           disabled={isLoading}
-          style={{ width: 150, height: 75 }}
+          style={{ width: 150, height: 50 }}
           secondary
           onClick={handleClear}
         >
