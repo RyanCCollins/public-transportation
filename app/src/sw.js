@@ -1,6 +1,8 @@
-const VERSION = 1;
+const VERSION = 2;
 const CACHE_NAME = `static-cache-${VERSION}`;
 const { assets } = serviceWorkerOption;
+
+console.log(`Service worker regiested with version: ${VERSION} caching assests: ${assets}`);
 
 let assetsToCache = [
   ...assets,
@@ -14,7 +16,7 @@ assetsToCache = assetsToCache.map(path => {
 self.addEventListener('install', event => {
   event.waitUntil(
     caches
-      .open(cacheName)
+      .open(CACHE_NAME)
       .then(cache => {
         return cache.addAll(assetsToCache);
       }).catch(error => {
