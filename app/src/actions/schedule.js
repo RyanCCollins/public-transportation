@@ -5,10 +5,16 @@ const url =
     `${baseUrl}${stationId}
       /timetable.json?app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97`;
 
-export const scheduleLoadInitiation = (departureId, arrivalId) => ({
-  type: types.SCHEDULE_LOAD_INITIATION,
-  departureId,
-  arrivalId
+/* Typical action creators here */
+export const scheduleLoadInitiation =
+  (departureId, arrivalId) => ({
+    type: types.SCHEDULE_LOAD_INITIATION,
+    departureId,
+    arrivalId
+  });
+
+export const clearScheduleErrors = () => ({
+  type: types.CLEAR_SCHEDULE_ERRORS
 });
 
 export const scheduleLoadSuccess = (items) => ({
@@ -21,10 +27,18 @@ export const scheduleLoadFailure = (error) => ({
   error
 });
 
+/**
+ * @function fetchSchedule
+ * @description Loads the train schedule through the api
+ * @param departureId, arrivalId - the id of the state for departure and arrivalId
+ * @param dispatch - the store's dispatch
+ */
 export const fetchSchedule =
   (departureId, arrivalId) =>
     (dispatch) => {
-      dispatch(scheduleLoadInitiation(departureId, arrivalId));
+      dispatch(
+        scheduleLoadInitiation(departureId, arrivalId)
+      );
       fetch(url(departureId))
         .then(res => res.json())
         .then(data => data.departures.all)

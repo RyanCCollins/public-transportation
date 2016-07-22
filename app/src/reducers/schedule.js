@@ -1,7 +1,8 @@
 import {
   SCHEDULE_LOAD_FAILURE,
   SCHEDULE_LOAD_SUCCESS,
-  SCHEDULE_LOAD_INITIATION
+  SCHEDULE_LOAD_INITIATION,
+  CLEAR_SCHEDULE_ERRORS
 } from '../constants/schedule';
 
 const schedule = (state = {
@@ -30,6 +31,10 @@ const schedule = (state = {
           ...state.errors,
           action.error
         ]
+      });
+    case CLEAR_SCHEDULE_ERRORS:
+      return Object.assign({}, state, {
+        errors: []
       });
     default:
       return state;
