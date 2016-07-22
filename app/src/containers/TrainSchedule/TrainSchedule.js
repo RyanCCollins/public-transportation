@@ -54,10 +54,13 @@ class TrainSchedule extends Component {
       actions,
       selectedItemIndex
     } = this.props;
-    if (selectedItemIndex !== null) {
-      actions.selectScheduleItem(null);
+    const newIndex = indices[0];
+    if (newIndex !== selectedItemIndex) {
+      actions.selectScheduleItem(newIndex);
+    } else if (selectedItemIndex === null) {
+      actions.selectScheduleItem(newIndex);
     } else {
-      actions.selectScheduleItem(indices[0]);
+      actions.selectScheduleItem(null);
     }
   }
   handleMoreInfo() {

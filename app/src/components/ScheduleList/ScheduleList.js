@@ -22,7 +22,7 @@ class ScheduleList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: '300px'
+      height: '400px'
     };
   }
   render() {
@@ -50,7 +50,7 @@ class ScheduleList extends Component {
           <TableBody
             displayRowCheckbox
             stripedRows={false}
-            deselectOnClickaway
+            deselectOnClickaway={false}
             showRowHover
           >
             {items && items.map((row, index) =>
