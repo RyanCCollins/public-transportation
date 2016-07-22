@@ -116,6 +116,7 @@ class TrainSchedule extends Component {
         <ScheduleItemInfo
           item={items[selectedItemIndex]}
           isOpen={isViewingMoreInfo}
+          disabled={selectedItemIndex === null}
           onSubmit={this.handleSubmit}
           onClose={this.handleMoreInfo}
         />
