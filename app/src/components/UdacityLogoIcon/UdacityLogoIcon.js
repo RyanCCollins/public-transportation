@@ -7,6 +7,7 @@ const UdacityLogoIcon = () => (
   <img
     src={UdacityLogo}
     alt="Udacity Logo"
+    className="icon spin"
     className={styles.logo}
   />
 );

@@ -56,8 +56,9 @@ class TrainSchedule extends Component {
     } = this.props;
     if (selectedItemIndex !== null) {
       actions.selectScheduleItem(null);
+    } else {
+      actions.selectScheduleItem(indices[0]);
     }
-    actions.selectScheduleItem(indices[0]);
   }
   handleMoreInfo() {
     const {
@@ -87,6 +88,7 @@ class TrainSchedule extends Component {
             <ScheduleList
               items={items}
               isLoading={isLoading}
+              selectedItemIndex={selectedItemIndex}
               onSelection={this.handleSelectItem}
             />
           :
