@@ -4,7 +4,8 @@ import {
   SCHEDULE_LOAD_INITIATION,
   CLEAR_SCHEDULE_ERRORS,
   SELECT_SCHEDULE_ITEM,
-  TOGGLE_MORE_INFO
+  TOGGLE_MORE_INFO,
+  CLEAR_SELECTED_SCHEDULE_ITEM
 } from '../constants/schedule';
 
 const schedule = (state = {
@@ -43,6 +44,10 @@ const schedule = (state = {
     case SELECT_SCHEDULE_ITEM:
       return Object.assign({}, state, {
         selectedItemIndex: action.index
+      });
+    case CLEAR_SELECTED_SCHEDULE_ITEM:
+      return Object.assign({}, state, {
+        selectedItemIndex: null
       });
     case TOGGLE_MORE_INFO:
       return Object.assign({}, state, {

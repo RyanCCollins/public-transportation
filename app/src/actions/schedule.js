@@ -38,6 +38,10 @@ export const selectScheduleItem = (index) => ({
   index
 });
 
+export const clearSelectedScheduleItem = () => ({
+  type: types.CLEAR_SELECTED_SCHEDULE_ITEM
+});
+
 export const toggleMoreInfo = () => ({
   type: types.TOGGLE_MORE_INFO
 });
