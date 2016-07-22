@@ -22,7 +22,7 @@ const stations = (state = {
       });
     case LOAD_STATIONS_SUCCESS:
       return Object.assign({}, state, {
-        items: action.stops,
+        items: action.stations,
         isLoading: false
       });
     case LOAD_STATIONS_ERROR:
