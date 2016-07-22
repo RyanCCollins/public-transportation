@@ -55,6 +55,21 @@ const persistStations = (stations) => {
   });
 };
 
+const loadStationsOffline = () =>
+  (dispatch) => {
+    dbLoad.then(db => {
+      dispatch(loadStationsInitiation());
+      const index = db
+        .transaction('stations')
+        .objectStore('stations');
+      return index
+        .getAll()
+        .then(stations =>
+          dispatch(loadStationsSuccess(stations))
+        );
+    });
+  };
+
 // fetchStations :: None -> Func -> Maybe Event
 export const fetchStations = () =>
   (dispatch) => {
