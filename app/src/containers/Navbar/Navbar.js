@@ -4,20 +4,24 @@ import {
   IconButton,
   IconMenu,
   MenuItem,
-  Drawer
+  Drawer,
+  Toggle
 } from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as NavbarActionCreators from '../../actions/navbar';
 import * as GlobalActionCreators from '../../actions/index';
+import * as SettingsActionCreators from '../../actions/settings';
 import styles from './Navbar.module.scss';
 import cssModules from 'react-css-modules';
 import { Link } from 'react-router';
 
 const NavIconMenu = ({
   onRefresh,
-  onReset
+  onReset,
+  onToggleFunMode,
+  funMode
 }) => (
   <IconMenu
     iconButtonElement={
@@ -38,12 +42,21 @@ const NavIconMenu = ({
       onClick={onReset}
       primaryText="Reset"
     />
+    <MenuItem>
+      <Toggle
+        label="Toggle Fun Mode"
+        onToggle={onToggleFunMode}
+        toggled={funMode}
+      />
+    </MenuItem>
   </IconMenu>
 );
 
 NavIconMenu.propTypes = {
   onRefresh: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired
+  onReset: PropTypes.func.isRequired,
+  onToggleFunMode: PropTypes.func.isRequired,
+  funMode: PropTypes.bool.isRequired
 };
 
 class Navbar extends Component {
@@ -52,9 +65,16 @@ class Navbar extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
+    this.handleToggleFunMode = this.handleToggleFunMode.bind(this);
   }
   handleRefresh() {
 
+  }
+  handleToggleFunMode() {
+    const {
+      actions
+    } = this.props;
+    actions.toggleFunMode();
   }
   handleReset() {
     const {
@@ -71,7 +91,8 @@ class Navbar extends Component {
   render() {
     const {
       isOpen,
-      children
+      children,
+      funMode
     } = this.props;
     return (
       <div>
@@ -82,6 +103,8 @@ class Navbar extends Component {
             <NavIconMenu
               onRefresh={this.handleRefresh}
               onReset={this.handleReset}
+              onToggleFunMode={this.handleToggleFunMode}
+              funMode={funMode}
             />
           }
         />
@@ -116,7 +139,9 @@ class Navbar extends Component {
 Navbar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.node,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  settings: PropTypes.object.isRequired,
+  funMode: PropTypes.bool.isRequired
 };
 
 /**
@@ -128,7 +153,8 @@ Navbar.propTypes = {
  */
 const mapStateToProps =
 (state) => ({
-  isOpen: state.navbar.isOpen
+  isOpen: state.navbar.isOpen,
+  funMode: state.settings.funMode
 });
 
 /**
@@ -143,7 +169,8 @@ const mapDispatchToProps =
   actions: bindActionCreators(
     Object.assign({},
       NavbarActionCreators,
-      GlobalActionCreators
+      GlobalActionCreators,
+      SettingsActionCreators
     ), dispatch)
 });
 

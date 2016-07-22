@@ -10,9 +10,11 @@ import stations from './stations';
 import routes from './routes';
 import navbar from './navbar';
 import help from './help';
+import settings from './settings';
 
 const appReducer = combineReducers({
   schedule,
+  settings,
   help,
   navbar,
   routes,

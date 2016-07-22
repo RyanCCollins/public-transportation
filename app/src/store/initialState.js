@@ -1,5 +1,8 @@
 import stops from '../data/loadData';
 const initalState = {
+  settings: {
+    funMode: false
+  },
   help: {
     stepIndex: 0
   },

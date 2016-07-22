@@ -202,6 +202,13 @@ hr.section-divider:before {
    animation: spin 2.0s infinite linear;
 }
 
+.spin__fast {
+  -webkit-animation: spin 1.0s infinite linear;
+  -moz-animation: spin 1.0s infinite linear;
+  -o-animation: spin 1.0s infinite linear;
+  animation: spin 1.0s infinite linear;
+}
+
 @-moz-keyframes spin {
   from {
     -moz-transform: rotate(0deg);

@@ -18,7 +18,6 @@ import {
 } from 'react-foundation';
 import * as ScheduleActionCreators from '../../actions/schedule';
 
-
 const MoreInfoButton = ({
   selectedItem,
   onClick,
@@ -94,7 +93,7 @@ class TrainSchedule extends Component {
           }
         </Column>
         {isLoading && !items.length > 0 ?
-          <ComponentLoadingIndicator />
+          <ComponentLoadingIndicator funMode />
         :
           <noscript />
         }
