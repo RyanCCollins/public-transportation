@@ -8,8 +8,8 @@ const cardTextP2 = `Allows users to select a departure and arrival train station
   exists, the application queries an endpoint that provides information about
   all arrival and departure times.`;
 
-const avatarUrl = 'https://s3.amazonaws.com/accredible-api-users/images/40456/original/1446063295094?1446062828';
-const trainUrl = 'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiqpciT-ofOAhUF7yYKHVF9Ae0QjRwIBw&url=http%3A%2F%2Fwww.santabanta.com%2Fphotos%2Ftrains%2F14103001.htm&psig=AFQjCNGGIzzVrjlGOGUppOigE6yXtFLyZg&ust=1469307238417504';
+const avatarUrl = 'https://github.com/RyanCCollins/cdn/blob/master/public-transportation/me.jpg?raw=true';
+const trainUrl = 'https://github.com/RyanCCollins/cdn/blob/master/public-transportation/127.jpg?raw=true';
 
 const portfolioUrl = 'https://www.ryancollins.io';
 const repoUrl = 'https://github.com/RyanCCollins/public-transportation';
