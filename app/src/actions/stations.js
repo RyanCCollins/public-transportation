@@ -2,6 +2,7 @@ import * as types from '../constants/stations';
 const baseUrl = 'http://transportapi.com/v3/uk/train/stations/near.json?app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97';
 const latLong = 'lat=51.5074&lon=0.1278';
 const url = `${baseUrl}&${latLong}`;
+import dbLoad from '../data/db';
 
 // loadStationsInitiation :: None -> {Action}
 const loadStationsInitiation = () => ({
@@ -43,12 +44,27 @@ export const selectArrivalStation = (station) => ({
   station
 });
 
+const persistStations = (stations) => {
+  dbLoad.then(db => {
+    const tx = db.transaction('stations', 'readwrite');
+    const dbStore = tx.objectStore('stations');
+    stations.forEach(item => {
+      dbStore.put(item);
+    });
+    return tx.complete;
+  });
+};
+
 // fetchStations :: None -> Func -> Maybe Event
 export const fetchStations = () =>
   (dispatch) => {
     dispatch(loadStationsInitiation());
     return fetch(url)
       .then(res => res.json())
-      .then(data => dispatch(loadStationsSuccess(data.stations)))
+      .then(data => {
+        const stations = data.stations;
+        persistStations(stations);
+        dispatch(loadStationsSuccess(stations));
+      })
       .catch(error => dispatch(loadStationsError(error)));
   };

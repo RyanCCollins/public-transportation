@@ -1,4 +1,3 @@
-import stops from '../data/loadData';
 const initalState = {
   settings: {
     funMode: false
@@ -15,12 +14,6 @@ const initalState = {
     errors: [],
     selectedDepartureStation: null,
     selectedArrivalStation: null
-  },
-  routes: {
-    items: [],
-    selectedRoute: null,
-    errors: [],
-    isLoading: true
   },
   schedule: {
     isLoading: false,
