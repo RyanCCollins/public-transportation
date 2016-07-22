@@ -11,23 +11,51 @@ import {
   ScheduleList,
   ComponentLoadingIndicator
 } from 'components';
+import { ScheduleItemInfo } from 'containers';
 import {
   Row,
   Column
 } from 'react-foundation';
 import * as ScheduleActionCreators from '../../actions/schedule';
 
+
+const MoreInfoButton = ({
+  selectedItem,
+  onClick
+}) => (
+  <Column className={styles.buttonWrapper}>
+    <RaisedButton
+      label="MORE INFO"
+      onClick={onClick}
+      disabled={selectedItem === null}
+      primary
+    />
+  </Column>
+);
+
+MoreInfoButton.propTypes = {
+  selectedItem: PropTypes.object,
+  onClick: PropTypes.func.isRequired
+};
+
 class TrainSchedule extends Component {
   constructor() {
     super();
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleSelectItem = this.handleSelectItem.bind(this);
+    this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
   handleSelectItem() {
     const {
       actions
     } = this.props;
     actions.selectScheduleItem();
+  }
+  handleMoreInfo() {
+    const {
+      actions
+    } = this.props;
+    actions.toggleMoreInfo();
   }
   handleCloseSnackbar() {
     const {
@@ -39,7 +67,9 @@ class TrainSchedule extends Component {
     const {
       errors,
       items,
-      isLoading
+      isLoading,
+      selectedItem,
+      isViewingMoreInfo
     } = this.props;
     return (
       <Row className={styles.rowWrapper}>
@@ -55,24 +85,24 @@ class TrainSchedule extends Component {
         :
           <noscript />
         }
+        <MoreInfoButton
+          onClick={this.handleMoreInfo}
+          selectedItem={selectedItem}
+        />
+        <ScheduleItemInfo
+          {...this.props}
+          isOpen={isViewingMoreInfo}
+          onSubmit={this.handleSubmit}
+          onClose={this.handleMoreInfo}
+        />
         <Snackbar
           open={errors.length > 0}
-          message={errors.length > 0 && errors[0].message}
+          message={errors.length > 0 ? errors[0].message : ''}
           autoHideDuration={4000}
           action="Close"
           onActionTouchTap={this.handleCloseSnackbar}
           onRequestClose={this.handleCloseSnackbar}
         />
-        <Column>
-          <RaisedButton
-            label="MORE INFO"
-            disabled={false}
-            primary
-          />
-        </Column>
-        <div>
-
-        </div>
       </Row>
     );
   }
@@ -82,13 +112,17 @@ TrainSchedule.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   items: PropTypes.array,
-  errors: PropTypes.array.isRequired
+  errors: PropTypes.array.isRequired,
+  selectedItem: PropTypes.object,
+  isViewingMoreInfo: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   items: state.schedule.items,
   isLoading: state.schedule.isLoading,
-  errors: state.schedule.errors
+  errors: state.schedule.errors,
+  selectedItem: state.schedule.selectedItem,
+  isViewingMoreInfo: state.schedule.isViewingMoreInfo
 });
 
 const mapDispatchToProps = (dispatch) => ({

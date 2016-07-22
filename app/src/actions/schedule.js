@@ -32,9 +32,14 @@ export const scheduleLoadFailure = (error) => ({
   error
 });
 
+// selectScheduleItem :: Item -> {Action}
 export const selectScheduleItem = (item) => ({
   type: types.SELECT_SCHEDULE_ITEM,
   item
+});
+
+export const toggleMoreInfo = () => ({
+  type: types.TOGGLE_MORE_INFO
 });
 
 /**

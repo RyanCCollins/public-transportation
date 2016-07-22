@@ -3,7 +3,8 @@ import {
   SCHEDULE_LOAD_SUCCESS,
   SCHEDULE_LOAD_INITIATION,
   CLEAR_SCHEDULE_ERRORS,
-  SELECT_SCHEDULE_ITEM
+  SELECT_SCHEDULE_ITEM,
+  TOGGLE_MORE_INFO
 } from '../constants/schedule';
 
 const schedule = (state = {
@@ -12,7 +13,8 @@ const schedule = (state = {
   errors: [],
   departureId: null,
   arrivalId: null,
-  selectedItem: null
+  selectedItem: null,
+  isViewingMoreInfo: false
 }, action) => {
   switch (action.type) {
     case SCHEDULE_LOAD_INITIATION:
@@ -41,6 +43,10 @@ const schedule = (state = {
     case SELECT_SCHEDULE_ITEM:
       return Object.assign({}, state, {
         selectedItem: action.item
+      });
+    case TOGGLE_MORE_INFO:
+      return Object.assign({}, state, {
+        isViewingMoreInfo: !state.isViewingMoreInfo
       });
     default:
       return state;
