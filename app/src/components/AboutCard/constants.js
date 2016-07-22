@@ -8,12 +8,8 @@ const cardTextP2 = `Allows users to select a departure and arrival train station
   exists, the application queries an endpoint that provides information about
   all arrival and departure times.`;
 
-const avatarUrl = `https://media.licdn.com/mpr/mpr
-  /shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ
-  0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg`;
-
-const trainUrl = `http://www.eurail.com/sites/
-  eurail.com/files/tgv_high-spped_train_france.jpg`;
+const avatarUrl = 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQyAAAAJDU3YWY4Nzk1LWQ0YzEtNGIyMy1iOWI3LTBmMTllMmI1Y2Q5NQ.jpg';
+const trainUrl = 'http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg';
 
 const portfolioUrl = 'https://www.ryancollins.io';
 const repoUrl = 'https://github.com/RyanCCollins/public-transportation';
