@@ -25,19 +25,28 @@ class ScheduleList extends Component {
       height: '300px'
     };
   }
+  handleSelection(selectedRows) {
+    const {
+      items,
+      onSelection
+    } = this.props;
+    const selectedItem = items[selectedRows[0]];
+    onSelection(selectedItem);
+  }
   render() {
     const {
-      items
+      items,
+      onSelection
     } = this.props;
     return (
       <div className={styles.container}>
         <Table
           height={this.state.height}
+          onRowSelection={onSelection}
           selectable
         >
           <TableHeader>
             <TableRow>
-              <TableHeaderColumn tooltip="Select to Purchase">Purchase</TableHeaderColumn>
               <TableHeaderColumn tooltip="The ID">ID</TableHeaderColumn>
               <TableHeaderColumn tooltip="The Departure Time">Departure Time</TableHeaderColumn>
               <TableHeaderColumn tooltip="The Arrival Time">Arrival Time</TableHeaderColumn>
@@ -70,7 +79,8 @@ class ScheduleList extends Component {
 }
 
 ScheduleList.propTypes = {
-  items: PropTypes.array
+  items: PropTypes.array,
+  onSelection: PropTypes.func.isRequired
 };
 
 export default cssModules(ScheduleList, styles);

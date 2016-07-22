@@ -16,6 +16,7 @@ const ScheduleItemInfo = ({
       title="More Info"
       modal={false}
       open={isOpen}
+      style={{ width: 400, height: 400 }}
       onRequestClose={onClose}
       actions={[
         <FlatButton

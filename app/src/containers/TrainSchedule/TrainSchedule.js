@@ -21,11 +21,12 @@ import * as ScheduleActionCreators from '../../actions/schedule';
 
 const MoreInfoButton = ({
   selectedItem,
-  onClick
+  onClick,
+  isHidden
 }) => (
   <Column
     className={styles.buttonWrapper}
-    style={selectedItem === null ? { display: 'none' } : {}}
+    style={isHidden ? { display: 'none' } : {}}
   >
     <RaisedButton
       label="MORE INFO"
@@ -38,7 +39,8 @@ const MoreInfoButton = ({
 
 MoreInfoButton.propTypes = {
   selectedItem: PropTypes.object,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  isHidden: PropTypes.bool.isRequired
 };
 
 class TrainSchedule extends Component {
@@ -48,11 +50,11 @@ class TrainSchedule extends Component {
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
-  handleSelectItem() {
+  handleSelectItem(item) {
     const {
       actions
     } = this.props;
-    actions.selectScheduleItem();
+    actions.selectScheduleItem(item);
   }
   handleMoreInfo() {
     const {
@@ -78,7 +80,11 @@ class TrainSchedule extends Component {
       <Row className={styles.rowWrapper}>
         <Column small={12} medium={12} large={12}>
           {items && items.length > 0 ?
-            <ScheduleList items={items} isLoading={isLoading} />
+            <ScheduleList
+              items={items}
+              isLoading={isLoading}
+              onSelection={this.handleSelectItem}
+            />
           :
             <noscript />
           }
@@ -91,6 +97,7 @@ class TrainSchedule extends Component {
         <MoreInfoButton
           onClick={this.handleMoreInfo}
           selectedItem={selectedItem}
+          isHidden={selectedItem === null}
         />
         <ScheduleItemInfo
           selectedItem={selectedItem}
