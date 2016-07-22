@@ -2,8 +2,7 @@ import * as types from '../constants/schedule';
 const baseUrl = 'http://transportapi.com/v3/uk/train/station/';
 const url =
   (stationId) =>
-    `${baseUrl}${stationId}
-      /timetable.json?app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97`;
+    `${baseUrl}${stationId}/timetable.json?app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97`;
 
 /* Typical action creators here */
 export const scheduleLoadInitiation =
@@ -40,8 +39,17 @@ export const fetchSchedule =
         scheduleLoadInitiation(departureId, arrivalId)
       );
       fetch(url(departureId))
-        .then(res => res.json())
-        .then(data => data.departures.all)
+        .then(res => {
+          console.log(`The res returned from the request
+            to ${url(departureId)} was ${JSON.stringify(res)}`)
+          res.json()
+        })
+        .then(data => {
+          if (!data || !data.departures) {
+            throw new Error('The network request failed due to unknown reasons.');
+          }
+          return data.departures.all;
+        })
         .then(departures =>
           dispatch(scheduleLoadSuccess(departures))
         )

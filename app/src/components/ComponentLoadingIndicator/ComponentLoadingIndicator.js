@@ -5,9 +5,7 @@ import cssModules from 'react-css-modules';
 
 const ComponentLoadingIndicator = () => (
   <div className={styles.container}>
-    <div className={styles.flexCenter}>
-      <FaCog className="icon icon-big spin" />
-    </div>
+    <FaCog className="icon icon-big spin" />
   </div>
 );
 
