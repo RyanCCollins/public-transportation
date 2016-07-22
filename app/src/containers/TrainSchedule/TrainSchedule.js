@@ -23,7 +23,10 @@ const MoreInfoButton = ({
   selectedItem,
   onClick
 }) => (
-  <Column className={styles.buttonWrapper}>
+  <Column
+    className={styles.buttonWrapper}
+    style={selectedItem === null ? { display: 'none' } : {}}
+  >
     <RaisedButton
       label="MORE INFO"
       onClick={onClick}
@@ -90,7 +93,7 @@ class TrainSchedule extends Component {
           selectedItem={selectedItem}
         />
         <ScheduleItemInfo
-          {...this.props}
+          selectedItem={selectedItem}
           isOpen={isViewingMoreInfo}
           onSubmit={this.handleSubmit}
           onClose={this.handleMoreInfo}
