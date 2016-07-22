@@ -32,6 +32,11 @@ export const scheduleLoadFailure = (error) => ({
   error
 });
 
+export const selectScheduleItem = (item) => ({
+  type: types.SELECT_SCHEDULE_ITEM,
+  item
+});
+
 /**
  * @function fetchSchedule
  * @description Loads the train schedule through the api

@@ -4,6 +4,10 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
+  RaisedButton,
+  Snackbar
+} from 'material-ui';
+import {
   ScheduleList,
   ComponentLoadingIndicator
 } from 'components';
@@ -11,13 +15,19 @@ import {
   Row,
   Column
 } from 'react-foundation';
-import { Snackbar } from 'material-ui';
 import * as ScheduleActionCreators from '../../actions/schedule';
 
 class TrainSchedule extends Component {
   constructor() {
     super();
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
+    this.handleSelectItem = this.handleSelectItem.bind(this);
+  }
+  handleSelectItem() {
+    const {
+      actions
+    } = this.props;
+    actions.selectScheduleItem();
   }
   handleCloseSnackbar() {
     const {
@@ -53,6 +63,16 @@ class TrainSchedule extends Component {
           onActionTouchTap={this.handleCloseSnackbar}
           onRequestClose={this.handleCloseSnackbar}
         />
+        <Column>
+          <RaisedButton
+            label="MORE INFO"
+            disabled={false}
+            primary
+          />
+        </Column>
+        <div>
+
+        </div>
       </Row>
     );
   }

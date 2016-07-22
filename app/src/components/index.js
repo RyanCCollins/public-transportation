@@ -3,11 +3,13 @@ import ComponentLoadingIndicator from './ComponentLoadingIndicator/ComponentLoad
 import StationsInputs from './StationsInputs/StationsInputs';
 import HowItWorks from './HowItWorks/HowItWorks';
 import StationSelectField from './StationSelectField/StationSelectField';
+import MoreInfo from './MoreInfo/MoreInfo';
 
 export {
   ScheduleList,
   ComponentLoadingIndicator,
   StationsInputs,
   HowItWorks,
-  StationSelectField
+  StationSelectField,
+  MoreInfo
 };

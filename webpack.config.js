@@ -99,7 +99,7 @@ module.exports = {
     //   entry: path.join(__dirname, 'app/src/sw.js'),
     // }),
     new HtmlwebpackPlugin({
-      title: 'React Redux Simple Starter',
+      title: 'Public Transportation',
       template: 'index.html'
     })
   ]

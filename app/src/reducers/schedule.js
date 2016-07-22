@@ -2,7 +2,8 @@ import {
   SCHEDULE_LOAD_FAILURE,
   SCHEDULE_LOAD_SUCCESS,
   SCHEDULE_LOAD_INITIATION,
-  CLEAR_SCHEDULE_ERRORS
+  CLEAR_SCHEDULE_ERRORS,
+  SELECT_SCHEDULE_ITEM
 } from '../constants/schedule';
 
 const schedule = (state = {
@@ -10,7 +11,8 @@ const schedule = (state = {
   items: [],
   errors: [],
   departureId: null,
-  arrivalId: null
+  arrivalId: null,
+  selectedItem: null
 }, action) => {
   switch (action.type) {
     case SCHEDULE_LOAD_INITIATION:
@@ -35,6 +37,10 @@ const schedule = (state = {
     case CLEAR_SCHEDULE_ERRORS:
       return Object.assign({}, state, {
         errors: []
+      });
+    case SELECT_SCHEDULE_ITEM:
+      return Object.assign({}, state, {
+        selectedItem: action.item
       });
     default:
       return state;

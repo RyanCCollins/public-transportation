@@ -65,7 +65,7 @@ const StopsInputs = ({
         medium={12}
         large={12}
         centerOnSmall
-        className={styles.buttonWrapper}
+        className={styles.buttonWrapperTwo}
       >
         <RaisedButton
           disabled={isLoading}
