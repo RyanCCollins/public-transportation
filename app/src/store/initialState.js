@@ -25,7 +25,7 @@ const initalState = {
     errors: [],
     departureId: null,
     arrivalId: null,
-    selectedItem: null,
+    selectedItemIndex: null,
     isViewingMoreInfo: false
   },
   errors: []

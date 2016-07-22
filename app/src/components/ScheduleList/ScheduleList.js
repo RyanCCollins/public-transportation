@@ -25,14 +25,6 @@ class ScheduleList extends Component {
       height: '300px'
     };
   }
-  handleSelection(selectedRows) {
-    const {
-      items,
-      onSelection
-    } = this.props;
-    const selectedItem = items[selectedRows[0]];
-    onSelection(selectedItem);
-  }
   render() {
     const {
       items,

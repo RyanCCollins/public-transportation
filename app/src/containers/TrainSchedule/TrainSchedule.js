@@ -50,11 +50,11 @@ class TrainSchedule extends Component {
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleMoreInfo = this.handleMoreInfo.bind(this);
   }
-  handleSelectItem(item) {
+  handleSelectItem(indices) {
     const {
       actions
     } = this.props;
-    actions.selectScheduleItem(item);
+    actions.selectScheduleItem(indices[0]);
   }
   handleMoreInfo() {
     const {
@@ -73,7 +73,7 @@ class TrainSchedule extends Component {
       errors,
       items,
       isLoading,
-      selectedItem,
+      selectedItemIndex,
       isViewingMoreInfo
     } = this.props;
     return (
@@ -100,7 +100,7 @@ class TrainSchedule extends Component {
           isHidden={selectedItem === null}
         />
         <ScheduleItemInfo
-          selectedItem={selectedItem}
+          item={items[selectedItemIndex]}
           isOpen={isViewingMoreInfo}
           onSubmit={this.handleSubmit}
           onClose={this.handleMoreInfo}
@@ -123,7 +123,7 @@ TrainSchedule.propTypes = {
   actions: PropTypes.object.isRequired,
   items: PropTypes.array,
   errors: PropTypes.array.isRequired,
-  selectedItem: PropTypes.object,
+  selectedItemIndex: PropTypes.object,
   isViewingMoreInfo: PropTypes.bool.isRequired
 };
 

@@ -32,10 +32,10 @@ export const scheduleLoadFailure = (error) => ({
   error
 });
 
-// selectScheduleItem :: Item -> {Action}
-export const selectScheduleItem = (item) => ({
+// selectScheduleItem :: Int -> {Action}
+export const selectScheduleItem = (index) => ({
   type: types.SELECT_SCHEDULE_ITEM,
-  item
+  index
 });
 
 export const toggleMoreInfo = () => ({

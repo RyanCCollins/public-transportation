@@ -13,7 +13,7 @@ const schedule = (state = {
   errors: [],
   departureId: null,
   arrivalId: null,
-  selectedItem: null,
+  selectedItemIndex: null,
   isViewingMoreInfo: false
 }, action) => {
   switch (action.type) {
@@ -42,7 +42,7 @@ const schedule = (state = {
       });
     case SELECT_SCHEDULE_ITEM:
       return Object.assign({}, state, {
-        selectedItem: action.item
+        selectedItemIndex: action.index
       });
     case TOGGLE_MORE_INFO:
       return Object.assign({}, state, {
