@@ -12,15 +12,16 @@ class AboutPage extends Component {
     super();
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
+    this.state = {
+      shadowDepth: 1
+    };
   }
   handleMouseOver() {
-    console.log(`Mousing over`);
     this.setState({
       shadowDepth: 5
     });
   }
   handleMouseOut() {
-    console.log(`Mousing out`);
     this.setState({
       shadowDepth: 1
     });

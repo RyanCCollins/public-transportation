@@ -7,10 +7,12 @@ import {
   CardHeader,
   CardMedia,
   CardTitle,
-  CardText,
-  Paper
+  CardText
 } from 'material-ui/Card';
-import { FlatButton } from 'material-ui';
+import {
+  FlatButton,
+  Paper
+} from 'material-ui';
 import * as constants from './constants';
 
 const AboutCard = ({
