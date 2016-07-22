@@ -1,7 +1,10 @@
 const VERSION = 2;
 const CACHE_NAME = `static-cache-${VERSION}`;
 const { assets } = serviceWorkerOption;
+import db from './data/db';
 
+
+db.then(data => console.log(data));
 console.log(`Service worker regiested with version: ${VERSION} caching assests: ${assets}`);
 
 let assetsToCache = [
@@ -17,10 +20,9 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches
       .open(CACHE_NAME)
-      .then(cache => {
-        return cache.addAll(assetsToCache);
-      }).catch(error => {
-        console.error(error);
+      .then(cache =>
+        cache.addAll(assetsToCache)
+      ).catch(error => {
         throw error;
       })
   );
@@ -30,8 +32,8 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches
       .keys()
-      .then(cacheNames => {
-        return Promise.all(
+      .then(cacheNames =>
+        Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName.indexOf(CACHE_NAME) === 0) {
               return null;
@@ -39,8 +41,8 @@ self.addEventListener('activate', event => {
               return caches.delete(cacheName);
             }
           })
-        );
-      })
+        )
+      )
     );
 });
 
@@ -58,8 +60,10 @@ self.addEventListener('message', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
+    caches
+      .match(event.request)
+      .then((response) =>
+        response || fetch(event.request)
+    )
   );
 });

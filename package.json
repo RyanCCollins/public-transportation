@@ -48,6 +48,7 @@
     "foundation-sites": "^6.2.3",
     "history": "^1.14.0",
     "html-webpack-plugin": "^2.7.1",
+    "idb": "^1.0.1",
     "immutable": "^3.7.5",
     "isomorphic-fetch": "^2.2.0",
     "json-loader": "^0.5.4",
