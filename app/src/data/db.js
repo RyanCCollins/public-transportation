@@ -1,10 +1,11 @@
 import idb from 'idb';
-const VERSION = 1;
+const VERSION = 3;
 
 const dbPromise = idb.open('public-transportation-db', VERSION, upgradeDB => {
-  const keyValStore = upgradeDB.createObjectStore('key-val');
-  keyValStore.put('world', 'hello');
+  const dbStore = upgradeDB.createObjectStore('stations', {
+    keyPath: 'station_code'
+  });
+  dbStore.createIndex('by-station_code', 'station_code');
 });
-
 
 export default dbPromise;
