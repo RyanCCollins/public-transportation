@@ -77,7 +77,8 @@ class TrainSchedule extends Component {
       items,
       isLoading,
       selectedItemIndex,
-      isViewingMoreInfo
+      isViewingMoreInfo,
+      funMode
     } = this.props;
     return (
       <Row className={styles.rowWrapper}>
@@ -93,7 +94,7 @@ class TrainSchedule extends Component {
           }
         </Column>
         {isLoading && !items.length > 0 ?
-          <ComponentLoadingIndicator funMode />
+          <ComponentLoadingIndicator funMode={funMode} />
         :
           <noscript />
         }
@@ -127,7 +128,8 @@ TrainSchedule.propTypes = {
   items: PropTypes.array,
   errors: PropTypes.array.isRequired,
   selectedItemIndex: PropTypes.number,
-  isViewingMoreInfo: PropTypes.bool.isRequired
+  isViewingMoreInfo: PropTypes.bool.isRequired,
+  funMode: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -135,7 +137,8 @@ const mapStateToProps = (state) => ({
   isLoading: state.schedule.isLoading,
   errors: state.schedule.errors,
   selectedItemIndex: state.schedule.selectedItemIndex,
-  isViewingMoreInfo: state.schedule.isViewingMoreInfo
+  isViewingMoreInfo: state.schedule.isViewingMoreInfo,
+  funMode: state.settings.funMode
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -95,9 +95,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new NpmInstallPlugin(),
-    // new ServiceWorkerPlugin({
-    //   entry: path.join(__dirname, 'app/src/sw.js'),
-    // }),
+    new ServiceWorkerPlugin({
+      entry: path.join(__dirname, 'app/src/sw.js'),
+    }),
     new HtmlwebpackPlugin({
       title: 'Public Transportation',
       template: 'index.html'

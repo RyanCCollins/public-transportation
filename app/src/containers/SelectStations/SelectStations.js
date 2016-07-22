@@ -125,7 +125,8 @@ class SelectStations extends Component {
   render() {
     const {
       isLoading,
-      errors
+      errors,
+      funMode
     } = this.props;
     const {
       message
@@ -133,7 +134,7 @@ class SelectStations extends Component {
     return (
       <div className={styles.container}>
         {isLoading ?
-          <ComponentLoadingIndicator />
+          <ComponentLoadingIndicator funMode={funMode} />
         :
           <StationsInputs
             {...this.props}
@@ -162,7 +163,8 @@ SelectStations.propTypes = {
   errors: PropTypes.array.isRequired,
   selectedArrivalStation: PropTypes.string,
   actions: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  funMode: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -170,7 +172,8 @@ const mapStateToProps = (state) => ({
   stations: state.stations.items,
   errors: state.stations.errors,
   selectedArrivalStation: state.stations.selectedArrivalStation,
-  selectedDepartureStation: state.stations.selectedDepartureStation
+  selectedDepartureStation: state.stations.selectedDepartureStation,
+  funMode: state.settings.funMode
 });
 
 const mapDispatchToProps =

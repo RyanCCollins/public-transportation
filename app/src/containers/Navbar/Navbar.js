@@ -68,7 +68,7 @@ class Navbar extends Component {
     this.handleToggleFunMode = this.handleToggleFunMode.bind(this);
   }
   handleRefresh() {
-
+    
   }
   handleToggleFunMode() {
     const {

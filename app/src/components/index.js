@@ -4,6 +4,7 @@ import StationsInputs from './StationsInputs/StationsInputs';
 import HowItWorks from './HowItWorks/HowItWorks';
 import StationSelectField from './StationSelectField/StationSelectField';
 import MoreInfo from './MoreInfo/MoreInfo';
+import UdacityLogoIcon from './UdacityLogoIcon/UdacityLogoIcon';
 
 export {
   ScheduleList,
@@ -11,5 +12,6 @@ export {
   StationsInputs,
   HowItWorks,
   StationSelectField,
-  MoreInfo
+  MoreInfo,
+  UdacityLogoIcon
 };
