@@ -7,7 +7,6 @@ import * as types from '../constants/index';
 import schedule from './schedule';
 import errors from './errors';
 import stations from './stations';
-import routes from './routes';
 import navbar from './navbar';
 import help from './help';
 import settings from './settings';
@@ -17,7 +16,6 @@ const appReducer = combineReducers({
   settings,
   help,
   navbar,
-  routes,
   stations,
   errors,
   routing: routerReducer,

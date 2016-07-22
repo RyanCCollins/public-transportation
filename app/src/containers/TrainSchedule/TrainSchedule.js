@@ -48,6 +48,7 @@ class TrainSchedule extends Component {
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleMoreInfo = this.handleMoreInfo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSelectItem(indices) {
     const {
@@ -74,6 +75,10 @@ class TrainSchedule extends Component {
       actions
     } = this.props;
     actions.clearScheduleErrors();
+  }
+  handleSubmit() {
+    /* eslint-disable no-alert, no-console */
+    alert("Sorry, but we aren't actually selling anything here.");
   }
   render() {
     const {
