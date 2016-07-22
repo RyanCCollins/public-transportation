@@ -11,7 +11,7 @@ const MoreInfo = ({
   <Card>
     <CardHeader
       title="More Info For Trip"
-      subtitle={`From ${item.orgin_name} to ${item.destination_name}`}
+      subtitle={`From ${item.origin_name} to ${item.destination_name}`}
     />
     <CardText>
       {`Confirm details of your trip departing in ${item.aimed_departure_time} minutes.`}

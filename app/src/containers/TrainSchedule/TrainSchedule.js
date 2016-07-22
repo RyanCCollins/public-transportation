@@ -96,8 +96,8 @@ class TrainSchedule extends Component {
         }
         <MoreInfoButton
           onClick={this.handleMoreInfo}
-          selectedItem={selectedItem}
-          isHidden={selectedItem === null}
+          selectedItem={items[selectedItemIndex]}
+          isHidden={selectedItemIndex === null}
         />
         <ScheduleItemInfo
           item={items[selectedItemIndex]}
@@ -131,7 +131,7 @@ const mapStateToProps = (state) => ({
   items: state.schedule.items,
   isLoading: state.schedule.isLoading,
   errors: state.schedule.errors,
-  selectedItem: state.schedule.selectedItem,
+  selectedItemIndex: state.schedule.selectedItemIndex,
   isViewingMoreInfo: state.schedule.isViewingMoreInfo
 });
 
