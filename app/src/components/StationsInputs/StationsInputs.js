@@ -15,7 +15,7 @@ const NoSelectedRoute = () => (
   </div>
 );
 
-const StopsInputs = ({
+const StationsInputs = ({
   selectedDepartureStation,
   handleSelectDeparture,
   selectedArrivalStation,
@@ -23,11 +23,20 @@ const StopsInputs = ({
   stations,
   handleSubmit,
   isLoading,
-  handleClear
+  handleClear,
+  mapMode,
+  onMapClick,
+  onMapPinClick
 }) => (
   <Row>
     <Column small={12} medium={8} large={6}>
-      <Column isColumn small={12} medium={10} large={8} centerOnSmall>
+      <Column
+        isColumn
+        small={12}
+        medium={mapMode ? 8 : 12}
+        large={mapMode ? 4 : 12}
+        centerOnSmall
+      >
         <StationSelectField
           value={selectedDepartureStation}
           onChange={handleSelectDeparture}
@@ -39,8 +48,8 @@ const StopsInputs = ({
         className={styles.floatFix}
         isColumn
         small={12}
-        medium={10}
-        large={8}
+        medium={mapMode ? 8 : 12}
+        large={mapMode ? 6 : 12}
         centerOnSmall
       >
         <StationSelectField
@@ -51,15 +60,24 @@ const StopsInputs = ({
         />
       </Column>
     </Column>
-    <Column
-      isColumn
-      centerOnSmall
-      small={12}
-      medium={4}
-      large={6}
-    >
-      <MapView />
-    </Column>
+    {mapMode ?
+      <Column
+        isColumn
+        centerOnSmall
+        small={12}
+        medium={4}
+        large={6}
+      >
+        <MapView
+          stations={stations}
+          isLoading={isLoading}
+          onMapClick={onMapClick}
+          onMapPinClick={onMapPinClick}
+        />
+      </Column>
+    :
+      <noscript />
+    }
     <Column
       isColumn
       small={12}
@@ -90,7 +108,7 @@ const StopsInputs = ({
 );
 
 
-StopsInputs.propTypes = {
+StationsInputs.propTypes = {
   selectedDepartureStation: PropTypes.string,
   handleSelectDeparture: PropTypes.func.isRequired,
   selectedArrivalStation: PropTypes.string,
@@ -98,7 +116,10 @@ StopsInputs.propTypes = {
   stations: PropTypes.array.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  handleClear: PropTypes.func.isRequired
+  handleClear: PropTypes.func.isRequired,
+  mapMode: PropTypes.bool.isRequired,
+  onMapClick: PropTypes.func.isRequired,
+  onMapPinClick: PropTypes.func.isRequired
 };
 
-export default cssModules(StopsInputs);
+export default cssModules(StationsInputs);

@@ -69,7 +69,8 @@ export const loadStationsOffline = () =>
         .then(stations =>
           dispatch(loadStationsSuccess(stations))
         );
-    });
+    })
+    .catch(error => dispatch(loadStationsError(error)));
   };
 
 // fetchStations :: None -> Func -> Maybe Event

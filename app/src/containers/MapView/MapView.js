@@ -14,22 +14,16 @@ const parseMarker = (item) => ({
   defaultAnimation: 2
 });
 
-class MapView extends Component {
-  render() {
-    const {
-      stations
-    } = this.props;
-    return (
-      <section>
-        <Map
-          markers={
-            stations.map(item => parseMarker(item))
-          }
-        />
-      </section>
-    );
-  }
-}
+const MapView = (props) => (
+  <section>
+    <Map
+      {...props}
+      markers={
+        props.stations.map(item => parseMarker(item))
+      }
+    />
+  </section>
+);
 
 MapView.propTypes = {
   stations: PropTypes.array.isRequired

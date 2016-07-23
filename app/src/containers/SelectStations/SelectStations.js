@@ -24,6 +24,8 @@ class SelectStations extends Component {
     this.handleErrors = this.handleErrors.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
     this.handleClear = this.handleClear.bind(this);
+    this.handleMapClick = this.handleMapClick.bind(this);
+    this.handleMapPinClick = this.handleMapPinClick.bind(this);
     this.state = {
       snackbar: {
         message: ''
@@ -42,6 +44,12 @@ class SelectStations extends Component {
     if (errors.length > 0) {
       this.handleErrors(errors);
     }
+  }
+  handleMapClick(e) {
+    console.log(`Clicked the map input ${e}`)
+  }
+  handleMapPinClick(...args) {
+    console.log(`Clicked a pin with value ${args.value}`)
   }
   handleSelectArrival(event, index, value) {
     const {
@@ -142,7 +150,8 @@ class SelectStations extends Component {
     const {
       isLoading,
       errors,
-      funMode
+      funMode,
+      mapMode
     } = this.props;
     const {
       message
@@ -157,6 +166,9 @@ class SelectStations extends Component {
             handleSelectArrival={this.handleSelectArrival}
             handleSelectDeparture={this.handleSelectDeparture}
             handleSubmit={this.handleSubmit}
+            onMapClick={this.handleMapClick}
+            onMapPinClick={this.handleMapPinClick}
+            mapMode={mapMode}
             handleClear={this.handleClear}
           />
         }
@@ -180,7 +192,8 @@ SelectStations.propTypes = {
   selectedArrivalStation: PropTypes.string,
   actions: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  funMode: PropTypes.bool.isRequired
+  funMode: PropTypes.bool.isRequired,
+  mapMode: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -189,7 +202,8 @@ const mapStateToProps = (state) => ({
   errors: state.stations.errors,
   selectedArrivalStation: state.stations.selectedArrivalStation,
   selectedDepartureStation: state.stations.selectedDepartureStation,
-  funMode: state.settings.funMode
+  funMode: state.settings.funMode,
+  mapMode: state.settings.mapMode
 });
 
 const mapDispatchToProps =

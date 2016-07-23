@@ -8,9 +8,9 @@ import {
 } from 'react-google-maps';
 import { ComponentLoadingIndicator } from 'components';
 
-const MapView = ({
+const Map = ({
   markers,
-  onPinClick,
+  onMapPinClick,
   onMapClick,
   isLoading
 }) => (
@@ -37,7 +37,7 @@ const MapView = ({
                 <Marker
                   {...marker}
                   key={i}
-                  onRightClick={onPinClick}
+                  onRightClick={onMapPinClick}
                 />
               )}
             </GoogleMap>
@@ -55,11 +55,11 @@ const MapView = ({
   </div>
 );
 
-MapView.propTypes = {
+Map.propTypes = {
   markers: PropTypes.array.isRequired,
   onMapClick: PropTypes.func.isRequired,
-  onPinClick: PropTypes.func.isRequired,
+  onMapPinClick: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired
 };
 
-export default cssModules(MapView, styles);
+export default cssModules(Map, styles);
