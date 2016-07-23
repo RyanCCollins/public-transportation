@@ -100,7 +100,7 @@ export const fetchSchedule =
           if (!data) {
             throw new Error('The network request failed due to unknown reasons.');
           } else if (!data.routes) {
-            throw new Error(`No route found.`);
+            throw new Error(`No schdule found for this route at this time.`);
           }
           return data.routes;
         })
