@@ -61,6 +61,7 @@ const StopsInputs = ({
     >
       <RaisedButton
         disabled={isLoading}
+        className={styles.button}
         style={{ width: 150, height: 50, color: 'white' }}
         primary
         onClick={handleSubmit}
