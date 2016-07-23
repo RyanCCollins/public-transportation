@@ -57,7 +57,7 @@ const persistStations = (stations) => {
   });
 };
 
-const loadStationsOffline = () =>
+export const loadStationsOffline = () =>
   (dispatch) => {
     dbLoad.then(db => {
       dispatch(loadStationsInitiation());

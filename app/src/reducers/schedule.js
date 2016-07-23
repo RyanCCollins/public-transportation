@@ -12,8 +12,8 @@ const schedule = (state = {
   isLoading: false,
   items: [],
   errors: [],
-  departureId: null,
-  arrivalId: null,
+  departure: null,
+  arrival: null,
   selectedItemIndex: null,
   isViewingMoreInfo: false
 }, action) => {
@@ -21,8 +21,8 @@ const schedule = (state = {
     case SCHEDULE_LOAD_INITIATION:
       return Object.assign({}, state, {
         isLoading: true,
-        departureId: action.departureId,
-        arrivalId: action.arrivalId
+        departure: action.departure,
+        arrival: action.arrival
       });
     case SCHEDULE_LOAD_SUCCESS:
       return Object.assign({}, state, {

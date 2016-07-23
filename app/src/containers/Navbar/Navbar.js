@@ -68,7 +68,7 @@ class Navbar extends Component {
     this.handleToggleFunMode = this.handleToggleFunMode.bind(this);
   }
   handleRefresh() {
-    
+
   }
   handleToggleFunMode() {
     const {
@@ -140,7 +140,6 @@ Navbar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.node,
   actions: PropTypes.object.isRequired,
-  settings: PropTypes.object.isRequired,
   funMode: PropTypes.bool.isRequired
 };
 

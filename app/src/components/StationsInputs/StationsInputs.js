@@ -52,7 +52,7 @@ const StopsInputs = ({
       >
         <RaisedButton
           disabled={isLoading}
-          style={{ width: 150, height: 50 }}
+          style={{ width: 150, height: 50, color: 'white' }}
           primary
           onClick={handleSubmit}
         >
@@ -69,7 +69,7 @@ const StopsInputs = ({
       >
         <RaisedButton
           disabled={isLoading}
-          style={{ width: 150, height: 50 }}
+          style={{ width: 150, height: 50, color: 'white' }}
           secondary
           onClick={handleClear}
         >

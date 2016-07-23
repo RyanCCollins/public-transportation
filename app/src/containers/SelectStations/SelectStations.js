@@ -9,6 +9,11 @@ import * as ScheduleActionCreators from '../../actions/schedule';
 import * as GlobalActionCreators from '../../actions/index';
 import { ComponentLoadingIndicator, StationsInputs } from 'components';
 
+const toGeo = ({
+  latitude,
+  longitude
+}) => `${longitude},${latitude}`;
+
 class SelectStations extends Component {
   constructor() {
     super();
@@ -17,6 +22,7 @@ class SelectStations extends Component {
     this.handleSelectArrival = this.handleSelectArrival.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
+    this.fetchStations = this.fetchStations.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.state = {
       snackbar: {
@@ -25,11 +31,8 @@ class SelectStations extends Component {
     };
   }
   componentDidMount() {
-    const {
-      actions,
-      errors
-    } = this.props;
-    actions.fetchStations();
+    this.fetchStations();
+    const { errors } = this.props;
     this.handleErrors(errors);
   }
   componentWillReceiveProps(nextProps) {
@@ -58,18 +61,31 @@ class SelectStations extends Component {
     } = this.props;
     actions.clearStationErrors();
   }
+  fetchStations() {
+    const {
+      actions
+    } = this.props;
+    if (navigator.onLine) {
+      actions.fetchStations();
+    } else {
+      actions.loadStationsOffline();
+    }
+  }
   handleSubmit() {
     const {
       actions,
       selectedDepartureStation,
-      selectedArrivalStation
+      selectedArrivalStation,
+      stations
     } = this.props;
-    const departure = selectedDepartureStation;
-    const arrival = selectedArrivalStation;
-    if (departure && arrival) {
+    const dCode = selectedDepartureStation;
+    const aCode = selectedArrivalStation;
+    if (dCode && aCode) {
+      const departure = toGeo(stations.filter(item => item.station_code === dCode)[0]);
+      const arrival = toGeo(stations.filter(item => item.station_code === aCode)[0]);
       actions.fetchSchedule(
-        selectedDepartureStation,
-        selectedArrivalStation
+        departure,
+        arrival
       );
     } else {
       let errors = [];
