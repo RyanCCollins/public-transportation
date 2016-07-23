@@ -4,17 +4,27 @@ Senior Web P2, Public Transportation App, offline-first progressive web applicat
 ## Getting Started
 The projects uses NPM scripts along with Webpack.
 
-The scripts can be referenced from [this boilerplate project](https://github.com/RyanCCollins/react-redux-simple-starter).
+The scripts can be referenced from [my open source boilerplate project](https://github.com/RyanCCollins/react-redux-simple-starter).
 
 ### Installing
-Run
+To get the dependencies installed, run
 ```
 npm run setup
 ```
-to install the dependencies.
 
-## Deployment
-TBD
+followed by
+
+```
+npm run start
+```
+To get run the webpack dev server.  The app will be served at `http://localhost:8080/`
+
+## Requirements
+* Allows users to select a departure and arrival trainstation
+* See a list of trains times, and durations
+* Initially, the application should load a default train schedule even when offline
+* Use an API or a GTFS file for the data for the public transportation
+* If the application is online, your schedule should reflect real-time transit data, informing the user of any delays they may encounter.
 
 ## Built With
 - [Node](https://nodejs.org/en/) - JS runtime environment
@@ -34,7 +44,23 @@ TBD
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-### Technical Milestones
+## Resources
+* [Service Worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
+* [Transport API Documentation](http://docs.transportapi.com/index.html?raml=http://transportapi.com/v3/raml/transportapi.raml)
+* [IDB Documentation](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+
+## Timeline
+* [x] Configure Service Worker with Webpack
+* [x] Retrieve Data from the [Transport API](http://www.transportapi.com/)
+* [x] Cache data to IDB for loading when offline
+* [x] Add Material UI components when apropos
+* [x] Add custom styling to components using React SCSS Modules
+* [x] Hydrate Redux store from persisted data
+* [ ] Write integration and unit tests
+* [ ] Host on Heroku
+* [ ] Review Code for best practices and meet the [AirBnb style guide](https://github.com/airbnb/javascript)
+
+## Technical Milestones
 - Built a dynamic single page application using offline first technologies
 - Transpiled cutting edge JavaScript with ES6 using Babel
 - Implemented service worker and IDB to provide persistent offline data
