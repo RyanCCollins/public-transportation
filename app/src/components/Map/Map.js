@@ -6,18 +6,21 @@ import {
   Marker,
   GoogleMapLoader
 } from 'react-google-maps';
+import { ComponentLoadingIndicator } from 'components';
 
 const MapView = ({
   markers,
   onPinClick,
-  onMapClick
+  onMapClick,
+  isLoading
 }) => (
   <div>
-    {markers.length > 0 ?
+    {!isLoading && markers.length > 0 ?
       <GoogleMapLoader
         query={{ libraries: 'geometry,drawing,places,visualization' }}
         containerElement={
           <div
+            {...this.props}
             className={styles.container}
           />
         }
@@ -26,8 +29,8 @@ const MapView = ({
             <h1 className={styles.containerTitle}>Map</h1>
             <GoogleMap
               ref={(map) => console.log(map)}
-              defaultZoom={6}
-              defaultCenter={{ lat: 51.5074, lng: 0.1278 }}
+              defaultZoom={3}
+              defaultCenter={{ lat: 51.4802, lng: -0.0193 }}
               onClick={onMapClick}
             >
               {markers.map((marker, i) =>
@@ -44,13 +47,19 @@ const MapView = ({
     :
       <noscript />
     }
+    {isLoading ?
+      <ComponentLoadingIndicator />
+    :
+      <noscript />
+    }
   </div>
 );
 
 MapView.propTypes = {
   markers: PropTypes.array.isRequired,
   onMapClick: PropTypes.func.isRequired,
-  onPinClick: PropTypes.func.isRequired
+  onPinClick: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default cssModules(MapView, styles);

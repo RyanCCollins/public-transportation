@@ -35,7 +35,14 @@ const StopsInputs = ({
           whoAmI="Departure"
         />
       </Column>
-      <Column isColumn small={12} medium={10} large={8} centerOnSmall>
+      <Column
+        className={styles.floatFix}
+        isColumn
+        small={12}
+        medium={10}
+        large={8}
+        centerOnSmall
+      >
         <StationSelectField
           value={selectedArrivalStation}
           onChange={handleSelectArrival}
@@ -45,6 +52,8 @@ const StopsInputs = ({
       </Column>
     </Column>
     <Column
+      isColumn
+      centerOnSmall
       small={12}
       medium={4}
       large={6}

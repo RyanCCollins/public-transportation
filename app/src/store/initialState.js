@@ -1,6 +1,7 @@
 const initalState = {
   settings: {
-    funMode: false
+    funMode: false,
+    mapMode: true
   },
   help: {
     stepIndex: 0

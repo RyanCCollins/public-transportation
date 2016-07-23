@@ -21,7 +21,9 @@ const NavIconMenu = ({
   onRefresh,
   onReset,
   onToggleFunMode,
-  funMode
+  funMode,
+  mapMode,
+  onToggleMapMode
 }) => (
   <IconMenu
     iconButtonElement={
@@ -49,6 +51,13 @@ const NavIconMenu = ({
         toggled={funMode}
       />
     </MenuItem>
+    <MenuItem>
+      <Toggle
+        label="Toggle Map Mode"
+        onToggle={onToggleMapMode}
+        toggled={mapMode}
+      />
+    </MenuItem>
   </IconMenu>
 );
 
@@ -56,7 +65,9 @@ NavIconMenu.propTypes = {
   onRefresh: PropTypes.func.isRequired,
   onReset: PropTypes.func.isRequired,
   onToggleFunMode: PropTypes.func.isRequired,
-  funMode: PropTypes.bool.isRequired
+  funMode: PropTypes.bool.isRequired,
+  mapMode: PropTypes.bool.isRequired,
+  onToggleMapMode: PropTypes.func.isRequired
 };
 
 class Navbar extends Component {
@@ -66,9 +77,16 @@ class Navbar extends Component {
     this.handleReset = this.handleReset.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
     this.handleToggleFunMode = this.handleToggleFunMode.bind(this);
+    this.handleToggleMapMode = this.handleToggleMapMode.bind(this);
   }
   handleRefresh() {
 
+  }
+  handleToggleMapMode() {
+    const {
+      actions
+    } = this.props;
+    actions.toggleMapMode();
   }
   handleToggleFunMode() {
     const {
@@ -92,7 +110,8 @@ class Navbar extends Component {
     const {
       isOpen,
       children,
-      funMode
+      funMode,
+      mapMode
     } = this.props;
     return (
       <div>
@@ -105,6 +124,8 @@ class Navbar extends Component {
               onReset={this.handleReset}
               onToggleFunMode={this.handleToggleFunMode}
               funMode={funMode}
+              mapMode={mapMode}
+              onToggleMapMode={this.handleToggleMapMode}
             />
           }
         />
@@ -140,7 +161,8 @@ Navbar.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.node,
   actions: PropTypes.object.isRequired,
-  funMode: PropTypes.bool.isRequired
+  funMode: PropTypes.bool.isRequired,
+  mapMode: PropTypes.bool.isRequired
 };
 
 /**
@@ -153,7 +175,8 @@ Navbar.propTypes = {
 const mapStateToProps =
 (state) => ({
   isOpen: state.navbar.isOpen,
-  funMode: state.settings.funMode
+  funMode: state.settings.funMode,
+  mapMode: state.settings.mapMode
 });
 
 /**
