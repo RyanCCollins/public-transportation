@@ -2,10 +2,7 @@ import React, { PropTypes } from 'react';
 import cssModules from 'react-css-modules';
 import styles from './LandingPage.module.scss';
 import { SelectStations, TrainSchedule } from 'containers';
-import {
-  Paper
-} from 'material-ui';
-
+import { Paper } from 'material-ui';
 
 const Header = ({
   text

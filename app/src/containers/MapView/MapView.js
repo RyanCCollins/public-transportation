@@ -1,44 +1,46 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import styles from './MapView.module.scss';
 import cssModules from 'react-css-modules';
-import {
-  GoogleMap,
-  Marker,
-  GoogleMapLoader
-} from 'react-google-maps';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Map } from 'components';
 
-const MapView = ({
-  markers,
-  onPinClick,
-  onMapClick
-}) => (
-  <section>
-    <GoogleMapLoader
-      containerElement={
-        <div
-          className={styles.container}
+const parseMarker = (item) => ({
+  position: {
+    lat: item.latitude,
+    lng: item.longitude
+  },
+  key: item.station_code,
+  defaultAnimation: 2
+});
+
+class MapView extends Component {
+  render() {
+    const {
+      stations
+    } = this.props;
+    return (
+      <section>
+        <Map
+          markers={
+            stations.map(item => parseMarker(item))
+          }
         />
-      }
-      googleMapElement={
-        <GoogleMap
-          ref={(map) => console.log(map)}
-          defaultZoom={3}
-          defaultCenter={{ lat: 51.5074, lng: 0.1278 }}
-          onClick={onMapClick}
-        >
-          {markers.map((marker, i) =>
-            <Marker {...marker} onRightClick={onPinClick} />
-          )}
-        </GoogleMap>
-      }
-    />
-  </section>
-);
+      </section>
+    );
+  }
+}
 
 MapView.propTypes = {
-  markers: PropTypes.array.isRequired,
-  onMapClick: PropTypes.func.isRequired,
-  onPinClick: PropTypes.func.isRequired
+  stations: PropTypes.array.isRequired
 };
 
-export default cssModules(MapView, styles);
+const mapStateToProps = (state) => ({
+  stations: state.stations.items
+});
+
+const StyledComponent = cssModules(MapView, styles);
+
+export default connect(
+  mapStateToProps
+)(StyledComponent);

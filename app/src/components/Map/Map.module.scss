@@ -1,0 +1,24 @@
+.container {
+  height: 400px;
+  width: 400px;
+  margin: 100px 50px;
+  padding: 12px;
+  border: 1px solid #C8C8CB;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.containerTitle {
+  margin: -13px -13px 5px;
+  padding: 12px;
+  color: white;
+  background: rgb(0, 188, 212);
+  font-size: 18px;
+  border-radius: 5px 5px 0 0;
+}
+
+.mapContainer {
+  position: relative;
+  padding-top: 6px;
+  height: 400px;
+}

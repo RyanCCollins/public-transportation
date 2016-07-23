@@ -6,6 +6,7 @@ import StationSelectField from './StationSelectField/StationSelectField';
 import MoreInfo from './MoreInfo/MoreInfo';
 import UdacityLogoIcon from './UdacityLogoIcon/UdacityLogoIcon';
 import AboutCard from './AboutCard/AboutCard';
+import Map from './Map/Map';
 
 export {
   ScheduleList,
@@ -15,5 +16,6 @@ export {
   StationSelectField,
   MoreInfo,
   UdacityLogoIcon,
-  AboutCard
+  AboutCard,
+  Map
 };

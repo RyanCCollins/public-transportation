@@ -7,6 +7,7 @@ import {
 import styles from './StationsInputs.module.scss';
 import cssModules from 'react-css-modules';
 import { StationSelectField } from 'components';
+import { MapView } from 'containers';
 
 const NoSelectedRoute = () => (
   <div className={styles.noRoute}>
@@ -25,7 +26,7 @@ const StopsInputs = ({
   handleClear
 }) => (
   <Row>
-    <Column small={12} medium={12} large={12}>
+    <Column small={12} medium={8} large={6}>
       <Column isColumn small={12} medium={10} large={8} centerOnSmall>
         <StationSelectField
           value={selectedDepartureStation}
@@ -42,40 +43,38 @@ const StopsInputs = ({
           whoAmI="Arrival"
         />
       </Column>
-      <Column
-        isColumn
-        small={12}
-        medium={12}
-        large={12}
-        centerOnSmall
-        className={styles.buttonWrapper}
+    </Column>
+    <Column
+      small={12}
+      medium={4}
+      large={6}
+    >
+      <MapView />
+    </Column>
+    <Column
+      isColumn
+      small={12}
+      medium={12}
+      large={12}
+      centerOnSmall
+      className={styles.buttonWrapper}
+    >
+      <RaisedButton
+        disabled={isLoading}
+        style={{ width: 150, height: 50, color: 'white' }}
+        primary
+        onClick={handleSubmit}
       >
-        <RaisedButton
-          disabled={isLoading}
-          style={{ width: 150, height: 50, color: 'white' }}
-          primary
-          onClick={handleSubmit}
-        >
-          SEARCH TRAINS
-        </RaisedButton>
-      </Column>
-      <Column
-        isColumn
-        small={12}
-        medium={12}
-        large={12}
-        centerOnSmall
-        className={styles.buttonWrapperTwo}
+        SEARCH TRAINS
+      </RaisedButton>
+      <RaisedButton
+        disabled={isLoading}
+        style={{ width: 150, height: 50, color: 'white' }}
+        secondary
+        onClick={handleClear}
       >
-        <RaisedButton
-          disabled={isLoading}
-          style={{ width: 150, height: 50, color: 'white' }}
-          secondary
-          onClick={handleClear}
-        >
-          RESET
-        </RaisedButton>
-      </Column>
+        RESET
+      </RaisedButton>
     </Column>
   </Row>
 );
