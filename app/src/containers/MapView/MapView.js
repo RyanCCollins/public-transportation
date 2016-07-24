@@ -39,7 +39,7 @@ class MapView extends Component {
       apiKey
     } = this.props;
     return (
-      <section>
+      <section className={styles.section}>
         <Map
           {...this.props}
           onChange={this.handleChange}

@@ -29,12 +29,15 @@ const StationsInputs = ({
   onMapPinClick
 }) => (
   <Row>
-    <Column small={12} medium={8} large={6}>
+    <Column small={12} medium={12} large={6}>
+      <div className={styles.sectionHeader}>
+        <h4>Train Station Selection</h4>
+      </div>
       <Column
         isColumn
         small={12}
-        medium={mapMode ? 8 : 12}
-        large={mapMode ? 4 : 12}
+        medium={12}
+        large={12}
         centerOnSmall
       >
         <StationSelectField
@@ -48,8 +51,8 @@ const StationsInputs = ({
         className={styles.floatFix}
         isColumn
         small={12}
-        medium={mapMode ? 8 : 12}
-        large={mapMode ? 6 : 12}
+        medium={12}
+        large={12}
         centerOnSmall
       >
         <StationSelectField
@@ -65,7 +68,7 @@ const StationsInputs = ({
         isColumn
         centerOnSmall
         small={12}
-        medium={4}
+        medium={12}
         large={6}
       >
         <MapView

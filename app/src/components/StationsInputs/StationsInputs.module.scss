@@ -18,5 +18,10 @@
 }
 
 .floatFix {
-  float: none;
+  float: none !important;
+}
+
+.sectionHeader {
+  margin: 60px;
+  text-align: center;
 }
