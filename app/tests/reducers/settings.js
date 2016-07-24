@@ -1,11 +1,8 @@
 import expect from 'expect';
 import * as types from '../../src/constants/settings';
 import reducer from '../../src/reducers/settings';
-
-const initialState = {
-  mapMode: true,
-  funMode: false
-};
+import { settings } from '../../src/store/initialState';
+const initialState = settings;
 
 describe('settings reducer', () => {
   it('should return the initial settings (initial state)', () => {
