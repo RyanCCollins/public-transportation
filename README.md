@@ -49,15 +49,15 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * [Transport API Documentation](http://docs.transportapi.com/index.html?raml=http://transportapi.com/v3/raml/transportapi.raml)
 * [IDB Documentation](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
 
-## Timeline
-* [x] Configure Service Worker with Webpack
+## Timeline / Todos
+* [x] Configure Service Worker with Webpack to cache all assets
 * [x] Retrieve Data from the [Transport API](http://www.transportapi.com/)
 * [x] Cache data to IDB for loading when offline
 * [x] Add Material UI components when apropos
 * [x] Add custom styling to components using React SCSS Modules
 * [x] Hydrate Redux store from persisted data
 * [ ] Write integration and unit tests
-* [ ] Host on Heroku
+* [ ] Deploy to Heroku
 * [ ] Review Code for best practices and meet the [AirBnb style guide](https://github.com/airbnb/javascript)
 
 ## Technical Milestones
