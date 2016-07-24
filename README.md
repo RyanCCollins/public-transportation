@@ -2,7 +2,7 @@
 Senior Web P2, Public Transportation App, offline-first progressive web application built to allow user's to plan a trip by train in London, England.
 
 ## Getting Started
-The projects uses NPM scripts along with Webpack.
+The project uses NPM scripts along with Webpack.
 
 The scripts can be referenced from [my open source boilerplate project](https://github.com/RyanCCollins/react-redux-simple-starter).
 
