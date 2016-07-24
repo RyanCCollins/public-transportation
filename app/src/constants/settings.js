@@ -1,2 +1,2 @@
 export const TOGGLE_FUN_MODE = 'TOGGLE_FUN_MODE';
-export const TOGGLE_MAP = 'TOGGLE_MAP';
+export const TOGGLE_MAP_MODE = 'TOGGLE_MAP_MODE';

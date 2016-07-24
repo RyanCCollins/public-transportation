@@ -1,6 +1,6 @@
 import {
   TOGGLE_FUN_MODE,
-  TOGGLE_MAP
+  TOGGLE_MAP_MODE
 } from '../constants/settings';
 
 const settings = (state = {
@@ -8,7 +8,7 @@ const settings = (state = {
   mapMode: true
 }, action) => {
   switch (action.type) {
-    case TOGGLE_MAP:
+    case TOGGLE_MAP_MODE:
       return Object.assign({}, state, {
         mapMode: !state.mapMode
       });

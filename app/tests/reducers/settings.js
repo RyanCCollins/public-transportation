@@ -1,23 +1,30 @@
 import expect from 'expect';
 import * as types from '../../src/constants/settings';
 import reducer from '../../src/reducers/settings';
-import { settings } from '../../src/store/initialState';
-const initialState = settings;
+
+const initialState = {
+  mapMode: true,
+  funMode: false
+};
 
 describe('settings reducer', () => {
   it('should return the initial settings (initial state)', () => {
     expect(
       reducer(undefined, {})
-    ).toEqual(settings);
+    ).toEqual({
+      mapMode: true,
+      funMode: false
+    });
   });
 
-  it('should toggle fun mode from false to true', () => {
+  it('should toggle funMode from false to true', () => {
     expect(
       reducer(initialState, {
         type: types.TOGGLE_FUN_MODE
       })
     ).toEqual({
-      funMode: !initialState.funMode
+      mapMode: true,
+      funMode: true
     });
   });
 
@@ -27,7 +34,8 @@ describe('settings reducer', () => {
         type: types.TOGGLE_MAP_MODE
       })
     ).toEqual({
-      mapMode: !initialState.mapMode
+      mapMode: false,
+      funMode: false
     });
   });
 });
