@@ -69,10 +69,7 @@ const StationsInputs = ({
         large={6}
       >
         <MapView
-          stations={stations}
           isLoading={isLoading}
-          onMapClick={onMapClick}
-          onMapPinClick={onMapPinClick}
         />
       </Column>
     :

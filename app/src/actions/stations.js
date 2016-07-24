@@ -6,6 +6,10 @@ const latLong = '&lat=51.5074&lon=0.1278';
 const url = `${apiUrl}&${latLong}`;
 import dbLoad from '../data/db';
 
+const createError = (error) => ({
+  message: error.message || error || 'An unknown error occured'
+});
+
 // loadStationsInitiation :: None -> {Action}
 const loadStationsInitiation = () => ({
   type: types.LOAD_STATIONS_INITIATION
@@ -70,7 +74,9 @@ export const loadStationsOffline = () =>
           dispatch(loadStationsSuccess(stations))
         );
     })
-    .catch(error => dispatch(loadStationsError(error)));
+    .catch(error => dispatch(
+      loadStationsError(createError(error))
+    ));
   };
 
 // fetchStations :: None -> Func -> Maybe Event
@@ -84,5 +90,7 @@ export const fetchStations = () =>
         persistStations(stations);
         dispatch(loadStationsSuccess(stations));
       })
-      .catch(error => dispatch(loadStationsError(error)));
+      .catch(error => dispatch(
+        loadStationsError(createError(error))
+      ));
   };

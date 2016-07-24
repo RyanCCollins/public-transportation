@@ -1,54 +1,42 @@
 import React, { PropTypes } from 'react';
 import styles from './Map.module.scss';
 import cssModules from 'react-css-modules';
-import {
-  GoogleMap,
-  Marker,
-  GoogleMapLoader
-} from 'react-google-maps';
 import { ComponentLoadingIndicator } from 'components';
+import GoogleMap from 'google-map-react';
+import { MapMarker } from 'components';
 
 const Map = ({
   markers,
-  onMapPinClick,
-  onMapClick,
-  isLoading
+  isLoading,
+  onChildClick,
+  onChange,
+  onChildMouseEnter,
+  onChildMouseLeave,
+  apiKey
 }) => (
   <div>
-    {!isLoading && markers.length > 0 ?
-      <GoogleMapLoader
-        query={{ libraries: 'geometry,drawing,places,visualization' }}
-        containerElement={
-          <div
-            {...this.props}
-            className={styles.container}
-          />
-        }
-        googleMapElement={
-          <div className={styles.mapContainer}>
-            <h1 className={styles.containerTitle}>Map</h1>
-            <GoogleMap
-              ref={(map) => console.log(map)}
-              defaultZoom={3}
-              defaultCenter={{ lat: 51.4802, lng: -0.0193 }}
-              onClick={onMapClick}
-            >
-              {markers.map((marker, i) =>
-                <Marker
-                  {...marker}
-                  key={i}
-                  onRightClick={onMapPinClick}
-                />
-              )}
-            </GoogleMap>
-          </div>
-        }
-      />
-    :
-      <noscript />
-    }
-    {isLoading ?
+    {isLoading &&
       <ComponentLoadingIndicator />
+    }
+    {markers.length > 0 ?
+      <div className={styles.container}>
+        <h1 className={styles.containerTitle}>Map of Stations</h1>
+        <GoogleMap
+          center={{ lat: 51.4802, lng: -0.0193 }}
+          zoom={8}
+          onChange={onChange}
+          onChildClick={onChildClick}
+          onChildMouseLeave={onChildMouseLeave}
+          onChildMouseEnter={onChildMouseEnter}
+          bootstrapURLKeys={{
+            key: apiKey
+          }}
+        >
+          {markers.map((item, i) =>
+            <MapMarker key={i} {...item} />
+          )}
+        </GoogleMap>
+      </div>
     :
       <noscript />
     }
@@ -57,9 +45,12 @@ const Map = ({
 
 Map.propTypes = {
   markers: PropTypes.array.isRequired,
-  onMapClick: PropTypes.func.isRequired,
-  onMapPinClick: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  onChildClick: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
+  onChildMouseEnter: PropTypes.func,
+  onChildMouseLeave: PropTypes.func,
+  apiKey: PropTypes.string.isRequired
 };
 
 export default cssModules(Map, styles);

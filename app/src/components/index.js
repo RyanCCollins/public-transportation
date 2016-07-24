@@ -7,6 +7,7 @@ import MoreInfo from './MoreInfo/MoreInfo';
 import UdacityLogoIcon from './UdacityLogoIcon/UdacityLogoIcon';
 import AboutCard from './AboutCard/AboutCard';
 import Map from './Map/Map';
+import MapMarker from './MapMarker/MapMarker';
 
 export {
   ScheduleList,
@@ -17,5 +18,6 @@ export {
   MoreInfo,
   UdacityLogoIcon,
   AboutCard,
-  Map
+  Map,
+  MapMarker
 };

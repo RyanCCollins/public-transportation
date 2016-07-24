@@ -1,7 +1,10 @@
 const initalState = {
   settings: {
     funMode: false,
-    mapMode: true
+    mapMode: true,
+    map: {
+      apiKey: 'AIzaSyCz2jImumhfV62v8JtrjwfSsrsTfWJ9qn4'
+    }
   },
   help: {
     stepIndex: 0
