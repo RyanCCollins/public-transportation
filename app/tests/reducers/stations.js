@@ -54,4 +54,93 @@ describe('stations reducer', () => {
       selectedArrivalStation: null
     });
   });
+  it('should add an error to the error array', () => {
+    expect(
+      reducer(initialState, {
+        type: types.LOAD_STATIONS_ERROR,
+        error: {
+          message: 'This is a test of the emergency broadcast system'
+        }
+      })
+    ).toEqual({
+      items: [],
+      isLoading: false,
+      errors: [
+        {
+          message: 'This is a test of the emergency broadcast system'
+        }
+      ],
+      selectedDepartureStation: null,
+      selectedArrivalStation: null
+    });
+  });
+  it('should add a selected station to the selectedDepartureStation key', () => {
+    expect(
+      reducer(initialState, {
+        type: types.SELECT_DEPARTURE_STATION,
+        station: 'ABK'
+      })
+    ).toEqual({
+      items: [],
+      isLoading: false,
+      errors: [],
+      selectedDepartureStation: 'ABK',
+      selectedArrivalStation: null
+    });
+  });
+  it('should add a selected station to the selectedArrivalStation key', () => {
+    expect(
+      reducer(initialState, {
+        type: types.SELECT_ARRIVAL_STATION,
+        station: 'ABK'
+      })
+    ).toEqual({
+      items: [],
+      isLoading: false,
+      errors: [],
+      selectedDepartureStation: null,
+      selectedArrivalStation: 'ABK'
+    });
+  });
+  it('should add an array of errors to the errors key', () => {
+    expect(
+      reducer(initialState, {
+        type: types.SHOW_STATION_ERRORS,
+        errors: [
+          {
+            message: 'This is a test of the emergency broadcast system'
+          },
+          {
+            message: 'This is also a test of the emergency broadcast system'
+          }
+        ]
+      })
+    ).toEqual({
+      items: [],
+      isLoading: false,
+      errors: [
+        {
+          message: 'This is a test of the emergency broadcast system'
+        },
+        {
+          message: 'This is also a test of the emergency broadcast system'
+        }
+      ],
+      selectedDepartureStation: null,
+      selectedArrivalStation: null
+    });
+  });
+  it('should clear the errors array', () => {
+    expect(
+      reducer(initialState, {
+        type: types.CLEAR_STATION_ERRORS
+      })
+    ).toEqual({
+      items: [],
+      isLoading: false,
+      errors: [],
+      selectedDepartureStation: null,
+      selectedArrivalStation: null
+    });
+  });
 });
