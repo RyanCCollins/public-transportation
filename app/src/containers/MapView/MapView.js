@@ -27,11 +27,10 @@ class MapView extends Component {
   }
   parseMarkerItem(item) {
     return {
-      position: {
-        lat: item.latitude,
-        lng: item.longitude
-      },
-      key: item.station_code
+      lat: item.latitude,
+      lng: item.longitude,
+      key: item.station_code,
+      text: item.station_code
     };
   }
   render() {

@@ -1,9 +1,21 @@
+.markerHolder {
+  cursor: pointer;
+  font-size: 2rem;
+}
+
 .marker {
-  border: 5px solid #f44336;
+  color: rgb(53, 136, 46);
+  transition-timing-function: ease-in;
+  transition: 0.5s;
+  &:hover {
+    transform: scale(2);
+  }
+}
+
+.text {
+  width: 100%;
   text-align: center;
-  border-radius: 40px;
-  background-color: white;
-  color: #3f51b5;
-  padding: 4px;
-  font-size: 16px;
+  margin-top: 10px;
+  font-size: 18px;
+  color: black;
 }

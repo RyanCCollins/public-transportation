@@ -23,7 +23,7 @@ const Map = ({
         <h1 className={styles.containerTitle}>Map of Stations</h1>
         <GoogleMap
           center={{ lat: 51.4802, lng: -0.0193 }}
-          zoom={8}
+          zoom={9}
           onChange={onChange}
           onChildClick={onChildClick}
           onChildMouseLeave={onChildMouseLeave}
