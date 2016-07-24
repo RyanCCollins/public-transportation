@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 import * as types from '../constants/index';
+import initialState from '../store/initialState';
 
 import schedule from './schedule';
 import errors from './errors';
@@ -26,7 +27,7 @@ const appReducer = combineReducers({
 const rootReducer = (state, action) => {
   let newState = state;
   if (action.type === types.RESET) {
-    newState = undefined;
+    newState = initialState;
   }
   return appReducer(newState, action);
 };

@@ -21,21 +21,24 @@ const Map = ({
     {markers.length > 0 ?
       <div className={styles.container}>
         <h1 className={styles.containerTitle}>Map of Stations</h1>
-        <GoogleMap
-          center={{ lat: 51.4802, lng: -0.0193 }}
-          zoom={9}
-          onChange={onChange}
-          onChildClick={onChildClick}
-          onChildMouseLeave={onChildMouseLeave}
-          onChildMouseEnter={onChildMouseEnter}
-          bootstrapURLKeys={{
-            key: apiKey
-          }}
-        >
-          {markers.map((item, i) =>
-            <MapMarker key={i} {...item} />
-          )}
-        </GoogleMap>
+        <div className={styles.mapContainer}>
+          <GoogleMap
+            center={{ lat: 51.4802, lng: -0.0193 }}
+            zoom={9}
+            className={styles.map}
+            onChange={onChange}
+            onChildClick={onChildClick}
+            onChildMouseLeave={onChildMouseLeave}
+            onChildMouseEnter={onChildMouseEnter}
+            bootstrapURLKeys={{
+              key: apiKey
+            }}
+          >
+            {markers.map((item, i) =>
+              <MapMarker key={i} {...item} />
+            )}
+          </GoogleMap>
+        </div>
       </div>
     :
       <noscript />
