@@ -41,46 +41,57 @@ export const selectScheduleItem = (index) => ({
   index
 });
 
+// clearSelectedScheduleItem :: None -> Action
 export const clearSelectedScheduleItem = () => ({
   type: types.CLEAR_SELECTED_SCHEDULE_ITEM
 });
 
+// toggleMoreInfo :: None -> Action
 export const toggleMoreInfo = () => ({
   type: types.TOGGLE_MORE_INFO
 });
 
+// persistSchedule :: Array -> Transaction
 const persistSchedule = (items) => {
   dbLoad.then(db => {
-    const tx = db.transaction('schedule', 'readwrite')
-  });
-};
-
-const persistStations = (stations) => {
-  dbLoad.then(db => {
-    const tx = db.transaction('stations', 'readwrite');
-    const dbStore = tx.objectStore('stations');
-    stations.forEach(item => {
+    const tx = db.transaction('schedule', 'readwrite');
+    const dbStore = tx.objectStore('schedule');
+    items.forEach(item => {
       dbStore.put(item);
     });
     return tx.complete;
   });
 };
 
-export const loadStationsOffline = () =>
-  (dispatch) => {
-    dbLoad.then(db => {
-      dispatch(loadStationsInitiation());
-      const index = db
-        .transaction('stations')
-        .objectStore('stations');
-      return index
-        .getAll()
-        .then(stations =>
-          dispatch(loadStationsSuccess(stations))
-        );
-    });
-  };
-
+export const loadScheduleOffline =
+  (departure, arrival) =>
+    (dispatch) => {
+      dispatch(
+        scheduleLoadInitiation(departure, arrival)
+      );
+      dbLoad.then(db => {
+        const index = db
+          .transaction('schedule')
+          .objectStore('schedule');
+        try {
+          return index
+            .getAll()
+            .then(schedule =>
+              dispatch(scheduleLoadSuccess(schedule))
+            )
+            .catch(err => {
+              throw new Error(err);
+            });
+        } catch (e) {
+          // If an error message is present in the error, return that,
+          // Otherwise construct an error with a message.
+          const error = typeof e.message !== 'undefined' ? e : {
+            message: 'An unknown error occured while loading the train schedule'
+          };
+          return dispatch(scheduleLoadFailure(error));
+        }
+      });
+    };
 
 /**
  * @function fetchSchedule
@@ -97,12 +108,14 @@ export const fetchSchedule =
       fetch(routeApiUrl(departure, arrival))
         .then(res => res.json())
         .then(data => {
-          if (!data) {
-            throw new Error('The network request failed due to unknown reasons.');
-          } else if (!data.routes) {
-            throw new Error(`No schedule found for this route at this time.`);
+          if (!data || !data.routes) {
+            throw new Error('No data returned from the server.  Please try again at a later time.');
           }
-          return data.routes;
+          const {
+            routes
+          } = data;
+          persistSchedule(routes);
+          return routes;
         })
         .then(departures =>
           dispatch(scheduleLoadSuccess(departures))
