@@ -56,7 +56,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * [x] Add Material UI components when apropos
 * [x] Add custom styling to components using React SCSS Modules
 * [x] Hydrate Redux store from persisted data
-* [ ] Write integration and unit tests
+* [ ] Write integration and unit tests for all reducers, action creators and eventually components
 * [ ] Deploy to Heroku
 * [ ] Review Code for best practices and meet the [AirBnb style guide](https://github.com/airbnb/javascript)
 
