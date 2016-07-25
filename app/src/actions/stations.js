@@ -6,6 +6,7 @@ const latLong = '&lat=51.5074&lon=0.1278';
 const url = `${apiUrl}&${latLong}`;
 import dbLoad from '../data/db';
 
+// createError :: Error -> Action
 const createError = (error) => ({
   message: error.message || error || 'An unknown error occured'
 });
@@ -50,6 +51,7 @@ export const selectArrivalStation = (station) => ({
   station
 });
 
+// persistStations :: Array -> Tx
 const persistStations = (stations) => {
   dbLoad.then(db => {
     const tx = db.transaction('stations', 'readwrite');
@@ -61,6 +63,7 @@ const persistStations = (stations) => {
   });
 };
 
+// loadStationsOffline :: None -> SideEffects
 export const loadStationsOffline = () =>
   (dispatch) => {
     dbLoad.then(db => {
