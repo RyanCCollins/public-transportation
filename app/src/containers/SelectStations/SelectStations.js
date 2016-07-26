@@ -22,6 +22,7 @@ class SelectStations extends Component {
     this.handleSelectArrival = this.handleSelectArrival.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
+    this.handleMessage = this.handleMessage.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.handleMapClick = this.handleMapClick.bind(this);
@@ -76,8 +77,18 @@ class SelectStations extends Component {
     if (navigator.onLine) {
       actions.fetchStations();
     } else {
+      this.handleMessage({
+        message: 'There is currently no internet connection.  Not to worry!! I am fetching the default train schedule!'
+      });
       actions.loadStationsOffline();
     }
+  }
+  handleMessage({ message }) {
+    this.setState({
+      snackbar: {
+        message
+      }
+    });
   }
   handleSubmit() {
     const {
@@ -96,15 +107,15 @@ class SelectStations extends Component {
         arrival
       );
     } else {
-      let errors = [];
-      if (!departure) {
+      const errors = [];
+      if (!dCode) {
         errors.push(
           {
             message: 'Please select a Departure Train Station'
           }
         );
       }
-      if (!arrival) {
+      if (!aCode) {
         errors.push(
           {
             message: 'Please select an Arrival Train Station.'
