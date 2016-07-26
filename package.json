@@ -88,6 +88,7 @@
     "eslint-config-airbnb": "^4.0.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-react": "^3.11.3",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
     "jsdom": "^7.2.0",
     "mocha": "^2.3.4",
     "npm-install-webpack-plugin": "^4.0.3",

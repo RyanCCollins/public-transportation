@@ -11,19 +11,25 @@ import {
   RaisedButton,
   FlatButton
 } from 'material-ui';
+import * as constants from './constants';
 
 const StepContent = ({
   step
 }) => (
   <p>
     {(() => {
+      const {
+        zero,
+        one,
+        two
+      } = constants;
       switch (step) {
         case 0:
-          return "Go to the home page and select a route from the list"
+          return zero;
         case 1:
-          return "Once the route loads, select an arrival and a departure train station."
+          return one;
         case 2:
-          return "Pick out the corresponding time that best matches your schedule and go catch the train.";
+          return two;
         case 3:
           return (
             <Link to="/">Back to Home</Link>
