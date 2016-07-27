@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { RaisedButton } from 'material-ui';
 import {
   Column,
@@ -6,14 +6,10 @@ import {
 } from 'react-foundation';
 import styles from './StationsInputs.module.scss';
 import cssModules from 'react-css-modules';
-import { StationSelectField } from 'components';
+import {
+  StationSelectField
+} from 'components';
 import { MapView } from 'containers';
-
-const NoSelectedRoute = () => (
-  <div className={styles.noRoute}>
-    <h4>No Selected Route</h4>
-  </div>
-);
 
 const StationsInputs = ({
   selectedDepartureStation,
