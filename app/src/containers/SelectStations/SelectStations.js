@@ -12,7 +12,7 @@ import { ComponentLoadingIndicator, StationsInputs } from 'components';
 const toGeo = ({
   latitude,
   longitude
-}) => `${longitude},${latitude}`;
+}) => `lonlat:-${longitude},${latitude}`;
 
 class SelectStations extends Component {
   constructor() {
