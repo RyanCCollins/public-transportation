@@ -23,8 +23,8 @@ const Map = ({
         <h1 className={styles.containerTitle}>Map of Stations</h1>
         <div className={styles.mapContainer}>
           <GoogleMap
-            center={{ lat: 51.4802, lng: -0.0193 }}
-            zoom={9}
+            center={{ lat: 51.491061, lng: 0.121394 }}
+            zoom={10.5}
             className={styles.map}
             onChange={onChange}
             onChildClick={onChildClick}
@@ -35,7 +35,11 @@ const Map = ({
             }}
           >
             {markers.map((item, i) =>
-              <MapMarker key={i} {...item} />
+              <MapMarker
+                key={i}
+                isSelected={item.selected}
+                {...item}
+              />
             )}
           </GoogleMap>
         </div>

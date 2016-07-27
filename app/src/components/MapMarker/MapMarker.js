@@ -8,11 +8,15 @@ import {
 const MapMarker = ({
   text,
   onSelectDeparture,
-  onSelectArrival
+  onSelectArrival,
+  isSelected
 }) => (
   <div className="marker">
     <div className={styles.markerHolder}>
-      <FaMapMarker className={styles.marker} />
+      <FaMapMarker className={isSelected ? styles.selectedMarker : styles.marker} />
+      <div className={isSelected ? 'pin' : ''}>
+        <div className={isSelected ? 'pulse' : ''} />
+      </div>
       <div className="popover above">
         <p>{text}</p>
         <button onClick={onSelectDeparture}>
@@ -29,7 +33,8 @@ const MapMarker = ({
 MapMarker.propTypes = {
   text: PropTypes.string.isRequired,
   onSelectDeparture: PropTypes.func.isRequired,
-  onSelectArrival: PropTypes.func.isRequired
+  onSelectArrival: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired
 };
 
 export default cssModules(MapMarker, styles);

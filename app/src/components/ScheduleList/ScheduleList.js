@@ -11,12 +11,8 @@ import {
 } from 'material-ui/Table';
 import moment from 'moment';
 
-const getDuration = (first, second) => {
-  return moment.utc(
-    moment(first, 'DD/MM/YYYY HH:mm:ss')
-      .diff(moment(second, 'DD/MM/YYYY HH:mm:ss')))
-      .format('HH:mm:ss');
-};
+const parseTime = (t) =>
+  moment(t, ['HH:mm']).format('h:mm A');
 
 class ScheduleList extends Component {
   constructor(props) {
@@ -44,7 +40,6 @@ class ScheduleList extends Component {
               <TableHeaderColumn tooltip="The Departure Time">Departure Time</TableHeaderColumn>
               <TableHeaderColumn tooltip="The Arrival Time">Arrival Time</TableHeaderColumn>
               <TableHeaderColumn tooltip="The Duration">Duration</TableHeaderColumn>
-              <TableHeaderColumn tooltip="The Destination">Destination</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
@@ -56,12 +51,9 @@ class ScheduleList extends Component {
             {items && items.map((row, index) =>
               <TableRow key={index} selected={selectedItemIndex === index}>
                 <TableRowColumn>{index}</TableRowColumn>
-                <TableRowColumn>{row.aimed_departure_time}</TableRowColumn>
-                <TableRowColumn>{row.aimed_arrival_time}</TableRowColumn>
-                <TableRowColumn>
-                  {getDuration(row.aimed_departure_time, row.aimed_arrival_time)}
-                </TableRowColumn>
-                <TableRowColumn>{row.destination_name}</TableRowColumn>
+                <TableRowColumn>{parseTime(row.departure_time)}</TableRowColumn>
+                <TableRowColumn>{parseTime(row.arrival_time)}</TableRowColumn>
+                <TableRowColumn>{row.duration}</TableRowColumn>
               </TableRow>
             )}
           </TableBody>

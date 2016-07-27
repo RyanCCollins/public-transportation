@@ -4,6 +4,9 @@ import cssModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { Map } from 'components';
 
+const isSelected = (item, departure, arrival) =>
+  item === departure || item === arrival;
+
 class MapView extends Component {
   constructor() {
     super();
@@ -26,11 +29,20 @@ class MapView extends Component {
     console.log('Calling handleChildMouseClick in map container');
   }
   parseMarkerItem(item) {
+    const {
+      selectedDepartureStation,
+      selectedArrivalStation
+    } = this.props;
     return {
       lat: item.latitude,
       lng: item.longitude,
       key: item.station_code,
-      text: item.station_code
+      text: item.station_code,
+      selected: isSelected(
+        item.station_code,
+        selectedDepartureStation,
+        selectedArrivalStation
+      )
     };
   }
   render() {
@@ -59,12 +71,16 @@ class MapView extends Component {
 MapView.propTypes = {
   stations: PropTypes.array.isRequired,
   apiKey: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
+  selectedArrivalStation: PropTypes.string,
+  selectedDepartureStation: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
   stations: state.stations.items,
-  apiKey: state.settings.map.apiKey
+  apiKey: state.settings.map.apiKey,
+  selectedArrivalStation: state.stations.selectedArrivalStation,
+  selectedDepartureStation: state.stations.selectedDepartureStation
 });
 
 const StyledComponent = cssModules(MapView, styles);
