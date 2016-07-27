@@ -13,8 +13,8 @@ const MapMarker = ({
 }) => (
   <div className="marker">
     <div className={styles.markerHolder}>
-      <FaMapMarker className={isSelected ? styles.selectedMarker : styles.marker} />
-      <div className={isSelected ? 'pin' : ''}>
+      <div className="pin-wrapper">
+        <div className={isSelected ? 'pin selected bounce' : 'pin'} />
         <div className={isSelected ? 'pulse' : ''} />
       </div>
       <div className="popover above">

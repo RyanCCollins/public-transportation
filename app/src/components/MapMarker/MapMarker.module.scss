@@ -3,22 +3,6 @@
   font-size: 2rem;
 }
 
-.marker {
-  color: rgb(129, 129, 129);
-  transition-timing-function: ease-in;
-  transition: 0.5s;
-  &:hover {
-    transform: scale(2);
-  }
-}
-
-.selectedMarker {
-  color: rgb(135, 46, 136);
-  transform: scale(2);
-  z-index: 2000;
-  
-}
-
 .text {
   width: 100%;
   text-align: center;

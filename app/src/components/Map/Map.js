@@ -24,7 +24,7 @@ const Map = ({
         <div className={styles.mapContainer}>
           <GoogleMap
             center={{ lat: 51.491061, lng: 0.121394 }}
-            zoom={10.5}
+            zoom={11}
             className={styles.map}
             onChange={onChange}
             onChildClick={onChildClick}
