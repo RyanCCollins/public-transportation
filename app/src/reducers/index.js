@@ -24,6 +24,13 @@ const appReducer = combineReducers({
   toastr: toastrReducer
 });
 
+/**
+ * @function rootReducer
+ * @description A reducer for global settings / state
+ * @param state - the current state
+ * @param action - the action to be applied
+ * @return - Reducer - the root reducer
+ */
 const rootReducer = (state, action) => {
   let newState = state;
   if (action.type === types.RESET) {

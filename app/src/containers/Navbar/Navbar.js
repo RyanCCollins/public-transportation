@@ -19,7 +19,6 @@ import { Link } from 'react-router';
 
 const NavIconMenu = ({
   onRefresh,
-  onReset,
   onToggleFunMode,
   funMode,
   mapMode,
@@ -37,12 +36,7 @@ const NavIconMenu = ({
     <MenuItem
       className={styles.pointerCursor}
       onClick={onRefresh}
-      primaryText="Refresh"
-    />
-    <MenuItem
-      className={styles.pointerCursor}
-      onClick={onReset}
-      primaryText="Reset"
+      primaryText="Reset / Refresh"
     />
     <MenuItem>
       <Toggle
@@ -63,7 +57,6 @@ const NavIconMenu = ({
 
 NavIconMenu.propTypes = {
   onRefresh: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
   onToggleFunMode: PropTypes.func.isRequired,
   funMode: PropTypes.bool.isRequired,
   mapMode: PropTypes.bool.isRequired,
@@ -74,13 +67,15 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.handleOpen = this.handleOpen.bind(this);
-    this.handleReset = this.handleReset.bind(this);
     this.handleRefresh = this.handleRefresh.bind(this);
     this.handleToggleFunMode = this.handleToggleFunMode.bind(this);
     this.handleToggleMapMode = this.handleToggleMapMode.bind(this);
   }
   handleRefresh() {
-
+    const {
+      actions
+    } = this.props;
+    actions.refreshAndReload();
   }
   handleToggleMapMode() {
     const {
@@ -93,12 +88,6 @@ class Navbar extends Component {
       actions
     } = this.props;
     actions.toggleFunMode();
-  }
-  handleReset() {
-    const {
-      actions
-    } = this.props;
-    actions.reset();
   }
   handleOpen() {
     const {
@@ -121,7 +110,6 @@ class Navbar extends Component {
           iconElementRight={
             <NavIconMenu
               onRefresh={this.handleRefresh}
-              onReset={this.handleReset}
               onToggleFunMode={this.handleToggleFunMode}
               funMode={funMode}
               mapMode={mapMode}

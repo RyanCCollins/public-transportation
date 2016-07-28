@@ -9,6 +9,9 @@
 
 .header {
   font-size: 32px;
-  padding: 100px 0;
-  font: 'Lato'
+  padding: 40px 0;
+  font: 'Lato';
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }

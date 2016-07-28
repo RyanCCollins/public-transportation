@@ -6,6 +6,12 @@
   border: 1px solid #C8C8CB;
   border-radius: 5px;
   background: #fff;
+  @media screen and (max-width: 400px) {
+    width: 300px;
+  }
+  @media screen and (max-width: 300px) {
+    width: 250px;
+  }
 }
 
 .containerTitle {

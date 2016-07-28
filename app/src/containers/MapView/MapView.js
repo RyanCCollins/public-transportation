@@ -73,7 +73,7 @@ MapView.propTypes = {
   apiKey: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
   selectedArrivalStation: PropTypes.string,
-  selectedDepartureStation: PropTypes.string.isRequired
+  selectedDepartureStation: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({

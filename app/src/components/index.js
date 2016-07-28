@@ -8,6 +8,7 @@ import UdacityLogoIcon from './UdacityLogoIcon/UdacityLogoIcon';
 import AboutCard from './AboutCard/AboutCard';
 import Map from './Map/Map';
 import MapMarker from './MapMarker/MapMarker';
+import RouteParts from './RouteParts/RouteParts'
 
 export {
   ScheduleList,
@@ -19,5 +20,6 @@ export {
   UdacityLogoIcon,
   AboutCard,
   Map,
-  MapMarker
+  MapMarker,
+  RouteParts
 };
