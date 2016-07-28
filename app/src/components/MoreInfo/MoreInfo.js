@@ -17,17 +17,14 @@ const MoreInfo = ({
 }) => (
   <Card style={{ overflow: 'scroll', height: '400px' }}>
     <CardHeader
-      title={"More Info For Trip"}
+      title={
+              `Confirm details of your
+              trip departing at
+              ${item.departure_time}.`
+      }
       subtitle={createSubtitle(item)}
     />
     <CardText>
-      <p className="center">
-        {
-          `Confirm details of your
-          trip departing at
-          ${item.departure_time}.`
-        }
-      </p>
       {item.route_parts.length > 0 ?
         <RouteParts parts={item.route_parts} />
       :

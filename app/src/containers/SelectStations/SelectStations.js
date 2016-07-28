@@ -7,7 +7,10 @@ import { bindActionCreators } from 'redux';
 import * as StationsActionCreators from '../../actions/stations';
 import * as ScheduleActionCreators from '../../actions/schedule';
 import * as GlobalActionCreators from '../../actions/index';
-import { ComponentLoadingIndicator, StationsInputs } from 'components';
+import {
+  ComponentLoadingIndicator,
+  StationsInputs
+} from 'components';
 
 const toGeo = ({
   latitude,
@@ -24,9 +27,6 @@ class SelectStations extends Component {
     this.handleErrors = this.handleErrors.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
-    this.handleClear = this.handleClear.bind(this);
-    this.handleMapClick = this.handleMapClick.bind(this);
-    this.handleMapPinClick = this.handleMapPinClick.bind(this);
     this.state = {
       snackbar: {
         message: ''
@@ -45,12 +45,6 @@ class SelectStations extends Component {
     if (errors.length > 0) {
       this.handleErrors(errors);
     }
-  }
-  handleMapClick(e) {
-    console.log(`Clicked the map input ${e}`)
-  }
-  handleMapPinClick(...args) {
-    console.log(`Clicked a pin with value ${args.value}`)
   }
   handleSelectArrival(event, index, value) {
     const {
@@ -78,7 +72,8 @@ class SelectStations extends Component {
       actions.fetchStations();
     } else {
       this.handleMessage({
-        message: 'There is currently no internet connection.  Not to worry!! I am fetching the default train schedule!'
+        message: `There is currently no internet connection.
+          Not to worry!! I am fetching the default train schedule!`
       });
       actions.loadStationsOffline();
     }
@@ -100,8 +95,16 @@ class SelectStations extends Component {
     const dCode = selectedDepartureStation;
     const aCode = selectedArrivalStation;
     if (dCode && aCode) {
-      const departure = toGeo(stations.filter(item => item.station_code === dCode)[0]);
-      const arrival = toGeo(stations.filter(item => item.station_code === aCode)[0]);
+      const departure = toGeo(
+        stations.filter(item =>
+          item.station_code === dCode
+        )[0]
+      );
+      const arrival = toGeo(
+        stations.filter(item =>
+          item.station_code === aCode
+        )[0]
+      );
       actions.fetchSchedule(
         departure,
         arrival
@@ -124,12 +127,6 @@ class SelectStations extends Component {
       }
       actions.showStationErrors(errors);
     }
-  }
-  handleClear() {
-    const {
-      actions
-    } = this.props;
-    actions.reset();
   }
   handleErrors(errors) {
     if (errors.length > 1) {
@@ -177,10 +174,7 @@ class SelectStations extends Component {
             handleSelectArrival={this.handleSelectArrival}
             handleSelectDeparture={this.handleSelectDeparture}
             handleSubmit={this.handleSubmit}
-            onMapClick={this.handleMapClick}
-            onMapPinClick={this.handleMapPinClick}
             mapMode={mapMode}
-            handleClear={this.handleClear}
           />
         }
         <Snackbar

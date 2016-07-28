@@ -29,16 +29,22 @@ TotalTime.propTypes = {
   to: PropTypes.string.isRequired
 };
 
+const capitalized = (what) =>
+  `${what.charAt(0).toUpperCase()}${what.slice(1)}`;
+
 const RoutePart = ({
   part
 }) => (
   <ListItem
-    primaryText={`${part.departure_time} - ${part.arrival_time} by ${part.mode}`}
+    primaryText={
+      `${part.departure_time}
+      - ${part.arrival_time}
+      by ${capitalized(part.mode)}`
+    }
     secondaryText={
-      <span className={styles.flex}>
-        <p className={styles.fill}>{`From ${part.from_point_name} to ${part.to_point_name}`}</p>
-        <TotalTime from={part.departure_time} to={part.arrival_time} />
-      </span>
+      <p className={styles.fill}>
+        {`From ${part.from_point_name} to ${part.to_point_name}`}
+      </p>
     }
     secondaryTextLines={4}
   />
