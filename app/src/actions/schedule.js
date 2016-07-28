@@ -62,7 +62,7 @@ const persistSchedule = (items) => {
   });
 };
 
-// loadScheduleOffline ::  -> String -> String as -> Func -> SideEffects
+// loadScheduleOffline :: -> String -> String as -> Func -> SideEffects
 export const fetchDefaultSchedule =
   (departure, arrival) =>
     (dispatch) => {
