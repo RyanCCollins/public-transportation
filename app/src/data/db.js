@@ -1,13 +1,13 @@
 import idb from 'idb';
-const VERSION = 0;
+const VERSION = 1;
 
-const dbPromise = idb.open('public-transportation-db', VERSION, upgradeDB => {
+const dbPromise = idb.open('public-transportation-database', VERSION, upgradeDB => {
   switch (upgradeDB.oldVersion) {
-    case 0:
+    case 1:
       const dbStore = upgradeDB.createObjectStore('stations', {
         keyPath: 'station_code'
       });
-      const scheduleStore = upgradeDB.createObjectStore('schedule', {
+      const schedule = upgradeDB.createObjectStore('schedule', {
         keyPath: 'departure'
       });
   }

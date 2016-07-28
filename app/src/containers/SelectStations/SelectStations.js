@@ -27,6 +27,7 @@ class SelectStations extends Component {
     this.handleErrors = this.handleErrors.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
+    this.fetchSchedule = this.fetchSchedule.bind(this);
     this.state = {
       snackbar: {
         message: ''
@@ -37,6 +38,7 @@ class SelectStations extends Component {
     this.fetchStations();
     const { errors } = this.props;
     this.handleErrors(errors);
+    this.fetchSchedule();
   }
   componentWillReceiveProps(nextProps) {
     const {
@@ -63,6 +65,12 @@ class SelectStations extends Component {
       actions
     } = this.props;
     actions.clearStationErrors();
+  }
+  fetchSchedule() {
+    const {
+      actions
+    } = this.props;
+    actions.cacheDefaultSchedule();
   }
   fetchStations() {
     const {
@@ -105,10 +113,14 @@ class SelectStations extends Component {
           item.station_code === aCode
         )[0]
       );
-      actions.fetchSchedule(
-        departure,
-        arrival
-      );
+      if (navigator.offLine) {
+        actions.fetchDefaultSchedule();
+      } else {
+        actions.fetchSchedule(
+          departure,
+          arrival
+        );
+      }
     } else {
       const errors = [];
       if (!dCode) {

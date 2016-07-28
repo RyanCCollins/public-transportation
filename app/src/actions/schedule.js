@@ -6,9 +6,8 @@ const routeApiUrl = (from, to) =>
 import dbLoad from '../data/db';
 
 // url :: String -> Url
-const url =
-  (stationId) =>
-    `${baseUrl}${stationId}/timetable.json?${apiKeys}`;
+const defaultScheduleUrl = () =>
+    `${baseUrl}ABW/timetable.json?${apiKeys}`;
 
 // scheduleLoadInitiation :: String -> String -> {Action, String, String}
 export const scheduleLoadInitiation =
@@ -64,7 +63,7 @@ const persistSchedule = (items) => {
 };
 
 // loadScheduleOffline ::  -> String -> String as -> Func -> SideEffects
-export const loadScheduleOffline =
+export const fetchDefaultSchedule =
   (departure, arrival) =>
     (dispatch) => {
       dispatch(scheduleLoadInitiation(departure, arrival));
@@ -92,6 +91,16 @@ export const loadScheduleOffline =
       });
     };
 
+export const cacheDefaultSchedule = () =>
+  new Promise((resolve, reject) =>
+    fetch(defaultScheduleUrl())
+      .then(data => data.json())
+      .then(data =>
+        persistSchedule(data.departures.all)
+      )
+      .catch(err => reject(new Error(err)))
+  );
+
 /**
  * @function fetchSchedule
  * @description Loads the train schedule through the api
@@ -111,7 +120,6 @@ export const fetchSchedule =
           const {
             routes
           } = data;
-          persistSchedule(routes);
           return routes;
         })
         .then(departures =>

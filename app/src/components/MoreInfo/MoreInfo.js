@@ -18,9 +18,9 @@ const MoreInfo = ({
   <Card style={{ overflow: 'scroll', height: '400px' }}>
     <CardHeader
       title={
-              `Confirm details of your
-              trip departing at
-              ${item.departure_time}.`
+        `Confirm details of your
+        trip departing at
+        ${item.departure_time}.`
       }
       subtitle={createSubtitle(item)}
     />
