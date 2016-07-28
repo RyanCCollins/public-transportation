@@ -1,4 +1,4 @@
-const VERSION = 7;
+const VERSION = 8;
 const CACHE_NAME = `static-cache-${VERSION}`;
 /* eslint-disable */
 const { assets } = serviceWorkerOption;
@@ -9,6 +9,7 @@ let assetsToCache = [
   './'
 ];
 
+/* Loop through the webpack assets and cache them */
 assetsToCache = assetsToCache.map(path =>
   new URL(path, location).toString()
 );
@@ -41,18 +42,6 @@ self.addEventListener('activate', event => {
         )
       )
     );
-});
-
-self.addEventListener('message', event => {
-  switch (event.data.action) {
-    case 'skipWaiting':
-      if (self.skipWaiting) {
-        self.skipWaiting();
-      }
-      break;
-    default:
-      break;
-  }
 });
 
 self.addEventListener('fetch', event => {
