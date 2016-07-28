@@ -5,6 +5,13 @@ import {
   FlatButton
 } from 'material-ui';
 
+
+const ModalStyle = {
+  width: '95%',
+  maxWidth: 'none',
+  overflow: 'scroll'
+};
+
 const ScheduleItemInfo = ({
   item,
   onClose,
@@ -16,6 +23,7 @@ const ScheduleItemInfo = ({
       title="More Info"
       modal={false}
       open={isOpen}
+      contentStyle={ModalStyle}
       onRequestClose={onClose}
       actions={[
         <FlatButton

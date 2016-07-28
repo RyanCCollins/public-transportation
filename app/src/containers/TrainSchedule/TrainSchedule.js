@@ -111,6 +111,7 @@ class TrainSchedule extends Component {
           isHidden={selectedItemIndex === null}
         />
         <ScheduleItemInfo
+          style={{ width: '90%' }}
           item={items[selectedItemIndex]}
           isOpen={isViewingMoreInfo}
           disabled={selectedItemIndex === null}

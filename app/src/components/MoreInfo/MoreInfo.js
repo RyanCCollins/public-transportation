@@ -15,7 +15,7 @@ const createSubtitle = (item) =>
 const MoreInfo = ({
   item
 }) => (
-  <Card>
+  <Card style={{ overflow: 'scroll', height: '400px' }}>
     <CardHeader
       title={"More Info For Trip"}
       subtitle={createSubtitle(item)}
