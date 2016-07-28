@@ -1,0 +1,12 @@
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.fill {
+  flex: 1;
+}
+
+.right {
+  align-self: flex-end;
+}

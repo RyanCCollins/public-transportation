@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { RouteParts } from 'components';
+import styles from './MoreInfo.module.scss';
+import cssModules from 'react-css-modules';
 import {
   Card,
   CardHeader,
@@ -15,11 +17,17 @@ const MoreInfo = ({
 }) => (
   <Card>
     <CardHeader
-      title="More Info For Trip"
+      title={"More Info For Trip"}
       subtitle={createSubtitle(item)}
     />
     <CardText>
-      {`Confirm details of your trip departing at ${item.departure_time}.`}
+      <p className="center">
+        {
+          `Confirm details of your
+          trip departing at
+          ${item.departure_time}.`
+        }
+      </p>
       {item.route_parts.length > 0 ?
         <RouteParts parts={item.route_parts} />
       :
@@ -33,4 +41,4 @@ MoreInfo.propTypes = {
   item: PropTypes.object
 };
 
-export default MoreInfo;
+export default cssModules(MoreInfo, styles);
