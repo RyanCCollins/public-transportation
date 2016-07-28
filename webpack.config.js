@@ -100,7 +100,7 @@ module.exports = {
       entry: path.join(__dirname, 'app/src/sw.js'),
     }),
     new HtmlwebpackPlugin({
-      title: 'Public Transportation',
+      title: 'London Public Transportation',
       template: 'index.html'
     })
   ]

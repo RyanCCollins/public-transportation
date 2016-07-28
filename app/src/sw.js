@@ -1,4 +1,4 @@
-const VERSION = 2;
+const VERSION = 4;
 const CACHE_NAME = `static-cache-${VERSION}`;
 const { assets } = serviceWorkerOption;
 import db from './data/db';

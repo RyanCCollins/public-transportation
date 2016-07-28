@@ -21,7 +21,7 @@ Header.propTypes = {
 const LandingPage = () => (
   <div className={styles.container}>
     <Paper className={styles.fillScreen} zDepth={2}>
-      <Header text="Washington Metro Train Schedule" />
+      <Header text="London Transit Scheduling" />
       <SelectStations />
       <TrainSchedule />
     </Paper>
