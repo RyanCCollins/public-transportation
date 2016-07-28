@@ -36,6 +36,7 @@ const RoutePart = ({
   part
 }) => (
   <ListItem
+    secondaryTextLines={2}
     primaryText={
       `${part.departure_time}
       - ${part.arrival_time}
@@ -46,7 +47,6 @@ const RoutePart = ({
         {`From ${part.from_point_name} to ${part.to_point_name}`}
       </p>
     }
-    secondaryTextLines={4}
   />
 );
 
@@ -59,12 +59,13 @@ const RouteParts = ({
 }) => (
   <List>
     <Subheader>Route Parts</Subheader>
-    {parts.map(p =>
-      <div>
+    {parts.map((p, i) =>
+      <div key={i}>
         <RoutePart part={p} />
         <Divider />
       </div>
     )}
+    <div className={styles.bottomPadding} />
   </List>
 );
 

@@ -22,7 +22,7 @@ const StationsInputs = ({
   mapMode
 }) => (
   <Row>
-    <Column small={12} medium={12} large={6}>
+    <Column small={12} medium={12} large={mapMode ? 6 : 12}>
       <div className={styles.sectionHeader}>
         <h4>Train Station Selection</h4>
       </div>
@@ -55,6 +55,24 @@ const StationsInputs = ({
           whoAmI="Arrival"
         />
       </Column>
+      <Column
+        isColumn
+        small={12}
+        medium={12}
+        large={12}
+        centerOnSmall
+        className={styles.buttonWrapper}
+      >
+        <RaisedButton
+          disabled={isLoading}
+          className={styles.button}
+          style={{ width: 150, height: 50, color: 'white' }}
+          primary
+          onClick={handleSubmit}
+        >
+          SEARCH TRAINS
+        </RaisedButton>
+      </Column>
     </Column>
     {mapMode ?
       <Column
@@ -71,24 +89,6 @@ const StationsInputs = ({
     :
       <noscript />
     }
-    <Column
-      isColumn
-      small={12}
-      medium={12}
-      large={12}
-      centerOnSmall
-      className={styles.buttonWrapper}
-    >
-      <RaisedButton
-        disabled={isLoading}
-        className={styles.button}
-        style={{ width: 150, height: 50, color: 'white' }}
-        primary
-        onClick={handleSubmit}
-      >
-        SEARCH TRAINS
-      </RaisedButton>
-    </Column>
   </Row>
 );
 
