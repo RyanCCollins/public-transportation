@@ -67,9 +67,7 @@ const persistSchedule = (items) => {
 export const loadScheduleOffline =
   (departure, arrival) =>
     (dispatch) => {
-      dispatch(
-        scheduleLoadInitiation(departure, arrival)
-      );
+      dispatch(scheduleLoadInitiation(departure, arrival));
       dbLoad.then(db => {
         const index = db
           .transaction('schedule')
@@ -103,14 +101,10 @@ export const loadScheduleOffline =
 export const fetchSchedule =
   (departure, arrival) =>
     (dispatch) => {
-      console.log(`Fetching train schedule with url: ${routeApiUrl(departure, arrival)}`)
-      dispatch(
-        scheduleLoadInitiation(departure, arrival)
-      );
+      dispatch(scheduleLoadInitiation(departure, arrival));
       fetch(routeApiUrl(departure, arrival))
         .then(res => res.json())
         .then(data => {
-          console.log(`Data returned is: ${Object.keys(data).forEach(d => d)}`)
           if (!data || !data.routes) {
             throw new Error('No data returned from the server.  Please try again at a later time.');
           }

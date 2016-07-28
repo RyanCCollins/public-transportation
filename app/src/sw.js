@@ -1,20 +1,17 @@
 const VERSION = 4;
 const CACHE_NAME = `static-cache-${VERSION}`;
+/* eslint-disable */
 const { assets } = serviceWorkerOption;
-import db from './data/db';
-
-
-db.then(data => console.log(data));
-console.log(`Service worker regiested with version: ${VERSION} caching assests: ${assets}`);
+/* eslint-enable */
 
 let assetsToCache = [
   ...assets,
   './'
 ];
 
-assetsToCache = assetsToCache.map(path => {
-  return new URL(path, location).toString();
-});
+assetsToCache = assetsToCache.map(path =>
+  new URL(path, location).toString()
+);
 
 self.addEventListener('install', event => {
   event.waitUntil(
