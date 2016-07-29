@@ -10,9 +10,8 @@ const StepItemImage = ({
   stepIndex
 }) => (
   <img
-    style={styles.image}
+    className={styles.imageContainer}
     alt="Descriptive for how it works"
-    className="img-responsive"
     src={(() => {
       switch (stepIndex) {
         case 1:

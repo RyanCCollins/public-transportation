@@ -35,6 +35,11 @@ const NavIconMenu = ({
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
+    <MenuItem
+      className={styles.pointerCursor}
+      onClick={onRefresh}
+      primaryText="Reset / Refresh"
+    />
     <MenuItem>
       <Toggle
         label={`Offline Mode ${isOffline ? 'On' : 'Off'}`}
@@ -42,11 +47,6 @@ const NavIconMenu = ({
         toggled={isOffline}
       />
     </MenuItem>
-    <MenuItem
-      className={styles.pointerCursor}
-      onClick={onRefresh}
-      primaryText="Reset / Refresh"
-    />
     <MenuItem>
       <Toggle
         label="Toggle Fun Mode"

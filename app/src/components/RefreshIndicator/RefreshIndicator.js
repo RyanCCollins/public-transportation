@@ -4,13 +4,13 @@ import styles from './RefreshIndicator.module.scss';
 import cssModules from 'react-css-modules';
 
 const RefreshIndicator = () => (
-  <div style={styles.container}>
+  <div className={styles.container}>
     <Indicator
       size={40}
       left={10}
       top={0}
       status="loading"
-      style={styles.refresh}
+      className={styles.refresh}
     />
   </div>
 );
