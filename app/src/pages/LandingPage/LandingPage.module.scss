@@ -7,11 +7,8 @@
   min-height: 100vh;
 }
 
-.header {
-  font-size: 32px;
-  padding: 40px 0;
-  font: 'Lato';
-  @media screen and (max-width: 500px) {
+.hideForSmall {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 }

@@ -10,6 +10,7 @@ import Map from './Map/Map';
 import MapMarker from './MapMarker/MapMarker';
 import RouteParts from './RouteParts/RouteParts';
 import RefreshIndicator from './RefreshIndicator/RefreshIndicator';
+import Header from './Header/Header';
 
 export {
   ScheduleList,
@@ -23,5 +24,6 @@ export {
   Map,
   MapMarker,
   RouteParts,
-  RefreshIndicator
+  RefreshIndicator,
+  Header
 };
