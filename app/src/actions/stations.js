@@ -51,6 +51,10 @@ export const selectArrivalStation = (station) => ({
   station
 });
 
+export const clearSelectedStations = () => ({
+  type: types.CLEAR_SELECTED_STATIONS
+});
+
 // persistStations :: Array -> Tx
 const persistStations = (stations) => {
   dbLoad.then(db => {

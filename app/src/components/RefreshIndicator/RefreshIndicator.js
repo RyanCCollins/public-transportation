@@ -6,8 +6,8 @@ import cssModules from 'react-css-modules';
 const RefreshIndicator = () => (
   <div className={styles.container}>
     <Indicator
-      size={40}
-      left={10}
+      size={60}
+      left={0}
       top={0}
       status="loading"
       className={styles.refresh}

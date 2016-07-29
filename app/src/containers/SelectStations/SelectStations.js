@@ -24,6 +24,7 @@ class SelectStations extends Component {
     this.handleSelectDeparture = this.handleSelectDeparture.bind(this);
     this.handleSelectArrival = this.handleSelectArrival.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
+    this.handleClearStations = this.handleClearStations.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
@@ -65,6 +66,12 @@ class SelectStations extends Component {
       actions
     } = this.props;
     actions.clearStationErrors();
+  }
+  handleClearStations() {
+    const {
+      actions
+    } = this.props;
+    actions.clearSelectedStations();
   }
   fetchSchedule() {
     const {
@@ -193,6 +200,7 @@ class SelectStations extends Component {
             handleSelectDeparture={this.handleSelectDeparture}
             handleSubmit={this.handleSubmit}
             mapMode={mapMode}
+            onClearStations={this.handleClearStations}
           />
         }
         <Snackbar

@@ -5,7 +5,8 @@ import {
   SELECT_DEPARTURE_STATION,
   SELECT_ARRIVAL_STATION,
   CLEAR_STATION_ERRORS,
-  SHOW_STATION_ERRORS
+  SHOW_STATION_ERRORS,
+  CLEAR_SELECTED_STATIONS
 } from '../constants/stations';
 
 const stations = (state = {
@@ -51,6 +52,11 @@ const stations = (state = {
     case CLEAR_STATION_ERRORS:
       return Object.assign({}, state, {
         errors: []
+      });
+    case CLEAR_SELECTED_STATIONS:
+      return Object.assign({}, state, {
+        selectedArrivalStation: null,
+        selectedDepartureStation: null
       });
     default:
       return state;

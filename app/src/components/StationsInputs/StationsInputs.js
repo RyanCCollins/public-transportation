@@ -1,15 +1,17 @@
 import React, { PropTypes } from 'react';
-import { RaisedButton } from 'material-ui';
+import styles from './StationsInputs.module.scss';
+import cssModules from 'react-css-modules';
+import { MapView } from 'containers';
+import { StationSelectField } from 'components';
+import {
+  RaisedButton,
+  FloatingActionButton
+} from 'material-ui';
 import {
   Column,
   Row
 } from 'react-foundation';
-import styles from './StationsInputs.module.scss';
-import cssModules from 'react-css-modules';
-import {
-  StationSelectField
-} from 'components';
-import { MapView } from 'containers';
+import ContentClear from 'material-ui/svg-icons/content/clear';
 
 const StationsInputs = ({
   selectedDepartureStation,
@@ -19,7 +21,8 @@ const StationsInputs = ({
   stations,
   handleSubmit,
   isLoading,
-  mapMode
+  mapMode,
+  onClearStations
 }) => (
   <Row>
     <Column small={12} medium={12} large={mapMode ? 6 : 12}>
@@ -64,10 +67,19 @@ const StationsInputs = ({
           className={styles.button}
           style={{ width: 150, height: 50, color: 'white' }}
           primary
+          disabled={selectedArrivalStation !== null &&
+            selectedDepartureStation !== null
+          }
           onClick={handleSubmit}
         >
           SEARCH TRAINS
         </RaisedButton>
+        <FloatingActionButton
+          onClick={onClearStations}
+          disabled={!selectedArrivalStation && !selectedDepartureStation}
+        >
+          <ContentClear />
+        </FloatingActionButton>
       </Column>
     </Column>
     {mapMode ?
@@ -96,7 +108,8 @@ StationsInputs.propTypes = {
   stations: PropTypes.array.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  mapMode: PropTypes.bool.isRequired
+  mapMode: PropTypes.bool.isRequired,
+  onClearStations: PropTypes.func.isRequired
 };
 
 export default cssModules(StationsInputs);
