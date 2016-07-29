@@ -22,7 +22,9 @@ const NavIconMenu = ({
   onToggleFunMode,
   funMode,
   mapMode,
-  onToggleMapMode
+  onToggleMapMode,
+  onToggleOfflineMode,
+  isOffline
 }) => (
   <IconMenu
     iconButtonElement={
@@ -33,6 +35,13 @@ const NavIconMenu = ({
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
+    <MenuItem>
+      <Toggle
+        label={`Offline Mode ${isOffline ? 'On' : 'Off'}`}
+        onToggle={onToggleOfflineMode}
+        toggled={isOffline}
+      />
+    </MenuItem>
     <MenuItem
       className={styles.pointerCursor}
       onClick={onRefresh}
@@ -60,7 +69,9 @@ NavIconMenu.propTypes = {
   onToggleFunMode: PropTypes.func.isRequired,
   funMode: PropTypes.bool.isRequired,
   mapMode: PropTypes.bool.isRequired,
-  onToggleMapMode: PropTypes.func.isRequired
+  onToggleMapMode: PropTypes.func.isRequired,
+  isOffline: PropTypes.bool.isRequired,
+  onToggleOfflineMode: PropTypes.func.isRequired
 };
 
 class Navbar extends Component {
@@ -70,6 +81,7 @@ class Navbar extends Component {
     this.handleRefresh = this.handleRefresh.bind(this);
     this.handleToggleFunMode = this.handleToggleFunMode.bind(this);
     this.handleToggleMapMode = this.handleToggleMapMode.bind(this);
+    this.handleToggleOfflineMode = this.handleToggleOfflineMode.bind(this);
   }
   handleRefresh() {
     const {
@@ -95,12 +107,19 @@ class Navbar extends Component {
     } = this.props;
     actions.toggleNav();
   }
+  handleToggleOfflineMode() {
+    const {
+      actions
+    } = this.props;
+    actions.toggleOfflineMode();
+  }
   render() {
     const {
       isOpen,
       children,
       funMode,
-      mapMode
+      mapMode,
+      offlineMode
     } = this.props;
     return (
       <div>
@@ -110,6 +129,8 @@ class Navbar extends Component {
           iconElementRight={
             <NavIconMenu
               onRefresh={this.handleRefresh}
+              offlineMode={offlineMode}
+              onToggleOfflineMode={this.handleToggleOfflineMode}
               onToggleFunMode={this.handleToggleFunMode}
               funMode={funMode}
               mapMode={mapMode}
@@ -150,7 +171,8 @@ Navbar.propTypes = {
   children: PropTypes.node,
   actions: PropTypes.object.isRequired,
   funMode: PropTypes.bool.isRequired,
-  mapMode: PropTypes.bool.isRequired
+  mapMode: PropTypes.bool.isRequired,
+  offlineMode: PropTypes.bool.isRequired
 };
 
 /**
@@ -164,7 +186,8 @@ const mapStateToProps =
 (state) => ({
   isOpen: state.navbar.isOpen,
   funMode: state.settings.funMode,
-  mapMode: state.settings.mapMode
+  mapMode: state.settings.mapMode,
+  offlineMode: state.settings.offlineMode
 });
 
 /**

@@ -2,6 +2,7 @@ const initalState = {
   settings: {
     funMode: false,
     mapMode: true,
+    offlineMode: false,
     map: {
       apiKey: 'AIzaSyCz2jImumhfV62v8JtrjwfSsrsTfWJ9qn4'
     }

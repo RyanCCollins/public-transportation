@@ -7,3 +7,7 @@ export const toggleFunMode = () => ({
 export const toggleMapMode = () => ({
   type: types.TOGGLE_MAP_MODE
 });
+
+export const toggleOfflineMode = () => ({
+  type: types.TOGGLE_OFFLINE_MODE
+});
