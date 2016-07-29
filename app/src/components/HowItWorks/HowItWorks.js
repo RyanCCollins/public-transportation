@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import styles from './HowItWorks.module.scss';
 import cssModules from 'react-css-modules';
-import { Link } from 'react-router';
 import {
   Step,
   Stepper,
@@ -11,39 +10,8 @@ import {
   RaisedButton,
   FlatButton
 } from 'material-ui';
-import * as constants from './constants';
-
-const StepContent = ({
-  step
-}) => (
-  <p>
-    {(() => {
-      const {
-        zero,
-        one,
-        two
-      } = constants;
-      switch (step) {
-        case 0:
-          return zero;
-        case 1:
-          return one;
-        case 2:
-          return two;
-        case 3:
-          return (
-            <Link to="/">Back to Home</Link>
-          );
-        default:
-          break;
-      }
-    })()}
-  </p>
-);
-
-StepContent.propTypes = {
-  step: PropTypes.number.isRequired
-};
+import { sections } from './constants';
+import StepItem from './StepItem';
 
 const HowItWorks = ({
   stepIndex,
@@ -53,17 +21,19 @@ const HowItWorks = ({
   <div className={styles.root}>
     <Stepper activeStep={stepIndex}>
       <Step>
-        <StepLabel>Select a route</StepLabel>
+        <StepLabel>{sections[0].header}</StepLabel>
       </Step>
       <Step>
-        <StepLabel>Select an arrival and departure train station</StepLabel>
+        <StepLabel>{sections[1].header}</StepLabel>
       </Step>
       <Step>
-        <StepLabel>Load a list of train schedules</StepLabel>
+        <StepLabel>{sections[2].header}</StepLabel>
       </Step>
     </Stepper>
     <div className={styles.content}>
-      <StepContent step={stepIndex} />
+      <StepItem
+        section={sections.filter(i => i.stepIndex === stepIndex)[0] || sections[0]}
+      />
       {stepIndex !== null && (
         <div className={styles.actions}>
           <FlatButton
