@@ -21,7 +21,10 @@ const initalState = {
     isLoading: false,
     errors: [],
     selectedDepartureStation: null,
-    selectedArrivalStation: null
+    selectedArrivalStation: null,
+    search: {
+      isEnabled: false
+    }
   },
   schedule: {
     isLoading: false,

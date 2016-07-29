@@ -24,7 +24,7 @@ const NavIconMenu = ({
   mapMode,
   onToggleMapMode,
   onToggleOfflineMode,
-  isOffline
+  offlineMode
 }) => (
   <IconMenu
     iconButtonElement={
@@ -42,9 +42,9 @@ const NavIconMenu = ({
     />
     <MenuItem>
       <Toggle
-        label={`Offline Mode ${isOffline ? 'On' : 'Off'}`}
+        label={`Offline Mode ${offlineMode ? 'On' : 'Off'}`}
         onToggle={onToggleOfflineMode}
-        toggled={isOffline}
+        toggled={offlineMode}
       />
     </MenuItem>
     <MenuItem>
@@ -70,7 +70,7 @@ NavIconMenu.propTypes = {
   funMode: PropTypes.bool.isRequired,
   mapMode: PropTypes.bool.isRequired,
   onToggleMapMode: PropTypes.func.isRequired,
-  isOffline: PropTypes.bool.isRequired,
+  offlineMode: PropTypes.bool.isRequired,
   onToggleOfflineMode: PropTypes.func.isRequired
 };
 
@@ -119,7 +119,7 @@ class Navbar extends Component {
       children,
       funMode,
       mapMode,
-      offlineMode
+      offlineMode,
     } = this.props;
     return (
       <div>

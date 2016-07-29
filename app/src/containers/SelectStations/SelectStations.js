@@ -110,6 +110,7 @@ class SelectStations extends Component {
     const dCode = selectedDepartureStation;
     const aCode = selectedArrivalStation;
     if (dCode && aCode) {
+      actions.toggleSearchEnabled();
       const departure = toGeo(
         stations.filter(item =>
           item.station_code === dCode
@@ -181,7 +182,8 @@ class SelectStations extends Component {
       mapMode,
       selectedDepartureStation,
       selectedArrivalStation,
-      stations
+      stations,
+      searchEnabled
     } = this.props;
     const {
       message
@@ -201,6 +203,7 @@ class SelectStations extends Component {
             handleSubmit={this.handleSubmit}
             mapMode={mapMode}
             onClearStations={this.handleClearStations}
+            searchEnabled={searchEnabled}
           />
         }
         <Snackbar
@@ -224,13 +227,15 @@ SelectStations.propTypes = {
   actions: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
   funMode: PropTypes.bool.isRequired,
-  mapMode: PropTypes.bool.isRequired
+  mapMode: PropTypes.bool.isRequired,
+  searchEnabled: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   isLoading: state.stations.isLoading,
   stations: state.stations.items,
   errors: state.stations.errors,
+  searchEnabled: state.stations.isEnabled,
   selectedArrivalStation: state.stations.selectedArrivalStation,
   selectedDepartureStation: state.stations.selectedDepartureStation,
   funMode: state.settings.funMode,

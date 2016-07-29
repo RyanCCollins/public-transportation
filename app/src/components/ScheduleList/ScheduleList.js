@@ -71,7 +71,7 @@ class ScheduleList extends Component {
 ScheduleList.propTypes = {
   items: PropTypes.array,
   onSelection: PropTypes.func.isRequired,
-  selectedItemIndex: PropTypes.number.isRequired
+  selectedItemIndex: PropTypes.number
 };
 
 export default cssModules(ScheduleList, styles);

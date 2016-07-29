@@ -51,8 +51,14 @@ export const selectArrivalStation = (station) => ({
   station
 });
 
+// clearSelectedStations :: None -> {Action}
 export const clearSelectedStations = () => ({
   type: types.CLEAR_SELECTED_STATIONS
+});
+
+// toggleSearchEnabled :: None -> {Action}
+export const toggleSearchEnabled = () => ({
+  type: types.TOGGLE_SEARCH_ENABLED
 });
 
 // persistStations :: Array -> Tx

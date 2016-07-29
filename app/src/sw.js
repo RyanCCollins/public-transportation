@@ -1,4 +1,4 @@
-const VERSION = 17;
+const VERSION = 19;
 const CACHE_NAME = `static-cache-${VERSION}`;
 /* eslint-disable */
 const { assets } = serviceWorkerOption;

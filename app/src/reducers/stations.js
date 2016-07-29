@@ -6,15 +6,33 @@ import {
   SELECT_ARRIVAL_STATION,
   CLEAR_STATION_ERRORS,
   SHOW_STATION_ERRORS,
-  CLEAR_SELECTED_STATIONS
+  CLEAR_SELECTED_STATIONS,
+  TOGGLE_SEARCH_ENABLED
 } from '../constants/stations';
+
+const search = (state = {
+  isEnabled: false
+}, action) => {
+  switch (action.type) {
+    case TOGGLE_SEARCH_ENABLED:
+      return Object.assign({}, state, {
+        isEnabled: !state.isEnabled
+      });
+    default:
+      return state;
+  }
+};
 
 const stations = (state = {
   items: [],
   errors: [],
   isLoading: false,
   selectedDepartureStation: null,
-  selectedArrivalStation: null
+  selectedArrivalStation: null,
+  isEnabled: false,
+  search: {
+    isEnabled: true
+  }
 }, action) => {
   switch (action.type) {
     case LOAD_STATIONS_INITIATION:
@@ -57,6 +75,10 @@ const stations = (state = {
       return Object.assign({}, state, {
         selectedArrivalStation: null,
         selectedDepartureStation: null
+      });
+    case TOGGLE_SEARCH_ENABLED:
+      return Object.assign({}, state, {
+        search: search(state.search, action)
       });
     default:
       return state;
