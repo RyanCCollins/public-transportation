@@ -13,22 +13,28 @@ import {
 import { sections } from './constants';
 import StepItem from './StepItem';
 
+// isMobile :: None -> Bool
+const isMobile = (height) =>
+  typeof window !== undefined && window.innerWidth < height;
+
+const isLikelyMobile = isMobile(768);
+
 const HowItWorks = ({
   stepIndex,
   onForwards,
-  onBackwards
+  onBackwards,
+  onFinish
 }) => (
   <div className={styles.root}>
-    <Stepper activeStep={stepIndex}>
-      <Step>
-        <StepLabel>{sections[0].header}</StepLabel>
-      </Step>
-      <Step>
-        <StepLabel>{sections[1].header}</StepLabel>
-      </Step>
-      <Step>
-        <StepLabel>{sections[2].header}</StepLabel>
-      </Step>
+    <Stepper
+      activeStep={stepIndex}
+      orientation={isLikelyMobile ? 'vertical' : 'horizontal'}
+    >
+      {sections.map((item, i) =>
+        <Step key={i}>
+          <StepLabel>{item.header}</StepLabel>
+        </Step>
+      )}
     </Stepper>
     <div className={styles.content}>
       <StepItem
@@ -38,16 +44,24 @@ const HowItWorks = ({
         <div className={styles.actions}>
           <FlatButton
             label="Back"
-            disabled={stepIndex === 0}
+            disabled={stepIndex === 1}
             onTouchTap={onBackwards}
             className={styles.backButton}
           />
-          <RaisedButton
-            label="Next"
-            disabled={stepIndex === 2}
-            primary
-            onTouchTap={onForwards}
-          />
+          {stepIndex !== 4 ?
+            <RaisedButton
+              label="Next"
+              disabled={stepIndex === 4}
+              primary
+              onTouchTap={onForwards}
+            />
+          :
+            <RaisedButton
+              label="Finish"
+              primary
+              onTouchTap={onFinish}
+            />
+          }
         </div>
       )}
     </div>
@@ -57,7 +71,8 @@ const HowItWorks = ({
 HowItWorks.propTypes = {
   stepIndex: PropTypes.number.isRequired,
   onForwards: PropTypes.func.isRequired,
-  onBackwards: PropTypes.func.isRequired
+  onBackwards: PropTypes.func.isRequired,
+  onFinish: PropTypes.func.isRequired
 };
 
 export default cssModules(HowItWorks, styles);

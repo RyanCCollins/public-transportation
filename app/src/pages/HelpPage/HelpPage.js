@@ -15,6 +15,7 @@ class HelpPage extends Component {
     super(props);
     this.handleForwards = this.handleForwards.bind(this);
     this.handleBackwards = this.handleBackwards.bind(this);
+    this.handleFinish = this.handleFinish.bind(this);
   }
   handleForwards() {
     const {
@@ -27,6 +28,12 @@ class HelpPage extends Component {
       actions
     } = this.props;
     actions.stepBackwards();
+  }
+  handleFinish() {
+    const {
+      actions
+    } = this.props;
+    actions.resetHelp();
   }
   render() {
     const {
@@ -57,6 +64,7 @@ class HelpPage extends Component {
               stepIndex={stepIndex}
               onForwards={this.handleForwards}
               onBackwards={this.handleBackwards}
+              onFinish={this.handleFinish}
             />
           </Column>
         </Column>

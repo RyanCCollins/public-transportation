@@ -1,6 +1,7 @@
 import {
   HANDLE_BACKWARD,
-  HANDLE_FORWARD
+  HANDLE_FORWARD,
+  HANDLE_HELP_RESET
 } from '../constants/help';
 
 const stepIndex = (state = 1, action) => {
@@ -25,6 +26,10 @@ const help = (state = {
     case HANDLE_BACKWARD:
       return Object.assign({}, state, {
         stepIndex: stepIndex(state.stepIndex, action)
+      });
+    case HANDLE_HELP_RESET:
+      return Object.assign({}, state, {
+        stepIndex: 1
       });
     default:
       return state;
