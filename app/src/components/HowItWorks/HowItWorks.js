@@ -10,25 +10,24 @@ import {
   RaisedButton,
   FlatButton
 } from 'material-ui';
-import { sections } from './constants';
-import StepItem from './StepItem';
+import StepItem from './StepItem/StepItem';
 
 // isMobile :: None -> Bool
-const isMobile = (height) =>
-  typeof window !== undefined && window.innerWidth < height;
-
-const isLikelyMobile = isMobile(768);
+const isLikelyMobile = (width) =>
+  width < 768;
 
 const HowItWorks = ({
   stepIndex,
   onForwards,
   onBackwards,
-  onFinish
+  onFinish,
+  sections,
+  width
 }) => (
   <div className={styles.root}>
     <Stepper
-      activeStep={stepIndex}
-      orientation={isLikelyMobile ? 'vertical' : 'horizontal'}
+      activeStep={stepIndex - 1}
+      orientation={isLikelyMobile(width) ? 'vertical' : 'horizontal'}
     >
       {sections.map((item, i) =>
         <Step key={i}>
@@ -72,7 +71,9 @@ HowItWorks.propTypes = {
   stepIndex: PropTypes.number.isRequired,
   onForwards: PropTypes.func.isRequired,
   onBackwards: PropTypes.func.isRequired,
-  onFinish: PropTypes.func.isRequired
+  onFinish: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired,
+  sections: PropTypes.array.isRequired
 };
 
 export default cssModules(HowItWorks, styles);

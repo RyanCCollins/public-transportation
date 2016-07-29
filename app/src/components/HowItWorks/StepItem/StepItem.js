@@ -3,11 +3,14 @@ import SelectTrainsImage from './images/select-trains.png';
 import SearchButtonImage from './images/search-button.png';
 import MenuImage from './images/menu-final.png';
 import SelectScheduleImage from './images/select-schedule.png';
+import styles from './StepItem.module.scss';
+import cssModules from 'react-css-modules';
 
 const StepItemImage = ({
   stepIndex
 }) => (
   <img
+    style={styles.image}
     alt="Descriptive for how it works"
     className="img-responsive"
     src={(() => {
@@ -34,7 +37,7 @@ StepItemImage.propTypes = {
 const StepContentItem = ({
   section
 }) => (
-  <div>
+  <div className={styles.containHeight}>
     <h4>{section.header}</h4>
     <p>{section.content}</p>
     <StepItemImage stepIndex={section.stepIndex} />
@@ -57,4 +60,4 @@ StepItem.propTypes = {
   section: PropTypes.object.isRequired
 };
 
-export default StepItem;
+export default cssModules(StepItem, styles);

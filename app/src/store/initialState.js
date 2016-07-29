@@ -1,3 +1,5 @@
+import sections from '../data/static/howItWorks';
+
 const initalState = {
   settings: {
     funMode: false,
@@ -8,7 +10,8 @@ const initalState = {
     }
   },
   help: {
-    stepIndex: 1
+    stepIndex: 1,
+    sections
   },
   navbar: {
     isOpen: false

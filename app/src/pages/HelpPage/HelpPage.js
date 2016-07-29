@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from './HelpPage.module.scss';
 import cssModules from 'react-css-modules';
-import { HowItWorks } from 'components';
+import { HowItWorksContainer } from 'containers';
 import * as HelpActionCreators from '../../actions/help';
 import {
   Column,
@@ -60,7 +60,7 @@ class HelpPage extends Component {
           </Column>
           <Column small={12} medium={12} large={12}>
             <h1 className={styles.stepperHeader}>How It Works</h1>
-            <HowItWorks
+            <HowItWorksContainer
               stepIndex={stepIndex}
               onForwards={this.handleForwards}
               onBackwards={this.handleBackwards}

@@ -3,6 +3,7 @@ import {
   HANDLE_FORWARD,
   HANDLE_HELP_RESET
 } from '../constants/help';
+import sections from '../data/static/howItWorks';
 
 const stepIndex = (state = 1, action) => {
   switch (action.type) {
@@ -16,7 +17,8 @@ const stepIndex = (state = 1, action) => {
 };
 
 const help = (state = {
-  stepIndex: 1
+  stepIndex: 1,
+  sections
 }, action) => {
   switch (action.type) {
     case HANDLE_FORWARD:
