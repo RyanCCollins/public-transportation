@@ -70,7 +70,7 @@ class SelectStations extends Component {
     const {
       actions
     } = this.props;
-    actions.cacheDefaultSchedule();
+    // actions.cacheDefaultSchedule();
   }
   fetchStations() {
     const {

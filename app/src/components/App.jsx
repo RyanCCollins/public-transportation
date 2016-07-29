@@ -5,7 +5,9 @@ import Main from './Main';
 import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 if ('serviceWorker' in navigator) {
+  /* eslint-disable */
   const registration = runtime.register();
+  /*eslint-enable*/
 }
 
 // Map the global state to global props here.

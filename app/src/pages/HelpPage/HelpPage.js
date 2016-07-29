@@ -37,7 +37,10 @@ class HelpPage extends Component {
         <Column small={12} medium={12} large={12} className={styles.outer}>
           <Column small={12} medium={8} large={6} className={styles.inner}>
             <h4>Public Transportation App</h4>
-            <p>This app was made to demonstrate utilizing service worker to making offline first web applications</p>
+            <p>
+              {`This app was made to demonstrate utilizing
+                 service worker to making offline first web applications`}
+            </p>
             <p>If was made as project 2 to the senior web nanodegree</p>
             <p>Made by <a href="https://www.ryancollins.io">Ryan Collins</a></p>
           </Column>
@@ -67,10 +70,12 @@ HelpPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+// mapStateToProps :: State -> {Props}
 const mapStateToProps = (state) => ({
   stepIndex: state.help.stepIndex
 });
 
+// mapDispatchToProps :: Dispatch -> {Actions}
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(HelpActionCreators, dispatch)
 });
