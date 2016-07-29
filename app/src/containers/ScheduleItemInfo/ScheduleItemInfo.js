@@ -45,7 +45,7 @@ const ScheduleItemInfo = ({
 );
 
 ScheduleItemInfo.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired

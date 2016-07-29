@@ -161,7 +161,7 @@ class SelectStations extends Component {
     } else {
       this.setState({
         snackbar: {
-          message: null
+          message: ''
         }
       });
     }
@@ -171,7 +171,10 @@ class SelectStations extends Component {
       isLoading,
       errors,
       funMode,
-      mapMode
+      mapMode,
+      selectedDepartureStation,
+      selectedArrivalStation,
+      stations
     } = this.props;
     const {
       message
@@ -182,8 +185,11 @@ class SelectStations extends Component {
           <ComponentLoadingIndicator funMode={funMode} />
         :
           <StationsInputs
-            {...this.props}
+            isLoading={isLoading}
             handleSelectArrival={this.handleSelectArrival}
+            selectedArrivalStation={selectedArrivalStation}
+            stations={stations}
+            selectedDepartureStation={selectedDepartureStation}
             handleSelectDeparture={this.handleSelectDeparture}
             handleSubmit={this.handleSubmit}
             mapMode={mapMode}
@@ -191,7 +197,7 @@ class SelectStations extends Component {
         }
         <Snackbar
           open={errors.length > 0}
-          message={message}
+          message={message || 'An unknown error occured'}
           autoHideDuration={4000}
           action="Close"
           onActionTouchTap={this.handleCloseSnackbar}

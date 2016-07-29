@@ -92,14 +92,11 @@ export const fetchDefaultSchedule =
     };
 
 export const cacheDefaultSchedule = () =>
-  new Promise((resolve, reject) =>
-    fetch(defaultScheduleUrl())
-      .then(data => data.json())
-      .then(data =>
-        persistSchedule(data.departures.all)
-      )
-      .catch(err => reject(new Error(err)))
-  );
+  fetch(defaultScheduleUrl())
+    .then(data => data.json())
+    .then(data =>
+      persistSchedule(data.departures.all)
+    );
 
 /**
  * @function fetchSchedule

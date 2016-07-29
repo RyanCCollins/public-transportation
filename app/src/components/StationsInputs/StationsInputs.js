@@ -27,11 +27,9 @@ const StationsInputs = ({
         <h4>Train Station Selection</h4>
       </div>
       <Column
-        isColumn
         small={12}
         medium={12}
         large={12}
-        centerOnSmall
       >
         <StationSelectField
           value={selectedDepartureStation}
@@ -42,11 +40,9 @@ const StationsInputs = ({
       </Column>
       <Column
         className={styles.floatFix}
-        isColumn
         small={12}
         medium={12}
         large={12}
-        centerOnSmall
       >
         <StationSelectField
           value={selectedArrivalStation}
