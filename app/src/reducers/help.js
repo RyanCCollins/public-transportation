@@ -3,7 +3,7 @@ import {
   HANDLE_FORWARD
 } from '../constants/help';
 
-const stepIndex = (state = 0, action) => {
+const stepIndex = (state = 1, action) => {
   switch (action.type) {
     case HANDLE_FORWARD:
       return state + 1;

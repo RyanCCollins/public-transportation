@@ -8,7 +8,7 @@ const initalState = {
     }
   },
   help: {
-    stepIndex: 0
+    stepIndex: 1
   },
   navbar: {
     isOpen: false
