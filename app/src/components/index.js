@@ -9,6 +9,7 @@ import AboutCard from './AboutCard/AboutCard';
 import Map from './Map/Map';
 import MapMarker from './MapMarker/MapMarker';
 import RouteParts from './RouteParts/RouteParts';
+import RefreshIndicator from './RefreshIndicator/RefreshIndicator';
 
 export {
   ScheduleList,
@@ -21,5 +22,6 @@ export {
   AboutCard,
   Map,
   MapMarker,
-  RouteParts
+  RouteParts,
+  RefreshIndicator
 };
