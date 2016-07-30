@@ -11,6 +11,7 @@ import MapMarker from './MapMarker/MapMarker';
 import RouteParts from './RouteParts/RouteParts';
 import RefreshIndicator from './RefreshIndicator/RefreshIndicator';
 import Header from './Header/Header';
+import BackButton from './BackButton/BackButton';
 
 export {
   ScheduleList,
@@ -25,5 +26,6 @@ export {
   MapMarker,
   RouteParts,
   RefreshIndicator,
-  Header
+  Header,
+  BackButton
 };

@@ -1,0 +1,16 @@
+.backButton {
+  background-size: 100%;
+  border: 1px solid gray;
+  color: gray;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  height: 55px;
+  width: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  cursor: pointer;
+}

@@ -1,16 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TrainSchedule } from 'containers';
-import { Header } from 'components';
+import { Header, BackButton } from 'components';
 
-class TrainSchedulePage extends Component {
-  render() {
-    return (
-      <div>
-        <Header text="Train Schedule" />
-        <TrainSchedule />
-      </div>
-    );
-  }
-}
+const TrainSchedulePage = () => (
+  <div style={{ position: 'relative' }}>
+    <BackButton />
+    <Header text="Train Schedule" />
+    <TrainSchedule />
+  </div>
+);
 
 export default TrainSchedulePage;

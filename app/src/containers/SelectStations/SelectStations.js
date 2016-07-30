@@ -25,10 +25,12 @@ class SelectStations extends Component {
     this.handleSelectArrival = this.handleSelectArrival.bind(this);
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.handleClearStations = this.handleClearStations.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
     this.fetchSchedule = this.fetchSchedule.bind(this);
+    this.handleRouting = this.handleRouting.bind(this);
     this.state = {
       snackbar: {
         message: ''
@@ -104,31 +106,12 @@ class SelectStations extends Component {
     const {
       actions,
       selectedDepartureStation,
-      selectedArrivalStation,
-      stations
+      selectedArrivalStation
     } = this.props;
     const dCode = selectedDepartureStation;
     const aCode = selectedArrivalStation;
     if (dCode && aCode) {
-      actions.toggleSearchEnabled();
-      const departure = toGeo(
-        stations.filter(item =>
-          item.station_code === dCode
-        )[0]
-      );
-      const arrival = toGeo(
-        stations.filter(item =>
-          item.station_code === aCode
-        )[0]
-      );
-      if (navigator.offLine) {
-        actions.fetchDefaultSchedule();
-      } else {
-        actions.fetchSchedule(
-          departure,
-          arrival
-        );
-      }
+      this.handleSuccess(dCode, aCode);
     } else {
       const errors = [];
       if (!dCode) {
@@ -147,6 +130,38 @@ class SelectStations extends Component {
       }
       actions.showStationErrors(errors);
     }
+  }
+  handleSuccess(dep, arr) {
+    const {
+      actions,
+      stations
+    } = this.props;
+    this.handleRouting();
+    actions.toggleSearchEnabled();
+    const departure = toGeo(
+      stations.filter(item =>
+        item.station_code === dep
+      )[0]
+    );
+    const arrival = toGeo(
+      stations.filter(item =>
+        item.station_code === arr
+      )[0]
+    );
+    if (navigator.offLine) {
+      actions.fetchDefaultSchedule();
+    } else {
+      actions.fetchSchedule(
+        departure,
+        arrival
+      );
+    }
+  }
+  handleRouting() {
+    const {
+      router
+    } = this.context;
+    router.push('/schedule');
   }
   handleErrors(errors) {
     if (errors.length > 1) {
@@ -229,6 +244,10 @@ SelectStations.propTypes = {
   funMode: PropTypes.bool.isRequired,
   mapMode: PropTypes.bool.isRequired,
   searchEnabled: PropTypes.bool.isRequired
+};
+
+SelectStations.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({

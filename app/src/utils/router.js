@@ -19,6 +19,7 @@ const router = (
           <IndexRoute component={Pages.LandingPage} />
           <Route path="/about" name="about" component={Pages.AboutPage} />
           <Route path="/help" name="help" component={Pages.HelpPage} />
+          <Route path="/schedule" schedule="help" component={Pages.TrainSchedulePage} />
           <Route path="*" component={Pages.NotFoundPage} />
         </Route>
       </Router>
