@@ -254,7 +254,7 @@ const mapStateToProps = (state) => ({
   isLoading: state.stations.isLoading,
   stations: state.stations.items,
   errors: state.stations.errors,
-  searchEnabled: state.stations.isEnabled,
+  searchEnabled: state.stations.search.isEnabled,
   selectedArrivalStation: state.stations.selectedArrivalStation,
   selectedDepartureStation: state.stations.selectedDepartureStation,
   funMode: state.settings.funMode,

@@ -1,17 +1,16 @@
 import idb from 'idb';
-const VERSION = 2;
+const VERSION = 3;
 
 const dbPromise = idb.open('public-transportation-db', VERSION, upgradeDB => {
-  /* eslint-disable */
   switch (upgradeDB.oldVersion) {
     case 1:
-      const dbStore = upgradeDB.createObjectStore('stations', {
+      upgradeDB.createObjectStore('stations', {
         keyPath: 'station_code'
       });
-      const schedule = upgradeDB.createObjectStore('schedule', {
-        keyPath: 'train_uid'
-      });
+    case 2:
+      upgradeDB.createObjectStore('schedule');
   }
+  /* eslint-disable */
 });
 /* eslint-enable */
 export default dbPromise;
