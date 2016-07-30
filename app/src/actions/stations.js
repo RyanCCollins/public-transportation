@@ -56,11 +56,6 @@ export const clearSelectedStations = () => ({
   type: types.CLEAR_SELECTED_STATIONS
 });
 
-// toggleSearchEnabled :: None -> {Action}
-export const toggleSearchEnabled = () => ({
-  type: types.TOGGLE_SEARCH_ENABLED
-});
-
 // persistStations :: Array -> Tx
 const persistStations = (stations) => {
   dbLoad.then(db => {

@@ -8,7 +8,7 @@ const RefreshIndicator = () => (
     <Indicator
       className={styles.refresh}
       size={60}
-      left={10}
+      left={-10}
       top={0}
       status="loading"
     />

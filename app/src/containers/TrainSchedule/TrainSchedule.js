@@ -100,16 +100,21 @@ class TrainSchedule extends Component {
             <noscript />
           }
         </Column>
+        <Column small={12} medium={12} large={12}>
+          <MoreInfoButton
+            onClick={this.handleMoreInfo}
+            selectedItem={items[selectedItemIndex]}
+            isHidden={selectedItemIndex === null ||
+              typeof selectedItemIndex === 'undefined'
+            }
+            keyboardFocused={selectedItemIndex !== null}
+          />
+        </Column>
         {isLoading && !items.length > 0 ?
           <ComponentLoadingIndicator funMode={funMode} />
         :
           <noscript />
         }
-        <MoreInfoButton
-          onClick={this.handleMoreInfo}
-          selectedItem={items[selectedItemIndex]}
-          isHidden={selectedItemIndex === null}
-        />
         <ScheduleItemInfo
           style={{ width: '90%' }}
           item={items[selectedItemIndex]}

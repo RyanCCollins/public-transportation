@@ -22,8 +22,7 @@ const StationsInputs = ({
   handleSubmit,
   isLoading,
   mapMode,
-  onClearStations,
-  searchEnabled
+  onClearStations
 }) => (
   <Row>
     <Column small={12} medium={12} large={mapMode ? 6 : 12}>
@@ -64,11 +63,13 @@ const StationsInputs = ({
         className={styles.buttonWrapper}
       >
         <RaisedButton
-          disabled={searchEnabled}
           className={styles.button}
           style={{ width: 150, height: 50, color: 'white' }}
           primary
-          disabled={searchEnabled}
+          keyboardFocused={
+            selectedArrivalStation !== null &&
+              selectedDepartureStation !== null
+          }
           onClick={handleSubmit}
         >
           SEARCH TRAINS
@@ -108,8 +109,7 @@ StationsInputs.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   mapMode: PropTypes.bool.isRequired,
-  onClearStations: PropTypes.func.isRequired,
-  searchEnabled: PropTypes.bool.isRequired
+  onClearStations: PropTypes.func.isRequired
 };
 
 export default cssModules(StationsInputs);
