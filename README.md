@@ -1,5 +1,5 @@
 # Public Transportation
-Senior Web P2, Public Transportation App, offline-first progressive web application built to allow user's to plan a trip by train in London, England.
+Public Transportation App, an offline-first progressive web application built to allow user's to plan a trip by train in London, England. 
 
 ## Getting Started
 The project uses NPM scripts along with Webpack.
