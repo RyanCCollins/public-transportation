@@ -1,7 +1,8 @@
 import {
   TOGGLE_FUN_MODE,
   TOGGLE_MAP_MODE,
-  TOGGLE_OFFLINE_MODE
+  TOGGLE_OFFLINE_MODE,
+  SET_OFFLINE_MODE
 } from '../constants/settings';
 
 const settings = (state = {
@@ -21,6 +22,10 @@ const settings = (state = {
     case TOGGLE_OFFLINE_MODE:
       return Object.assign({}, state, {
         offlineMode: !state.offlineMode
+      });
+    case SET_OFFLINE_MODE:
+      return Object.assign({}, state, {
+        offlineMode: action.mode
       });
     default:
       return state;

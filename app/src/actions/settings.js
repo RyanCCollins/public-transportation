@@ -11,3 +11,8 @@ export const toggleMapMode = () => ({
 export const toggleOfflineMode = () => ({
   type: types.TOGGLE_OFFLINE_MODE
 });
+
+export const setOfflineMode = (mode) => ({
+  type: types.SET_OFFLINE_MODE,
+  mode
+});

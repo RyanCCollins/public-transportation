@@ -62,7 +62,7 @@ const persistSchedule = (items) => {
   });
 };
 
-// loadScheduleOffline :: -> String -> String as -> Func -> SideEffects
+// fetchDefaultSchedule :: -> String -> String as -> Func -> SideEffects
 export const fetchDefaultSchedule =
   (departure, arrival) =>
     (dispatch) => {
@@ -91,12 +91,13 @@ export const fetchDefaultSchedule =
       });
     };
 
-export const cacheDefaultSchedule = () =>
-  fetch(defaultScheduleUrl())
-    .then(data => data.json())
-    .then(data =>
-      persistSchedule(data.departures.all)
-    );
+// export const cacheDefaultSchedule = () =>
+//
+//   // fetch(defaultScheduleUrl())
+//   //   .then(data => data.json())
+//   //   .then(data =>
+//   //     persistSchedule(data.departures.all)
+//   //   );
 
 /**
  * @function fetchSchedule

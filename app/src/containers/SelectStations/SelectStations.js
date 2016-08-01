@@ -79,7 +79,7 @@ class SelectStations extends Component {
     const {
       actions
     } = this.props;
-    actions.cacheDefaultSchedule();
+    //actions.cacheDefaultSchedule();
   }
   fetchStations() {
     const {
@@ -238,6 +238,7 @@ SelectStations.propTypes = {
   selectedArrivalStation: PropTypes.string,
   actions: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  isOffline: PropTypes.bool.isRequired,
   funMode: PropTypes.bool.isRequired,
   mapMode: PropTypes.bool.isRequired
 };
@@ -253,7 +254,8 @@ const mapStateToProps = (state) => ({
   selectedArrivalStation: state.stations.selectedArrivalStation,
   selectedDepartureStation: state.stations.selectedDepartureStation,
   funMode: state.settings.funMode,
-  mapMode: state.settings.mapMode
+  mapMode: state.settings.mapMode,
+  isOffline: state.settings.isOffline
 });
 
 const mapDispatchToProps =

@@ -119,7 +119,7 @@ class Navbar extends Component {
       children,
       funMode,
       mapMode,
-      offlineMode,
+      offlineMode
     } = this.props;
     return (
       <div>
