@@ -12,7 +12,8 @@ export const toggleOfflineMode = () => ({
   type: types.TOGGLE_OFFLINE_MODE
 });
 
-export const setOfflineMode = (mode) => ({
+export const setOfflineMode = (mode, message) => ({
   type: types.SET_OFFLINE_MODE,
-  mode
+  mode,
+  message
 });

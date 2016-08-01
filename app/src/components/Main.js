@@ -11,58 +11,54 @@ class Main extends Component {
     super();
     this.handleCloseSnackbar = this.handleCloseSnackbar.bind(this);
     this.state = {
-      hasSnackbar: false
+      snackbar: {
+        isOpen: false,
+        message: ''
+      }
     };
   }
   componentDidMount() {
-    if (typeof window !== 'undefined') {
-      const {
-        actions
-      } = this.props;
-      window.addEventListener('online', (_) => {
-        actions.toggleOfflineMode(true);
-      }, true);
-      window.addEventListener('offline', (_) => {
-        actions.toggleOfflineMode(false);
-      }, true);
-    }
-    this.state = {
-      hasSnackbar: true
-    };
+    const {
+      actions
+    } = this.props;
+    window.addEventListener('online', () => {
+      const message = 'The browser is back online! Hurray!';
+      actions.setOfflineMode(true, message);
+    }, true);
+    window.addEventListener('offline', () => {
+      const message = 'The application is offline, but will load a default schedule for you!';
+      actions.setOfflineMode(false, message);
+    }, true);
   }
   componentWillReceiveProps(newProps) {
     const {
-      isOffline
-    } = this.props;
-    if (newProps.isOffline !== isOffline) {
+      isOffline,
+      alertMessage
+    } = newProps;
+    if (this.props.isOffline !== isOffline) {
       this.setState({
-        hasSnackbar: true
+        snackbar: {
+          isOpen: true,
+          message: alertMessage
+        }
       });
     }
   }
   componentWillUnmount() {
-    window.removeEventListener('online', (e) => {
-      /* eslint-disable */
-      console.log(`Removing event listenter for event ${e}`);
-      /* eslint-enable */
-    });
-    window.removeEventListener('offline', (e) => {
-      /* eslint-disable */
-      console.log(`Removing event listenter for event ${e}`);
-      /* eslint-enable */
-    });
+    window.removeEventListener('online', (e) => e);
+    window.removeEventListener('offline', (e) => e);
   }
   handleCloseSnackbar() {
     this.setState({
-      hasSnackbar: false
+      snackbar: {
+        isOpen: false,
+        message: ''
+      }
     });
   }
   render() {
     const {
-      isOffline
-    } = this.props;
-    const {
-      hasSnackbar
+      snackbar
     } = this.state;
     return (
       <div>
@@ -70,8 +66,8 @@ class Main extends Component {
           <Navbar>
             {React.cloneElement(this.props.children, this.props)}
             <Snackbar
-              open={hasSnackbar && isOffline}
-              message={'The application is offline, but will load a default schedule for you!'}
+              open={snackbar.isOpen}
+              message={snackbar.message}
               autoHideDuration={4000}
               action="Okay"
               onActionTouchTap={this.handleCloseSnackbar}
@@ -87,11 +83,13 @@ class Main extends Component {
 Main.propTypes = {
   isOffline: PropTypes.bool.isRequired,
   children: PropTypes.element.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  alertMessage: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  isOffline: state.settings.offlineMode
+  isOffline: state.settings.offlineMode,
+  alertMessage: state.settings.alertMessage
 });
 
 const mapDispatchToProps = (dispatch) => ({

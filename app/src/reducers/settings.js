@@ -8,7 +8,8 @@ import {
 const settings = (state = {
   funMode: false,
   mapMode: true,
-  offlineMode: false
+  offlineMode: false,
+  alertMessage: ''
 }, action) => {
   switch (action.type) {
     case TOGGLE_MAP_MODE:
@@ -25,7 +26,8 @@ const settings = (state = {
       });
     case SET_OFFLINE_MODE:
       return Object.assign({}, state, {
-        offlineMode: action.mode
+        offlineMode: action.mode,
+        alertMessage: action.message
       });
     default:
       return state;
