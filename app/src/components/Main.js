@@ -61,7 +61,7 @@ class Main extends Component {
       snackbar
     } = this.state;
     return (
-      <div>
+      <div className="main">
         <MuiThemeProvider>
           <Navbar>
             {React.cloneElement(this.props.children, this.props)}

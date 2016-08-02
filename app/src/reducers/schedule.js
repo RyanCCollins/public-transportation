@@ -5,7 +5,8 @@ import {
   CLEAR_SCHEDULE_ERRORS,
   SELECT_SCHEDULE_ITEM,
   TOGGLE_MORE_INFO,
-  CLEAR_SELECTED_SCHEDULE_ITEM
+  CLEAR_SELECTED_SCHEDULE_ITEM,
+  DEFAULT_SCHEDULE_LOAD
 } from '../constants/schedule';
 
 const schedule = (state = {
@@ -15,7 +16,10 @@ const schedule = (state = {
   departure: null,
   arrival: null,
   selectedItemIndex: null,
-  isViewingMoreInfo: false
+  isViewingMoreInfo: false,
+  defaultSchedule: {
+    hasLoaded: false
+  }
 }, action) => {
   switch (action.type) {
     case SCHEDULE_LOAD_INITIATION:
@@ -52,6 +56,13 @@ const schedule = (state = {
     case TOGGLE_MORE_INFO:
       return Object.assign({}, state, {
         isViewingMoreInfo: !state.isViewingMoreInfo
+      });
+    case DEFAULT_SCHEDULE_LOAD:
+      return Object.assign({}, state, {
+        defaultSchedule: {
+          hasLoaded: true,
+          items: action.items
+        }
       });
     default:
       return state;

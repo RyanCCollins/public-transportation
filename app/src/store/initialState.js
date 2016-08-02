@@ -31,7 +31,11 @@ const initalState = {
     departureId: null,
     arrivalId: null,
     selectedItemIndex: null,
-    isViewingMoreInfo: false
+    isViewingMoreInfo: false,
+    defaultSchedule: {
+      hasLoaded: false,
+      items: []
+    }
   },
   errors: []
 };

@@ -39,7 +39,10 @@ class SelectStations extends Component {
   }
   componentDidMount() {
     this.fetchStations();
-    const { errors } = this.props;
+    const {
+      errors,
+      isOffline
+    } = this.props;
     this.handleErrors(errors);
     this.fetchSchedule();
   }
@@ -83,16 +86,13 @@ class SelectStations extends Component {
   }
   fetchStations() {
     const {
-      actions
+      actions,
+      isOffline
     } = this.props;
-    if (navigator.onLine) {
-      actions.fetchStations();
-    } else {
-      this.handleMessage({
-        message: `There is currently no internet connection.
-          Not to worry!! I am fetching the default train schedule!`
-      });
+    if (!navigator.onLine || isOffline) {
       actions.loadStationsOffline();
+    } else {
+      actions.fetchStations();
     }
   }
   handleMessage({ message }) {
