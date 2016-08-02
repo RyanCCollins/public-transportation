@@ -44,7 +44,9 @@ class SelectStations extends Component {
       isOffline
     } = this.props;
     this.handleErrors(errors);
-    this.fetchSchedule();
+    if (!navigator.onLine || isOffline) {
+      // TODO: load up the default schedule
+    }
   }
   componentWillReceiveProps(nextProps) {
     const {
@@ -82,7 +84,6 @@ class SelectStations extends Component {
     const {
       actions
     } = this.props;
-    //actions.cacheDefaultSchedule();
   }
   fetchStations() {
     const {
