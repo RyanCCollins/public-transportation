@@ -12,6 +12,7 @@ import RouteParts from './RouteParts/RouteParts';
 import RefreshIndicator from './RefreshIndicator/RefreshIndicator';
 import Header from './Header/Header';
 import BackButton from './BackButton/BackButton';
+import ScheduleTable from './ScheduleTable/ScheduleTable';
 
 export {
   ScheduleList,
@@ -27,5 +28,6 @@ export {
   RouteParts,
   RefreshIndicator,
   Header,
-  BackButton
+  BackButton,
+  ScheduleTable
 };

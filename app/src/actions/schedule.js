@@ -105,8 +105,14 @@ export const loadCachedDefaultSchedule = () =>
       );
     })
     .catch(err => {
+      let error = {};
+      if (err && err.message !== null || typeof err.message !== 'undefined') {
+        error = err;
+      } else {
+        error = new Error('An unknown Error occured.');
+      }
       dispatch(
-        defaultScheduleLoadFailure(err)
+        defaultScheduleLoadFailure(error)
       );
     });
   };

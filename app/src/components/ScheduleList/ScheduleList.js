@@ -1,18 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './ScheduleList.module.scss';
 import cssModules from 'react-css-modules';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui/Table';
-import moment from 'moment';
-
-const parseTime = (t) =>
-  moment(t, ['HH:mm']).format('h:mm A');
+import { ScheduleTable } from 'components';
 
 const parseOfflineData = (data) => ({
   departureTime: data.aimed_departure_time,
@@ -25,55 +14,6 @@ const parseOnlineData = (data) => ({
   arrivalTime: data.arrival_time,
   duration: data.duration
 });
-
-const ScheduleTable = ({
-  isOffline,
-  items,
-  onSelection,
-  selectedItemIndex
-}) => (
-  <Table
-    height={this.state.height}
-    onRowSelection={onSelection}
-    selectable
-  >
-    <TableHeader>
-      <TableRow>
-        <TableHeaderColumn
-          tooltip="The ID"
-          className={styles.hideSmall}
-        >
-          ID
-        </TableHeaderColumn>
-        <TableHeaderColumn tooltip="The Departure Time">Departure Time</TableHeaderColumn>
-        <TableHeaderColumn tooltip="The Arrival Time">Arrival Time</TableHeaderColumn>
-        <TableHeaderColumn tooltip="The Duration">Duration</TableHeaderColumn>
-      </TableRow>
-    </TableHeader>
-    <TableBody
-      displayRowCheckbox
-      stripedRows={false}
-      deselectOnClickaway={false}
-      showRowHover
-    >
-      {items && items.map((item, index) =>
-        <TableRow key={index} selected={selectedItemIndex === index}>
-          <TableRowColumn className={styles.hideSmall}>{index}</TableRowColumn>
-          <TableRowColumn>{parseTime(item.departureTime)}</TableRowColumn>
-          <TableRowColumn>{parseTime(item.arrivalTime)}</TableRowColumn>
-          <TableRowColumn>{item.duration}</TableRowColumn>
-        </TableRow>
-      )}
-    </TableBody>
-  </Table>
-);
-
-ScheduleTable.propTypes = {
-  isOffline: PropTypes.bool.isRequired,
-  items: PropTypes.array.isRequired,
-  onSelection: PropTypes.func.isRequired,
-  selectedItemIndex: PropTypes.number.isRequired
-};
 
 class ScheduleList extends Component {
   constructor(props) {
@@ -97,7 +37,10 @@ class ScheduleList extends Component {
   render() {
     return (
       <div className={styles.container}>
-        <ScheduleTable {...this.props} items={this.parseItems} />
+        <ScheduleTable
+          {...this.props}
+          items={this.parseItems}
+        />
       </div>
     );
   }

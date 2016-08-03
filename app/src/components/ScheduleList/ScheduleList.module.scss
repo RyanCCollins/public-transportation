@@ -1,9 +1,3 @@
 .container {
-
-}
-
-.hideSmall {
-  @media screen and (max-width: 400px) {
-    display: none;
-  }
+  min-height: 100vh;
 }
