@@ -68,6 +68,13 @@ const ScheduleTable = ({
   </Table>
 );
 
+ScheduleTable.propTypes = {
+  isOffline: PropTypes.bool.isRequired,
+  items: PropTypes.array.isRequired,
+  onSelection: PropTypes.func.isRequired,
+  selectedItemIndex: PropTypes.number.isRequired
+};
+
 class ScheduleList extends Component {
   constructor(props) {
     super(props);
@@ -88,9 +95,6 @@ class ScheduleList extends Component {
     /* eslint-enable no-confusing-arrow */
   }
   render() {
-    const {
-      isOffline
-    } = this.props;
     return (
       <div className={styles.container}>
         <ScheduleTable {...this.props} items={this.parseItems} />
