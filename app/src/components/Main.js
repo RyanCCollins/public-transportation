@@ -27,6 +27,8 @@ class Main extends Component {
     this.addOfflineEventListeners();
     if (needsDefaultSchedule) {
       actions.fetchAndCacheDefaultSchedule();
+    } else {
+      actions.loadCachedDefaultSchedule();
     }
   }
   componentWillReceiveProps(newProps) {

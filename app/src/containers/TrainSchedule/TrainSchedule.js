@@ -49,6 +49,30 @@ class TrainSchedule extends Component {
     this.handleSelectItem = this.handleSelectItem.bind(this);
     this.handleMoreInfo = this.handleMoreInfo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {
+      scheduleItems: []
+    };
+  }
+  componentDidMount() {
+    const {
+      items,
+      defaultItems,
+      isOffline
+    } = this.state;
+    if (isOffline || !items) {
+      this.state = {
+        scheduleItems: defaultItems
+      };
+    } else {
+      this.state = {
+        scheduleItems: items
+      };
+    }
+  }
+  componentWillReceiveProps(newProps) {
+    if (newProps.isOffline === true) {
+      console.log(`Is offline ${newProps}`)
+    }
   }
   handleSelectItem(indices) {
     const {
@@ -79,19 +103,23 @@ class TrainSchedule extends Component {
   }
   render() {
     const {
+      scheduleItems
+    } = this.state;
+    const {
       errors,
-      items,
       isLoading,
       selectedItemIndex,
       isViewingMoreInfo,
-      funMode
+      funMode,
+      isOffline
     } = this.props;
     return (
       <Row className={styles.rowWrapper}>
         <Column small={12} medium={12} large={12}>
-          {items && items.length > 0 ?
+          {scheduleItems && scheduleItems.length > 0 ?
             <ScheduleList
-              items={items}
+              items={scheduleItems}
+              isOffline={isOffline}
               isLoading={isLoading}
               selectedItemIndex={selectedItemIndex}
               onSelection={this.handleSelectItem}
@@ -103,21 +131,21 @@ class TrainSchedule extends Component {
         <Column small={12} medium={12} large={12}>
           <MoreInfoButton
             onClick={this.handleMoreInfo}
-            selectedItem={items[selectedItemIndex]}
+            selectedItem={scheduleItems[selectedItemIndex]}
             isHidden={selectedItemIndex === null ||
               typeof selectedItemIndex === 'undefined'
             }
             keyboardFocused={selectedItemIndex !== null}
           />
         </Column>
-        {isLoading && !items.length > 0 ?
+        {isLoading && !scheduleItems.length > 0 ?
           <ComponentLoadingIndicator funMode={funMode} />
         :
           <noscript />
         }
         <ScheduleItemInfo
           style={{ width: '90%' }}
-          item={items[selectedItemIndex]}
+          item={scheduleItems[selectedItemIndex]}
           isOpen={isViewingMoreInfo}
           disabled={selectedItemIndex === null}
           onSubmit={this.handleSubmit}
@@ -140,19 +168,23 @@ TrainSchedule.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   actions: PropTypes.object.isRequired,
   items: PropTypes.array,
+  defaultItems: PropTypes.array.isRequired,
   errors: PropTypes.array.isRequired,
   selectedItemIndex: PropTypes.number,
   isViewingMoreInfo: PropTypes.bool.isRequired,
-  funMode: PropTypes.bool.isRequired
+  funMode: PropTypes.bool.isRequired,
+  isOffline: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
   items: state.schedule.items,
+  defaultItems: state.schedule.defaultSchedule.items,
   isLoading: state.schedule.isLoading,
   errors: state.schedule.errors,
   selectedItemIndex: state.schedule.selectedItemIndex,
   isViewingMoreInfo: state.schedule.isViewingMoreInfo,
-  funMode: state.settings.funMode
+  funMode: state.settings.funMode,
+  isOffline: state.settings.offlineMode
 });
 
 const mapDispatchToProps = (dispatch) => ({
