@@ -6,7 +6,9 @@ import {
   SELECT_SCHEDULE_ITEM,
   TOGGLE_MORE_INFO,
   CLEAR_SELECTED_SCHEDULE_ITEM,
-  DEFAULT_SCHEDULE_LOAD
+  DEFAULT_SCHEDULE_LOAD_INITIATION,
+  DEFAULT_SCHEDULE_LOAD_SUCCESS,
+  DEFAULT_SCHEDULE_LOAD_FAILURE
 } from '../constants/schedule';
 
 const schedule = (state = {
@@ -19,6 +21,8 @@ const schedule = (state = {
   isViewingMoreInfo: false,
   defaultSchedule: {
     hasLoaded: false,
+    isLoading: false,
+    errors: [],
     items: []
   }
 }, action) => {
@@ -58,11 +62,30 @@ const schedule = (state = {
       return Object.assign({}, state, {
         isViewingMoreInfo: !state.isViewingMoreInfo
       });
-    case DEFAULT_SCHEDULE_LOAD:
+    case DEFAULT_SCHEDULE_LOAD_INITIATION:
       return Object.assign({}, state, {
         defaultSchedule: {
-          hasLoaded: true,
-          items: action.items
+          isLoading: true,
+          hasLoaded: false
+        }
+      });
+    case DEFAULT_SCHEDULE_LOAD_SUCCESS:
+      return Object.assign({}, state, {
+        defaultSchedule: {
+          isLoading: false,
+          items: action.items,
+          hasLoaded: true
+        }
+      });
+    case DEFAULT_SCHEDULE_LOAD_FAILURE:
+      return Object.assign({}, state, {
+        defaultSchedule: {
+          hasLoaded: false,
+          isLoading: false,
+          errors: [
+            ...state.defaultSchedule.errors,
+            ...action.error
+          ]
         }
       });
     default:

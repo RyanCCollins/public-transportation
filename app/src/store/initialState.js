@@ -34,6 +34,8 @@ const initalState = {
     isViewingMoreInfo: false,
     defaultSchedule: {
       hasLoaded: false,
+      isLoading: false,
+      errors: [],
       items: []
     }
   },
