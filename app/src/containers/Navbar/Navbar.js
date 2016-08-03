@@ -42,9 +42,10 @@ const NavIconMenu = ({
     />
     <MenuItem>
       <Toggle
-        label={`Offline Mode ${offlineMode ? 'On' : 'Off'}`}
+        label={`The app is ${offlineMode ? 'Offline' : 'Online'}`}
         onToggle={onToggleOfflineMode}
         toggled={offlineMode}
+        disabled
       />
     </MenuItem>
     <MenuItem>

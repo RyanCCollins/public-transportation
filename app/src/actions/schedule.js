@@ -50,6 +50,23 @@ export const toggleMoreInfo = () => ({
   type: types.TOGGLE_MORE_INFO
 });
 
+// defaultScheduleLoadInitiation :: None -> {Action}
+export const defaultScheduleLoadInitiation = () => ({
+  type: types.DEFAULT_SCHEDULE_LOAD_INIATATION
+});
+
+// defaultScheduleLoadFailure :: Error -> {Action}
+export const defaultScheduleLoadFailure = (error) => ({
+  type: types.DEFAULT_SCHEDULE_LOAD_FAILURE,
+  error
+});
+
+// defaultScheduleLoadSuccess :: [Items] -> {Action}
+export const defaultScheduleLoadSuccess = (items) => ({
+  type: types.DEFAULT_SCHEDULE_LOAD_SUCCESS,
+  items
+});
+
 // persistSchedule :: Array -> Transaction
 const persistSchedule = (items) => {
   dbLoad.then(db => {
@@ -62,34 +79,34 @@ const persistSchedule = (items) => {
   });
 };
 
-// fetchDefaultSchedule :: -> String -> String as -> Func -> SideEffects
-export const fetchDefaultSchedule =
-  (departure, arrival) =>
-    (dispatch) => {
-      dispatch(scheduleLoadInitiation(departure, arrival));
-      dbLoad.then(db => {
-        const index = db
-          .transaction('schedule')
-          .objectStore('schedule');
-        try {
-          return index
-            .getAll()
-            .then(schedule =>
-              dispatch(scheduleLoadSuccess(schedule))
-            )
-            .catch(err => {
-              throw new Error(err);
-            });
-        } catch (e) {
-          // If an error message is present in the error, return that,
-          // Otherwise construct an error with a message.
-          const error = typeof e.message !== 'undefined' ? e : {
-            message: 'An unknown error occured while loading the train schedule'
-          };
-          return dispatch(scheduleLoadFailure(error));
-        }
-      });
-    };
+// // fetchDefaultSchedule :: -> String -> String as -> Func -> SideEffects
+// export const fetchDefaultSchedule =
+//   (departure, arrival) =>
+//     (dispatch) => {
+//       dispatch(scheduleLoadInitiation(departure, arrival));
+//       dbLoad.then(db => {
+//         const index = db
+//           .transaction('schedule')
+//           .objectStore('schedule');
+//         try {
+//           return index
+//             .getAll()
+//             .then(schedule =>
+//               dispatch(defaultScheduleLoad(schedule))
+//             )
+//             .catch(err => {
+//               throw new Error(err);
+//             });
+//         } catch (e) {
+//           // If an error message is present in the error, return that,
+//           // Otherwise construct an error with a message.
+//           const error = typeof e.message !== 'undefined' ? e : {
+//             message: 'An unknown error occured while loading the train schedule'
+//           };
+//           return dispatch(scheduleLoadFailure(error));
+//         }
+//       });
+//     };
 
 // export const cacheDefaultSchedule = () =>
 //
@@ -99,6 +116,16 @@ export const fetchDefaultSchedule =
 //   //     persistSchedule(data.departures.all)
 //   //   );
 
+export const fetchAndCacheDefaultSchedule = () =>
+  (dispatch) => {
+    dispatch(defaultScheduleLoadInitiation());
+    fetch(defaultScheduleUrl())
+      .then(data => data.json())
+      .then(data => data.departures.all)
+      .then(data => persistSchedule(data))
+      .then(data => defaultScheduleLoadSuccess(data))
+      .catch(err => defaultScheduleLoadFailure(err));
+  };
 /**
  * @function fetchSchedule
  * @description Loads the train schedule through the api

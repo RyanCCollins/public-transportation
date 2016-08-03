@@ -18,7 +18,8 @@ const schedule = (state = {
   selectedItemIndex: null,
   isViewingMoreInfo: false,
   defaultSchedule: {
-    hasLoaded: false
+    hasLoaded: false,
+    items: []
   }
 }, action) => {
   switch (action.type) {

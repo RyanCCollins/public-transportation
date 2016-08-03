@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react';
 import styles from './Map.module.scss';
 import cssModules from 'react-css-modules';
-import { ComponentLoadingIndicator } from 'components';
+import { ComponentLoadingIndicator, MapMarker } from 'components';
 import GoogleMap from 'google-map-react';
-import { MapMarker } from 'components';
 
 const Map = ({
   markers,
