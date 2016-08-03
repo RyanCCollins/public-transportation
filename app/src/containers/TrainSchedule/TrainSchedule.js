@@ -143,14 +143,18 @@ class TrainSchedule extends Component {
         :
           <noscript />
         }
-        <ScheduleItemInfo
-          style={{ width: '90%' }}
-          item={scheduleItems[selectedItemIndex]}
-          isOpen={isViewingMoreInfo}
-          disabled={selectedItemIndex === null}
-          onSubmit={this.handleSubmit}
-          onClose={this.handleMoreInfo}
-        />
+        {scheduleItems.length > 0 && scheduleItems !== null ?
+          <ScheduleItemInfo
+            style={{ width: '90%' }}
+            item={scheduleItems[selectedItemIndex]}
+            isOpen={isViewingMoreInfo}
+            disabled={selectedItemIndex === null}
+            onSubmit={this.handleSubmit}
+            onClose={this.handleMoreInfo}
+          />
+        :
+          <noscript />
+        }
         <Snackbar
           open={errors.length > 0}
           message={errors.length > 0 ? errors[0].message : ''}

@@ -55,11 +55,11 @@ class Main extends Component {
     } = this.props;
     window.addEventListener('online', () => {
       const message = 'The browser is back online! Hurray!';
-      actions.setOfflineMode(true, message);
+      actions.setOfflineMode(false, message);
     }, true);
     window.addEventListener('offline', () => {
       const message = 'The application is offline, but will load a default schedule for you!';
-      actions.setOfflineMode(false, message);
+      actions.setOfflineMode(true, message);
     }, true);
   }
   handleCloseSnackbar() {
