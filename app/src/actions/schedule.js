@@ -1,6 +1,7 @@
 import * as types from '../constants/schedule';
 const baseUrl = 'http://transportapi.com/v3/uk/train/station/';
 const apiKeys = 'app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97';
+
 const routeApiUrl = (from, to) =>
   `http://transportapi.com/v3/uk/public/journey/from/${from}/to/${to}.json?${apiKeys}`;
 import dbLoad from '../data/db';

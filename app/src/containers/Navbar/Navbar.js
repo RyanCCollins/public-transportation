@@ -184,12 +184,12 @@ Navbar.propTypes = {
            the arrow function starts on a new line
  */
 const mapStateToProps =
-(state) => ({
-  isOpen: state.navbar.isOpen,
-  funMode: state.settings.funMode,
-  mapMode: state.settings.mapMode,
-  offlineMode: state.settings.offlineMode
-});
+  (state) => ({
+    isOpen: state.navbar.isOpen,
+    funMode: state.settings.funMode,
+    mapMode: state.settings.mapMode,
+    offlineMode: state.settings.offlineMode
+  });
 
 /**
  * @function mapDispatchToProps
@@ -199,14 +199,14 @@ const mapStateToProps =
            the arrow function starts on a new line
  */
 const mapDispatchToProps =
-(dispatch) => ({
-  actions: bindActionCreators(
-    Object.assign({},
-      NavbarActionCreators,
-      GlobalActionCreators,
-      SettingsActionCreators
-    ), dispatch)
-});
+  (dispatch) => ({
+    actions: bindActionCreators(
+      Object.assign({},
+        NavbarActionCreators,
+        GlobalActionCreators,
+        SettingsActionCreators
+      ), dispatch)
+  });
 
 const StyledNavbar = cssModules(Navbar, styles);
 export default connect(

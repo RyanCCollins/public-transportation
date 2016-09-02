@@ -54,11 +54,12 @@ class Main extends Component {
       actions
     } = this.props;
     window.addEventListener('online', () => {
-      const message = 'The browser is back online! Hurray!';
+      const message = 'The browser is back online! Hurray 🎉🎉🎉!';
       actions.setOfflineMode(false, message);
     }, true);
     window.addEventListener('offline', () => {
-      const message = 'The application is offline, but will load a default schedule for you!';
+      const message = `The application is offline,
+        but our offline worker 🐝🐝🐝s will load a default schedule for you!`;
       actions.setOfflineMode(true, message);
     }, true);
   }
