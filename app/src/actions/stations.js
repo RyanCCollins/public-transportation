@@ -1,6 +1,6 @@
 import * as types from '../constants/stations';
 const apiKeys = 'app_id=03bf8009&app_key=d9307fd91b0247c607e098d5effedc97';
-const baseUrl = 'http://transportapi.com/v3/uk/train/stations/near.json';
+const baseUrl = 'https://transportapi.com/v3/uk/train/stations/near.json';
 const apiUrl = `${baseUrl}?${apiKeys}`;
 const latLong = '&lat=51.5074&lon=0.1278';
 const url = `${apiUrl}&${latLong}`;
