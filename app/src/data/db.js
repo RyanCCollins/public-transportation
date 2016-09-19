@@ -10,7 +10,7 @@ const dbPromise = idb.open('public-transportation-db', VERSION, upgradeDB => {
         });
       case 1:
         upgradeDB.createObjectStore('schedule', {
-          autoIncrement: true
+          keyPath: 'train_uid'
         });
     }
 });

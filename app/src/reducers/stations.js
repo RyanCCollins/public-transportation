@@ -6,8 +6,7 @@ import {
   SELECT_ARRIVAL_STATION,
   CLEAR_STATION_ERRORS,
   SHOW_STATION_ERRORS,
-  CLEAR_SELECTED_STATIONS,
-  TOGGLE_SEARCH_ENABLED
+  CLEAR_SELECTED_STATIONS
 } from '../constants/stations';
 
 const stations = (state = {

@@ -35,9 +35,8 @@ self.addEventListener('activate', event => {
           cacheNames.map((cacheName) => {
             if (cacheName.indexOf(CACHE_NAME) === 0) {
               return null;
-            } else {
-              return caches.delete(cacheName);
             }
+            return caches.delete(cacheName);
           })
         )
       )

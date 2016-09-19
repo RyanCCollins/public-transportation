@@ -13,6 +13,7 @@ import RefreshIndicator from './RefreshIndicator/RefreshIndicator';
 import Header from './Header/Header';
 import BackButton from './BackButton/BackButton';
 import ScheduleTable from './ScheduleTable/ScheduleTable';
+import NoItemsFound from './NoItemsFound/NoItemsFound';
 
 export {
   ScheduleList,
@@ -29,5 +30,6 @@ export {
   RefreshIndicator,
   Header,
   BackButton,
-  ScheduleTable
+  ScheduleTable,
+  NoItemsFound
 };

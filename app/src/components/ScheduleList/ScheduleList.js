@@ -19,9 +19,6 @@ class ScheduleList extends Component {
   constructor(props) {
     super(props);
     this.parseItems = this.parseItems.bind(this);
-    this.state = {
-      maxHeight: '400px'
-    };
   }
   parseItems() {
     const {
@@ -39,7 +36,7 @@ class ScheduleList extends Component {
       <div className={styles.container}>
         <ScheduleTable
           {...this.props}
-          items={this.parseItems}
+          items={this.parseItems()}
         />
       </div>
     );

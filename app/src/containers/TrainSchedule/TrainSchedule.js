@@ -9,7 +9,8 @@ import {
 } from 'material-ui';
 import {
   ScheduleList,
-  ComponentLoadingIndicator
+  ComponentLoadingIndicator,
+  NoItemsFound
 } from 'components';
 import { ScheduleItemInfo } from 'containers';
 import {
@@ -56,10 +57,10 @@ class TrainSchedule extends Component {
   componentDidMount() {
     const {
       items,
-      defaultItems,
-      isOffline
-    } = this.state;
-    if (isOffline || !items) {
+      isOffline,
+      defaultItems
+    } = this.props;
+    if (isOffline === true) {
       this.state = {
         scheduleItems: defaultItems
       };
@@ -70,8 +71,13 @@ class TrainSchedule extends Component {
     }
   }
   componentWillReceiveProps(newProps) {
+    const {
+      defaultItems
+    } = this.props;
     if (newProps.isOffline === true) {
-      console.log(`Is offline ${newProps}`)
+      this.setState({
+        scheduleItems: defaultItems
+      });
     }
   }
   handleSelectItem(indices) {
@@ -125,7 +131,7 @@ class TrainSchedule extends Component {
               onSelection={this.handleSelectItem}
             />
           :
-            <noscript />
+            <NoItemsFound itemName="Train Schedule" />
           }
         </Column>
         <Column small={12} medium={12} large={12}>

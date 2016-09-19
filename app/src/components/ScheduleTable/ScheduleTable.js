@@ -20,7 +20,7 @@ const ScheduleTable = ({
   selectedItemIndex
 }) => (
   <Table
-    height={this.state.height}
+    height={200}
     onRowSelection={onSelection}
     selectable
   >

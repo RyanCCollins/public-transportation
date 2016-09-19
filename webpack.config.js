@@ -4,7 +4,8 @@ const HtmlwebpackPlugin = require('html-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
 const ServiceWorkerWepbackPlugin = require('serviceworker-webpack-plugin').default;
-
+const HOST = '0.0.0.0';
+const PORT = 8079;
 
 module.exports = {
   devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
@@ -91,7 +92,9 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     inline: true,
-    progress: true
+    progress: true,
+    host: HOST,
+    port: PORT
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
