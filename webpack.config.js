@@ -3,7 +3,7 @@ const path = require('path');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 const ROOT_PATH = path.resolve(__dirname);
-const ServiceWorkerWepbackPlugin = require('serviceworker-webpack-plugin').default;
+const ServiceWorkerWepbackPlugin = require('serviceworker-webpack-plugin');
 const HOST = '0.0.0.0';
 const PORT = 8079;
 

@@ -29,7 +29,6 @@ class SelectStations extends Component {
     this.handleErrors = this.handleErrors.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.fetchStations = this.fetchStations.bind(this);
-    this.fetchSchedule = this.fetchSchedule.bind(this);
     this.handleRouting = this.handleRouting.bind(this);
     this.state = {
       snackbar: {
@@ -39,14 +38,6 @@ class SelectStations extends Component {
   }
   componentDidMount() {
     this.fetchStations();
-    const {
-      errors,
-      isOffline
-    } = this.props;
-    this.handleErrors(errors);
-    if (!navigator.onLine || isOffline) {
-      // TODO: load up the default schedule
-    }
   }
   componentWillReceiveProps(nextProps) {
     const {
@@ -79,11 +70,6 @@ class SelectStations extends Component {
       actions
     } = this.props;
     actions.clearSelectedStations();
-  }
-  fetchSchedule() {
-    const {
-      actions
-    } = this.props;
   }
   fetchStations() {
     const {
@@ -256,7 +242,7 @@ const mapStateToProps = (state) => ({
   selectedDepartureStation: state.stations.selectedDepartureStation,
   funMode: state.settings.funMode,
   mapMode: state.settings.mapMode,
-  isOffline: state.settings.isOffline
+  isOffline: state.settings.offlineMode
 });
 
 const mapDispatchToProps =

@@ -1,6 +1,4 @@
 import React, { PropTypes } from 'react';
-import styles from './AboutCard.module.scss';
-import cssModules from 'react-css-modules';
 import {
   Card,
   CardActions,
@@ -67,4 +65,4 @@ AboutCard.propTypes = {
   shadowDepth: PropTypes.number.isRequired
 };
 
-export default cssModules(AboutCard, styles);
+export default AboutCard;

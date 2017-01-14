@@ -8,7 +8,7 @@ import dbLoad from '../data/db';
 
 // url :: String -> Url
 const defaultScheduleUrl = () =>
-    `${baseUrl}ABW/timetable.json?${apiKeys}`;
+    `${baseUrl}BVD/2017-01-14/10:15/timetable.json?${apiKeys}`;
 
 // scheduleLoadInitiation :: String -> String -> {Action, String, String}
 export const scheduleLoadInitiation =

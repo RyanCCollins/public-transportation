@@ -122,7 +122,7 @@ class TrainSchedule extends Component {
     return (
       <Row className={styles.rowWrapper}>
         <Column small={12} medium={12} large={12}>
-          {scheduleItems && scheduleItems.length > 0 ?
+          {!isLoading && scheduleItems && scheduleItems.length > 0 ?
             <ScheduleList
               items={scheduleItems}
               isOffline={isOffline}

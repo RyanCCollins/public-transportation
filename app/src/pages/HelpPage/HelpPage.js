@@ -46,7 +46,7 @@ class HelpPage extends Component {
             <h4>Public Transportation App</h4>
             <p>
               {`This app was made to demonstrate utilizing
-                 service worker to making offline first web applications`}
+              service worker to making offline first web applications`}
             </p>
             <p>If was made as project 2 to the senior web nanodegree</p>
             <p>Made by <a href="https://www.ryancollins.io">Ryan Collins</a></p>
@@ -55,7 +55,7 @@ class HelpPage extends Component {
             <img
               alt="Big train"
               className="img-responsive"
-              src="http://www.eurail.com/sites/eurail.com/files/tgv_high-spped_train_france.jpg"
+              src="https://i.ytimg.com/vi/aknUmKcEB7I/maxresdefault.jpg"
             />
           </Column>
           <Column small={12} medium={12} large={12}>
